@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 08 2011 г., 15:10
+-- Время создания: Сен 08 2011 г., 17:37
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `artists` (
   `art_id` int(11) NOT NULL AUTO_INCREMENT,
   `fio` varchar(255) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   PRIMARY KEY (`art_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
