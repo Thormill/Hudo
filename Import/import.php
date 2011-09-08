@@ -18,7 +18,7 @@ for($i=2;$i<=$max;$i++){
 
 	$res = mysql_query("SELECT * from artists WHERE fio='$fio'");
 	if($res != NULL){
-		$row = mysql_fetch_array($res);
+		$row = mysql_fetch_array($res); //do u need it?
 		echo " already exists<br>";
 		continue;
 	}

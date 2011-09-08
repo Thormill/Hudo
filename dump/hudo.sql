@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `fio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`art_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `artists`
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `type_id` int(3) NOT NULL,
   `category` varchar(30) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `category`
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `price` int(8) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `history`
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `caegory_id` int(3) NOT NULL,
   `item` varchar(25) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `items`
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `price` (
   `item_id` int(11) NOT NULL,
   `price` int(7) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `price`
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `type` (
   `tid` int(11) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(20) NOT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci COMMENT='вид изделий' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='вид изделий' AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `type`
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uname` varchar(255) NOT NULL,
   `upass` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `users`
