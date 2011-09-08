@@ -1,25 +1,22 @@
+<html>
+<head>
+<title></title>
+<style type="text/css">
+    * {font-size: 14px;font-family:Arial;}
+</style>
+</head>
 <body>
- <form>
-  <fieldset id="users">                            <!-- данные для поиска -->
-    <label>ФИО</label><input type="text"></input>
-    <div></div>                                    <!-- тут будет появляться блок со списком пользователей, когда вводишь что-то в ФИО. можно выбирать мышкой. -->
-  </fieldset>
+    <form>
+        <label for="user_fio">ФИО: </label><input id="user_fio" type="text"></input>
+        
+        <label for="view">Вид: </label><select id="view"></select>
+        <label for="category">Категория: </label><select id="category"></select>
+        <label for="product">Изделие: </label><select id="product"></select>
+        <label for="count">Количество: </label><select id="count"><? for($i = 0; $i < 15; $i++) print('<option value ='.$i.'>'.$i.'</option>') ?></select>
+        <label for="cost">Цена: </label><input id="cost" type="text"></input>
+        <input type="submit" value="Добавить"></input>
 
-  <fieldset>                                       <!-- следующий столбец -->
-    <label>вид</label><SELECT></SELECT>            <!-- тут из базы грузим -->
-    <label>категория</label><SELECT></SELECT>      <!-- тут из базы грузим, в завимости от предыдущего -->   
-    <label>изделие</label><SELECT></SELECT>        <!-- меняется в зависимости от категории --> 
-    <label>количество</label><SELECT><? for($i = 0; $i < 15; $i++) print('<option value ='.$i.'>'.$i.'</option>') ?></SELECT>
-  </fieldset>
-
-  <fieldset>
-    <label>цена</label><input type="text"></input> <!-- из базы грузим данные при выборе третьего селекта(изделие) и умножаем на количество -->
-    <div></div>                                    <!-- тут список сданных работ этим чёртом в этом месяце + возможность выбора другого временного интервала -->
-  </fieldset>
-
-  <fieldset>                                       <!-- а тут филдсет не нужен, просто фио-изделие-категория-количество должны бы быть по хорошему одной строкой 
-                                                        с кнопкой -->
-    <input type="submit" value="принять работу"></input>
-  <fieldset>
- </form>
+        <div id="content"></div>
+    </form>
 </body>
+</html>
