@@ -10,6 +10,7 @@ $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 //mysql_query("INSERT INTO artists VALUES 'test','test'") or die("lolo");
 $max =  $aSheet->getHighestRow();
+$count = $max
 for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
 	echo "$fio";
@@ -18,7 +19,7 @@ for($i=2;$i<=$max;$i++){
 
 	$res = mysql_query("SELECT * from artists WHERE fio='$fio'");
 	if($res != NULL){
-		$row = mysql_fetch_array($res); //do u need it?
+		$count--;
 		echo " already exists<br>";
 		continue;
 	}
@@ -27,5 +28,5 @@ for($i=2;$i<=$max;$i++){
 	mysql_query($query) or die(" fail");
 	echo " ok<br>";
 }
-echo "<br>$i ok";
+echo "<br>$count new";
 ?>
