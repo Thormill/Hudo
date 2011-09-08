@@ -14,14 +14,14 @@ for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
 	echo "$fio";
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
-	echo "$phone";
+	echo " $phone";
 
-	$row = mysql_query("SELECT * from 'artists' WHERE fio='$fio'");
-	if(mysql_fetch_array($row)){
+	/*$res = mysql_query("SELECT * from 'artists' WHERE fio='$fio'");
+	while($row = mysql_fetch_array($res)){
 		echo "already exists";
 		continue;
-	}
-	$query = "INSERT INTO 'artists' (fio,phone) VALUES '$fio','$phone'";
+	}*/
+	$query = "INSERT INTO 'artists' (fio,phone) VALUES '".$fio."','".$phone."'";
 	//echo "<br>".$query."<br>";
 	mysql_query($query) or die(" fail");
 	echo "ok";
