@@ -1,42 +1,40 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.3.2
+-- version 3.2.3
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Сен 08 2011 г., 17:37
--- Версия сервера: 5.1.54
--- Версия PHP: 5.3.5-1ubuntu7.2
+-- Host: localhost
+-- Generation Time: Sep 08, 2011 at 06:11 PM
+-- Server version: 5.1.40
+-- PHP Version: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `hudo`
+-- Database: `hudo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `artists`
+-- Table structure for table `artists`
 --
 
 CREATE TABLE IF NOT EXISTS `artists` (
   `art_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fio` varchar(255) NOT NULL,
-  `phone` varchar(10) NOT NULL,
+  `fio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`art_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `artists`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -44,12 +42,17 @@ CREATE TABLE IF NOT EXISTS `category` (
   `type_id` int(3) NOT NULL,
   `category` varchar(30) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `category`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `history`
+-- Table structure for table `history`
 --
 
 CREATE TABLE IF NOT EXISTS `history` (
@@ -62,12 +65,17 @@ CREATE TABLE IF NOT EXISTS `history` (
   `price` int(8) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `history`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `items`
+-- Table structure for table `items`
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
@@ -76,12 +84,17 @@ CREATE TABLE IF NOT EXISTS `items` (
   `caegory_id` int(3) NOT NULL,
   `item` varchar(25) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `items`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `price`
+-- Table structure for table `price`
 --
 
 CREATE TABLE IF NOT EXISTS `price` (
@@ -89,24 +102,34 @@ CREATE TABLE IF NOT EXISTS `price` (
   `item_id` int(11) NOT NULL,
   `price` int(7) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `price`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `type`
+-- Table structure for table `type`
 --
 
 CREATE TABLE IF NOT EXISTS `type` (
   `tid` int(11) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(20) NOT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='вид изделий' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci COMMENT='вид изделий' AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `type`
+--
+
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -114,8 +137,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uname` varchar(255) NOT NULL,
   `upass` varchar(255) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `users`
+--
+
