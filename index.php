@@ -49,6 +49,7 @@
 </script>
 </head>
 <body>
+<<<<<<< HEAD
     <ul class="menu">
         <li><a id="Add" href="/nojs.php" class="selected" onclick="menuClick(this);return false">Добавить</a></li>
         <li><a id="View" href="/nojs.php" onclick="menuClick(this);return false">Просмотреть</a></li>
@@ -56,5 +57,19 @@
     </ul>
     <div id="form"></div>
     <div id="content"></div>
+=======
+    <form>
+        <label for="user_fio">ФИО: </label><input id="user_fio" type="text"></input>
+        
+        <label for="view">Вид: </label><select id="view"></select>
+        <label for="category">Категория: </label><select id="category"></select>
+        <label for="product">Изделие: </label><select id="product"></select>
+        <label for="count">Количество: </label><select id="count"><? for($i = 1; $i < 16; $i++) print('<option value ='.$i.'>'.$i.'</option>') ?></select>
+        <label for="cost">Цена: </label><input id="cost" type="text"></input>
+        <input type="submit" value="Добавить"></input>
+
+        <div id="content"></div>
+    </form>
+>>>>>>> xls-import
 </body>
 </html>
