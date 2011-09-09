@@ -8,7 +8,7 @@ $objPHPExcel = PHPExcel_IOFactory::load("given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
-$count = $max;
+$count = $max-1;
 for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
 	echo "$fio";
@@ -16,10 +16,12 @@ for($i=2;$i<=$max;$i++){
 	echo " $phone";
 
 	$res = mysql_query("SELECT * from artists WHERE fio='$fio'");
-	if($res != NULL){
-		$count--;
-		echo " already exists<br>";
-		continue;
+	if($row = mysql_fetch_array($res) != NULL){
+		
+			$count--;
+			echo " already exists<br>";
+			continue;
+		
 	}
 
 	$query = "INSERT INTO artists (fio,phone) VALUES ('$fio','$phone')";
