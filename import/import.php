@@ -15,6 +15,12 @@ for($i=2;$i<=$max;$i++){
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
 	echo " $phone";
 
+	if(($fio == '') && ($phone == '')){
+		$count--;
+		continue;
+	}
+
+
 	$res = mysql_query("SELECT * from artists WHERE fio='$fio'");
 	if($row = mysql_fetch_array($res) != NULL){
 		$count--;
