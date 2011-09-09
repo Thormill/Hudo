@@ -41,4 +41,5 @@ height: 300px;
 border-style: solid;
 border-width: 2px;
 border-color: #face8d;
+overflow:auto;
 }

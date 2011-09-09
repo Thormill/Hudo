@@ -17,11 +17,9 @@ for($i=2;$i<=$max;$i++){
 
 	$res = mysql_query("SELECT * from artists WHERE fio='$fio'");
 	if($row = mysql_fetch_array($res) != NULL){
-		
-			$count--;
-			echo " already exists<br>";
-			continue;
-		
+		$count--;
+		echo " already exists<br>";
+		continue;
 	}
 
 	$query = "INSERT INTO artists (fio,phone) VALUES ('$fio','$phone')";
