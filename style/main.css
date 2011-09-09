@@ -1,6 +1,26 @@
 * {
     font-size: 14px;
-    font-family:Arial;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+#fAdd {
+    width:450px;
+    height:300px;
+    padding-left:15px;
+    padding-top:15px;
+    line-height: 25px;
+}
+
+form p input {
+    float:right;
+    width:300px;
+    height:25px;
+}
+
+form p select {
+    float:right;
+    width:300px;
+    height:25px;
 }
 
 ul.menu {

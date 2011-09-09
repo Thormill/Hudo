@@ -8,9 +8,10 @@
 </head>
 <body>
     <ul class="menu">
-        <li><a id="Add" href="/nojs.php" class="selected" onclick="menuClick(this);return false">Добавить</a></li>
-        <li><a id="View" href="/nojs.php" onclick="menuClick(this);return false">Просмотреть</a></li>
-        <li><a id="Search" href="/nojs.php" onclick="menuClick(this);return false">Поиск</a></li>
+        <li><a id="AddPayment" href="/nojs.php" onclick="menuClick(this);return false">Добавить платеж</a></li>
+        <li><a id="ViewMaster" href="/nojs.php" onclick="menuClick(this);return false">Добавить мастера</a></li>
+        <li><a id="SearchMaster" href="/nojs.php" onclick="menuClick(this);return false">Поиск мастера</a></li>
+        <li><a id="ViewPayment" href="/nojs.php" onclick="menuClick(this);return false">Поиск платежа</a></li>
     </ul>
     <div id="form"></div>
     <div id="content"></div>
