@@ -14,6 +14,12 @@ $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = $max-1;
 
+mysql_query("TRUNCATE artists") or die('can not empty tables');
+mysql_query("TRUNCATE categories") or die('can not empty tables');
+mysql_query("TRUNCATE types") or die('can not empty tables');
+mysql_query("TRUNCATE prices") or die('can not empty tables');
+mysql_query("TRUNCATE items") or die('can not empty tables');
+
 for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
@@ -48,30 +54,30 @@ for($i=2;$i<=$max;$i++){
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
 
 	if($type != ''){
-		$query = "INSERT INTO types(type_name) VALUES ('$type')";
-		mysql_query($query) or die('insert type error');
-		$res = mysql_query("SELECT t_id FROM types WHERE type_name='$type'") or die('load type error');
-		$row = mysql_fetch_array($res);
+		$type_query = "INSERT INTO types(type_name) VALUES ('$type')";
+		mysql_query($type_query) or die('insert type error');
+		$type_res = mysql_query("SELECT t_id FROM types WHERE type_name='$type'") or die('load type error');
+		$type_row = mysql_fetch_array($res);
 		$t_id = $row['t_id']; 
 	}
 	if($category != ''){
-		$query = "INSERT INTO categories(category, type_id) VALUES ('$category', '$t_id')";
-		mysql_query($query) or die('insert category error');
-		$res = mysql_query("SELECT c_id FROM categories WHERE category='$category'") or die('load category error');
-		$row = mysql_fetch_array($res);
+		$cat_query = "INSERT INTO categories(category, type_id) VALUES ('$category', '$t_id')";
+		mysql_query($cat_query) or die('insert category error');
+		$cat_res = mysql_query("SELECT c_id FROM categories WHERE category='$category'") or die('load category error');
+		$cat_row = mysql_fetch_array($res);
 		$c_id = $row['c_id']; 
 	}
 	if($item != ''){
-		$query = "INSERT INTO items(category_id, type_id, item) VALUES ('$c_id', '$t_id', '$item')";
-		mysql_query($query) or die('insert item error');
-		$res = mysql_query("SELECT i_id FROM items WHERE item='$item'") or die('load item error');
-		$row = mysql_fetch_array($res);
+		$item_query = "INSERT INTO items(category_id, type_id, item) VALUES ('$c_id', '$t_id', '$item')";
+		mysql_query($item_query) or die('insert item error');
+		$item_res = mysql_query("SELECT i_id FROM items WHERE item='$item'") or die('load item error');
+		$item_row = mysql_fetch_array($res);
 		$i_id = $row['i_id']; 
+		$count++;
 	}
 	if($price != ''){
 		$query = "INSERT INTO prices(category_id, type_id, item_id, price) VALUES ('$c_id', '$t_id', '$i_id', '$price')";
 		mysql_query($query) or die('insert price error');
-		$count++;
 	}
 }
 echo "<br>добавлено $count новых изделий.";
