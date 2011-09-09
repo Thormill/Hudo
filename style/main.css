@@ -34,3 +34,11 @@ ul.menu li a.selected {
     border-bottom: 1px #ffffff solid;
     padding: 14px 14px 10px 14px
 }
+
+#imp_result {
+width: 500px;
+height: 300px;
+border-style: solid;
+border-width: 2px;
+border-color: #face8d;
+}
