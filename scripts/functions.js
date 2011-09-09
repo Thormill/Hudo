@@ -4,6 +4,7 @@ function getCategories()
         function (data){
             $("#category").html(data);
         });
+    $("#item").html("");
 }
 
 function getItems()

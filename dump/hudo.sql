@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `artists` (
   `fio` varchar(255) COLLATE utf8_bin NOT NULL,
   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`a_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=107 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
 
 --
 -- Дамп данных таблицы `artists`
