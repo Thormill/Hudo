@@ -1,5 +1,5 @@
 <?php
-require_once '../../config/constants.php';
+require_once '../../conf/constants.php';
 require_once '../../classes/database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 

@@ -10,7 +10,6 @@ function getItems()
 {
     $.post("forms/ajax/getItems.php", { iCategory : $("#category option:selected").val() },
         function (data){
-            alert($("#category option:selected").val());
             $("#item").html(data);
         });
 }
