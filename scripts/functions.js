@@ -1,3 +1,21 @@
+function getCategories()
+{
+    $.post("forms/ajax/getCategories.php", { iType : $("#type option:selected").val() },
+        function (data){
+            $("#category").html(data);
+        });
+}
+
+function getItems()
+{
+    $.post("forms/ajax/getItems.php", { iCategory : $("#category option:selected").val() },
+        function (data){
+            alert($("#category option:selected").val());
+            $("#item").html(data);
+        });
+}
+
+/*переход по формам*/
 function toForm(sFormName)
 {
     $.post("forms/f"+sFormName+".php", null,
@@ -5,7 +23,8 @@ function toForm(sFormName)
             $("#form").html(data);
         });
 }
-    
+
+/*клик в меню*/
 function menuClick(objClicked)
 {
     $(".selected").removeClass();
