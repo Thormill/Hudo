@@ -1,5 +1,6 @@
 <?php
-require_once '../lib/db.php';
+require_once '../conf/constants.php';
+require_once '../classes/database.class.php';
 require_once '../lib/phpexcel/PHPExcel.php';
 include_once '../lib/phpexcel/PHPExcel/IOFactory.php';
 include("../lib/phpexcel/PHPExcel/Writer/Excel5.php");
@@ -13,7 +14,8 @@ $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = $max-1;
-
+mysql_connect('localhost','hudo','oduh');
+mysql_select_db('hudo');
 mysql_query("TRUNCATE artists") or die('can not empty tables');
 mysql_query("TRUNCATE categories") or die('can not empty tables');
 mysql_query("TRUNCATE types") or die('can not empty tables');
