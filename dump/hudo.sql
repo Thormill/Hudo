@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 09 2011 г., 12:45
+-- Время создания: Сен 09 2011 г., 12:47
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -152,10 +152,10 @@ INSERT INTO `artists` (`art_id`, `fio`, `phone`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_id` int(3) NOT NULL,
   `category` varchar(30) NOT NULL,
-  PRIMARY KEY (`cid`)
+  PRIMARY KEY (`c_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `history` (
 CREATE TABLE IF NOT EXISTS `items` (
   `i_id` int(3) NOT NULL AUTO_INCREMENT,
   `type_id` int(3) NOT NULL,
-  `caegory_id` int(3) NOT NULL,
+  `category_id` int(3) NOT NULL,
   `item` varchar(25) NOT NULL,
   PRIMARY KEY (`i_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
