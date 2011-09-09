@@ -56,16 +56,16 @@ for($i=2;$i<=$max;$i++){
 		$t_id = $type_row['t_id']; 
 	}
 	if($category != ''){
-		$cat_query = "INSERT INTO categories(category, type_id) VALUES ('$category', '$t_id')";
+		$cat_query = "INSERT INTO categories(category_name, type_id) VALUES ('$category', '$t_id')";
 		mysql_query($cat_query) or die('insert category error');
-		$cat_res = mysql_query("SELECT c_id FROM categories WHERE category='$category'") or die('load category error');
+		$cat_res = mysql_query("SELECT c_id FROM categories WHERE category_name='$category'") or die('load category error');
 		$cat_row = mysql_fetch_array($cat_res);
 		$c_id = $cat_row['c_id']; 
 	}
 	if($item != ''){
-		$item_query = "INSERT INTO items(category_id, type_id, item) VALUES ('$c_id', '$t_id', '$item')";
+		$item_query = "INSERT INTO items(category_id, type_id, item_name) VALUES ('$c_id', '$t_id', '$item')";
 		mysql_query($item_query) or die('insert item error');
-		$item_res = mysql_query("SELECT i_id FROM items WHERE item='$item'") or die('load item error');
+		$item_res = mysql_query("SELECT i_id FROM items WHERE item_name='$item'") or die('load item error');
 		$item_row = mysql_fetch_array($item_res);
 		$i_id = $item_row['i_id']; 
 		$count++;

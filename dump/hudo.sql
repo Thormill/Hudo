@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 09 2011 г., 16:07
+-- Время создания: Сен 09 2011 г., 17:00
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `artists` (
   `a_id` int(3) NOT NULL AUTO_INCREMENT,
-  `fio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `fio` varchar(255) COLLATE utf8_bin NOT NULL,
   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`a_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=107 ;
@@ -154,7 +154,7 @@ INSERT INTO `artists` (`a_id`, `fio`, `phone`) VALUES
 CREATE TABLE IF NOT EXISTS `categories` (
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_id` int(3) NOT NULL,
-  `category` varchar(30) NOT NULL,
+  `category_name` varchar(30) NOT NULL,
   PRIMARY KEY (`c_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`c_id`, `type_id`, `category`) VALUES
+INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (1, 1, 'Ð±Ð¾Ð»ÑŒÑˆÐ°Ñ'),
 (2, 1, 'Ð¿ÑƒÐ·Ð°Ñ‚Ð°Ñ'),
 (3, 2, 'Ð±Ð¾Ð»ÑŒÑˆÐ°Ñ'),
@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `i_id` int(3) NOT NULL AUTO_INCREMENT,
   `type_id` int(3) NOT NULL,
   `category_id` int(3) NOT NULL,
-  `item` varchar(25) NOT NULL,
+  `item_name` varchar(25) NOT NULL,
   PRIMARY KEY (`i_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=266 ;
 
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 -- Дамп данных таблицы `items`
 --
 
-INSERT INTO `items` (`i_id`, `type_id`, `category_id`, `item`) VALUES
+INSERT INTO `items` (`i_id`, `type_id`, `category_id`, `item_name`) VALUES
 (1, 1, 1, 'ÐºÐ°Ñ€Ñ‚Ð¸Ð½ÐºÐ°'),
 (2, 1, 1, 'Ð¾Ñ„Ð¾Ñ€Ð¼Ð»ÐµÐ½Ð¸Ðµ'),
 (3, 1, 1, 'Ð»Ð¸Ñ†Ð¾'),
