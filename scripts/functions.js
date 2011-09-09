@@ -15,7 +15,7 @@ function menuClick(objClicked)
 
 function formImport()
 {
-    $.post("Import/import.php", null,
+    $.post("import/import.php", null,
         function (data){
             $("#imp_result").html(data);
         });
