@@ -22,6 +22,7 @@ mysql_query("TRUNCATE items") or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
+	$fio = mb_convert_encoding($fio, "UTF-8");
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
 
 	if(($fio == '') && ($phone == '')){
@@ -45,6 +46,7 @@ $t_id = $c_id = $i_id = 0;
 
 for($i=2;$i<=$max;$i++){
 	$type = $aSheet->getCell("A".$i)->getValue();     //тип изделия
+$type = mb_convert_encoding($type, "UTF-8");
 	$category = $aSheet->getCell("B".$i)->getValue(); //категория
 	$item = $aSheet->getCell("C".$i)->getValue();     //итем
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
