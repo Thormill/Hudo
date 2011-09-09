@@ -1,20 +1,36 @@
+<?php
+require_once '../config/constants.php';
+require_once '../classes/database.class.php';
+$oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
+?>
+
 <form id="fAdd">
-    <p>ФИО мастера: <input type="text" name="art_fio" /></p>
-    <p>Вид изделия: <select name="type">
+    <p>ФИО мастера: <input type="text" name="art_fio" id="art_fio" /></p>
+    <p>Вид изделия: <select name="type" id="type" onchange="getCategories();">
 <!--подгрузка type из бд-->
+    <?php
+        $aTypes = $oDB->selectColumn('
+            SELECT `type_name`
+                FROM `types`'
+        );
+        echo '<option value="0">--Выберите вид изделия--</option>';
+        foreach ($aTypes as $iType => $sType)
+            echo '<option value="' . ($iType+1) . '">' . $sType . '</option>';
+    ?>
+<!-- -->
     </select></p>
-    <p>Категория изделия: <select name="category">
+    <p>Категория изделия: <select name="category" id="category" onchange="getItems()">
 <!--подгрузка category из бд-->
     </select></p>
-    <p>Изделие: <select name="item">
+    <p>Изделие: <select name="item" id="item">
 <!--подгрузка item из бд-->
     </select></p>
-    <p>Количество: <select name="amount">
+    <p>Количество: <select name="amount" id="amount">
     <?php
         for($i = 0; $i < 15; $i++)
             echo "<option value =" . $i . ">" . $i . "</option>";
     ?>
     </select></p>
-    <p>Цена: <input name="price" type="text" /></p>
-    <p><input type="button" onclick="alert($('#fAdd').serialize());" value="Работа оплачена" /></p>
+    <p>Цена: <input name="price" type="text" id="price" /></p>
+    <p><input type="button" onclick="addPayment();" value="Работа оплачена" /></p>
 </form>
