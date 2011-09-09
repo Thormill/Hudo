@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 09 2011 г., 12:47
+-- Время создания: Сен 09 2011 г., 12:50
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -27,17 +27,17 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `artists` (
-  `art_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_id` int(3) NOT NULL AUTO_INCREMENT,
   `fio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`art_id`)
+  PRIMARY KEY (`a_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=107 ;
 
 --
 -- Дамп данных таблицы `artists`
 --
 
-INSERT INTO `artists` (`art_id`, `fio`, `phone`) VALUES
+INSERT INTO `artists` (`a_id`, `fio`, `phone`) VALUES
 (1, 'Ð§Ð¸ÑÑ‚ÑÐºÐ¾Ð²Ð° Ð¢Ð°Ñ‚ÑŒÑÐ½Ð° ÐÐ»ÐµÐºÑÐ°Ð½Ð´Ñ€Ð¾Ð²Ð½Ð°', '952-206-05-93'),
 (2, 'Ð—Ð°Ð¹Ñ†ÐµÐ²Ð° Ð˜Ñ€Ð¸Ð½Ð°', '911-027-90-32'),
 (3, 'Ð“Ð°Ð»ÑƒÐ·Ð¸Ð½Ð° ÐÐ°Ñ‚Ð°Ð»ÑŒÑ', '952-364-57-97'),
@@ -210,9 +210,9 @@ CREATE TABLE IF NOT EXISTS `prices` (
 --
 
 CREATE TABLE IF NOT EXISTS `types` (
-  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `t_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`tid`)
+  PRIMARY KEY (`t_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='вид изделий' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -222,10 +222,10 @@ CREATE TABLE IF NOT EXISTS `types` (
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `uid` int(3) NOT NULL AUTO_INCREMENT,
+  `u_id` int(3) NOT NULL AUTO_INCREMENT,
   `uname` varchar(255) NOT NULL,
   `upass` varchar(255) NOT NULL,
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`u_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
