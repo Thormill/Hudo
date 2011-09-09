@@ -1,6 +1,4 @@
 <?php
-require_once '../conf/constants.php';
-require_once '../classes/database.class.php';
 require_once '../lib/phpexcel/PHPExcel.php';
 include_once '../lib/phpexcel/PHPExcel/IOFactory.php';
 include("../lib/phpexcel/PHPExcel/Writer/Excel5.php");
@@ -15,6 +13,7 @@ $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = $max-1;
 mysql_connect('localhost','hudo','oduh');
+@mysql_query('SET NAMES "utf8"');
 mysql_select_db('hudo');
 mysql_query("TRUNCATE artists") or die('can not empty tables');
 mysql_query("TRUNCATE categories") or die('can not empty tables');
@@ -24,7 +23,6 @@ mysql_query("TRUNCATE items") or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
 	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
-	$fio = mb_convert_encoding($fio, "UTF-8");
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
 
 	if(($fio == '') && ($phone == '')){
@@ -48,11 +46,9 @@ $t_id = $c_id = $i_id = 0;
 
 for($i=2;$i<=$max;$i++){
 	$type = $aSheet->getCell("A".$i)->getValue();     //тип изделия
-$type = mb_convert_encoding($type, "UTF-8");
 	$category = $aSheet->getCell("B".$i)->getValue(); //категория
 	$item = $aSheet->getCell("C".$i)->getValue();     //итем
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
-
 
 	if($type != ''){
 		$t_id++;
