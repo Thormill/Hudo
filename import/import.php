@@ -41,6 +41,7 @@ $objPHPExcel->setActiveSheetIndex(1); //изделия
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = 0;
+$t_id = $c_id = $i_id = 0;
 
 for($i=2;$i<=$max;$i++){
 	$type = $aSheet->getCell("A".$i)->getValue();     //тип изделия
@@ -48,27 +49,32 @@ for($i=2;$i<=$max;$i++){
 	$item = $aSheet->getCell("C".$i)->getValue();     //итем
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
 
+
 	if($type != ''){
+		$t_id++;
 		$type_query = "INSERT INTO types(type_name) VALUES ('$type')";
 		mysql_query($type_query) or die('insert type error');
-		$type_res = mysql_query("SELECT t_id FROM types WHERE type_name='$type'") or die('load type error');
-		$type_row = mysql_fetch_array($type_res);
-		$t_id = $type_row['t_id']; 
 	}
+
+	if(($type != '')&&($category == '')){
+		$category = $type;
+	}
+
 	if($category != ''){
+		$c_id++;
 		$cat_query = "INSERT INTO categories(category_name, type_id) VALUES ('$category', '$t_id')";
 		mysql_query($cat_query) or die('insert category error');
-		$cat_res = mysql_query("SELECT c_id FROM categories WHERE category_name='$category'") or die('load category error');
-		$cat_row = mysql_fetch_array($cat_res);
-		$c_id = $cat_row['c_id']; 
 	}
+
+	if(($category != '')&&($item == '')){
+		$item = $category;
+	}
+
 	if($item != ''){
+		$i_id++;
 		$item_query = "INSERT INTO items(category_id, type_id, item_name) VALUES ('$c_id', '$t_id', '$item')";
-		mysql_query($item_query) or die('insert item error');
-		$item_res = mysql_query("SELECT i_id FROM items WHERE item_name='$item'") or die('load item error');
-		$item_row = mysql_fetch_array($item_res);
-		$i_id = $item_row['i_id']; 
 		$count++;
+		mysql_query($item_query) or die('insert item error');
 	}
 	if($price != ''){
 		$query = "INSERT INTO prices(category_id, type_id, item_id, price) VALUES ('$c_id', '$t_id', '$i_id', '$price')";
