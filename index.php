@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title></title>
 <link rel="stylesheet" type="text/css" href="style/main.css" />
-<script type="text/javascript" src="scripts/jquery-1.6.3.js"></script>
+<script type="text/javascript" src="scripts/jquery-min.js"></script>
 <script type="text/javascript" src="scripts/jsIndex.js"></script>
 </head>
 <body>

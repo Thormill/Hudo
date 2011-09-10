@@ -10,4 +10,4 @@ $iPrice = $oDB->selectField('
         WHERE `item_id` = ' . $_POST['iItem']
 );
 
-echo 'Цена: <input type="text" name="amount" value="' . $iPrice . '" />';
+echo 'Цена: <input type="text" name="price" value="' . $iPrice . '" />';
