@@ -4,7 +4,7 @@
 <title></title>
 <link rel="stylesheet" type="text/css" href="style/main.css" />
 <script type="text/javascript" src="scripts/jquery-1.6.3.js"></script>
-<script type="text/javascript" src="scripts/functions.js"></script>
+<script type="text/javascript" src="scripts/jsIndex.js"></script>
 </head>
 <body>
     <ul class="menu">
@@ -20,4 +20,3 @@
     <input type="button" onClick="formImport()" value="Импорт"></input>
 </body>
 </html>
-

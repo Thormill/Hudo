@@ -1,6 +1,7 @@
 <?php
-require_once '../../conf/constants.php';
-require_once '../../classes/database.class.php';
+define('ROOT', '../../modules/');
+require_once ROOT . 'constants.php';
+require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
 $aItems = $oDB->selectTable('
@@ -9,6 +10,8 @@ $aItems = $oDB->selectTable('
         WHERE `category_id` = ' . $_POST['iCategory']
 );
 
+echo 'Изделие: <select name="item" onchange="getAmount();">';
 echo '<option value="0">--Выберите изделия--</option>';
 foreach ($aItems as $iItem => $aItem)
     echo '<option value="' . $aItem['i_id'] . '">' . $aItem['item_name'] . '</option>';
+echo '</select>';
