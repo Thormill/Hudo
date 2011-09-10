@@ -4,7 +4,10 @@ function getCategories()
         function (data) {
             $("#category").html(data);
         });
-    $("#item").html('');
+    $("#item").html("");
+    $("#amount").html("");
+    $("#price").html("");
+    $("#addbutton").html("");
 }
 
 function getItems()
@@ -18,9 +21,9 @@ function getItems()
 function getAmount()
 {
     $("#amount").html('Количество: <input type="text" name="amount" />');
-    alert($("#item option:selected").val());
-/*    $.post("forms/ajax/getPrice.php", { iItem : $("#item option:selected").val() },
+    $.post("forms/ajax/getPrice.php", { iItem : $("#item option:selected").val() },
         function (data) {
             $("#price").html(data);
-        });*/
+        });
+    $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
 }

@@ -24,5 +24,5 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p id="item"></p>
     <p id="amount"></p>
     <p id="price"></p>
-    <p><input type="button" onclick="addPayment();" value="Работа оплачена" disabled="disabled" /></p>
+    <p id="addbutton"></p>
 </form>

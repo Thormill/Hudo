@@ -5,7 +5,7 @@ require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
 $iPrice = $oDB->selectField('
-    SELECT `price`,
+    SELECT `price`
         FROM `prices`
         WHERE `item_id` = ' . $_POST['iItem']
 );
