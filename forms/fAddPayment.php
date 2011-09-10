@@ -20,10 +20,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 <!-- -->
     </select></p>
     <p>Категория изделия: <select name="category" id="category" onchange="getItems();">
-<!--подгрузка category из бд-->
+<!-- -->
     </select></p>
     <p>Изделие: <select name="item" id="item">
-<!--подгрузка item из бд-->
+<!-- -->
     </select></p>
     <p>Количество: <select name="amount" id="amount">
     <?php
