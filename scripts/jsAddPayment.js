@@ -27,3 +27,12 @@ function getAmount()
         });
     $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
 }
+
+function addPayment()
+{
+    regexp_fio = /^\s*[a-zа-яё]+\s[a-zа-яё]+\s*[a-zа-яё]*\s*$/i
+    if (regexp_fio.test($("#fio").val()))
+        alert("GOOD");
+    else
+        alert("HUI");
+}

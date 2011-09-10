@@ -16,7 +16,5 @@
     </ul>
     <div id="form"></div>
     <div id="content"></div>
-    <div id="imp_result"></div>
-    <input type="button" onClick="formImport()" value="Импорт"></input>
 </body>
 </html>

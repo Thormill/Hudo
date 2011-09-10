@@ -14,11 +14,3 @@ function menuClick(objClicked)
     objClicked.className = "selected";
     toForm(objClicked.id);
 }
-
-function formImport()
-{
-    $.post("import/import.php", null,
-        function (data) {
-            $("#imp_result").html(data);
-        });
-}

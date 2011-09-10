@@ -6,7 +6,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 ?>
 <script type="text/javascript" src="scripts/jsAddPayment.js"></script>
 <form id="fAdd">
-    <p>ФИО мастера: <input type="text" name="art_fio" id="art_fio" /></p>
+    <p>ФИО мастера: <input type="text" name="fio" id="fio" /></p>
     <p>Вид изделия: <select name="type" id="type" onchange="getCategories();">
 <!--подгрузка type из бд-->
     <?php
