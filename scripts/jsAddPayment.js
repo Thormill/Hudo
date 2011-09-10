@@ -25,7 +25,7 @@ function getAmount() {
         function (data) {
             $("#price").html(data);
         });
-    $("#addbutton").html('<input type="button" name="" onclick="addPayment();" value="Работа оплачена" />');
+    $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
 }
 
 function addPayment() {
@@ -41,14 +41,14 @@ function addPayment() {
                         });
                 }
                 else
-                    alert("Ошибка! \r\n>> Введите цену!");    
+                    alert("Ошибка! \r\n>> Введите цену");    
             }
             else
-                alert("Ошибка! \r\n>> Введите количество!");
+                alert("Ошибка! \r\n>> Введите количество");
         }
         else
-            alert("Ошибка! \r\n>> Выберите Вид-Категорию-Изделие!");
+            alert("Ошибка! \r\n>> Выберите Вид-Категорию-Изделие");
     }
     else
-        alert("Ошибка! \r\n>> Выберите мастера!");
+        alert("Ошибка! \r\n>> Выберите мастера");
 }

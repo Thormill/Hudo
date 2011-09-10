@@ -10,7 +10,7 @@
 <body>
     <ul class="menu">
         <li><a id="AddPayment" href="/nojs.php" onclick="menuClick(this);return false">Добавить платеж</a></li>
-        <li><a id="ViewMaster" href="/nojs.php" onclick="menuClick(this);return false">Добавить мастера</a></li>
+        <li><a id="AddMaster" href="/nojs.php" onclick="menuClick(this);return false">Добавить мастера</a></li>
         <li><a id="SearchMaster" href="/nojs.php" onclick="menuClick(this);return false">Поиск мастера</a></li>
         <li><a id="ViewPayment" href="/nojs.php" onclick="menuClick(this);return false">Поиск платежа</a></li>
         <li><a id="ViewPayment" href="/nojs.php" onclick="menuClick(this);return false">Импорт\Экспорт</a></li>
