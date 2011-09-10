@@ -7,7 +7,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 $aCategories = $oDB->selectTable('
     SELECT `c_id`, `category_name`
         FROM `categories`
-        WHERE `type_id` = ' . $_POST['iType']
+        WHERE `type_id` = ' . $_POST['iType'] . '
+        ORDER BY `category_name` ASC'
 );
 
 echo 'Категория изделия: <select name="category" onchange="getItems();">';
