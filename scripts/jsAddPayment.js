@@ -14,6 +14,9 @@ function getItems() {
         function (data) {
             $("#item").html(data);
         });
+    $("#amount").html("");
+    $("#price").html("");
+    $("#addbutton").html("");
 }
 
 function getAmount() {
@@ -38,10 +41,10 @@ function addPayment() {
                         });
                 }
                 else
-                    alert("Ошибка! \r\n>> Введите верную цену!");    
+                    alert("Ошибка! \r\n>> Введите цену!");    
             }
             else
-                alert("Ошибка! \r\n>> Введите верное количество!");
+                alert("Ошибка! \r\n>> Введите количество!");
         }
         else
             alert("Ошибка! \r\n>> Выберите Вид-Категорию-Изделие!");
