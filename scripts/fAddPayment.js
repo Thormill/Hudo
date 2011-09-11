@@ -35,7 +35,7 @@ function addPayment() {
             regexp_amount = /^[1-9][0-9]*$/;
             if (regexp_amount.test($("[name=amount]").val())) {
                 if (regexp_amount.test($("[name=price]").val())) {
-                    $.post("forms/ajax/addPayment.php", $("#fAdd").serialize(),
+                    $.post("forms/ajax/addPayment.php", $("#fAddPayment").serialize(),
                         function (data) {
                             alert(data);
                         });

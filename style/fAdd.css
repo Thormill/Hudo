@@ -1,0 +1,19 @@
+.fAdd {
+    width:450px;
+    height:300px;
+    padding-left:15px;
+    padding-top:15px;
+    line-height: 25px;
+}
+
+.fAdd p input {
+    float:right;
+    width:300px;
+    height:25px;
+}
+
+.fAdd p select {
+    float:right;
+    width:300px;
+    height:25px;
+}

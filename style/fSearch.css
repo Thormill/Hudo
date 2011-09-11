@@ -1,0 +1,29 @@
+.fSearch {
+    width:770px;
+    height:300px;
+    padding-left:15px;
+    padding-top:15px;
+}
+
+.fSearch table{
+    width:770px;
+    border:1px #888899 solid;
+}
+
+.fSearch table td{
+    padding: 10px;
+    vertical-align: top;
+    line-height: 25px;
+}
+
+.fSearch p input {
+    float:right;
+    width:150px;
+    height:25px;
+}
+
+.fSearch p select {
+    float:right;
+    width:60px;
+    height:25px;
+}

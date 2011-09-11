@@ -3,7 +3,7 @@ function addMaster() {
     if (regexp_fio.test($("#fio").val())) {
         regexp_phone = /^[1-9][0-9]{2}-[0-9]{4,7}$/;
         if (regexp_phone.test($("#phone").val())) {
-            $.post("forms/ajax/addMaster.php", $("#fAdd").serialize(),
+            $.post("forms/ajax/addMaster.php", $("#fAddMaster").serialize(),
                 function (data) {
                     alert(data);
                 });

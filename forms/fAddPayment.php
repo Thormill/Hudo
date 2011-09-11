@@ -1,11 +1,14 @@
+<link rel="stylesheet" type="text/css" href="style/fAdd.css" />
+<script type="text/javascript" src="scripts/fAddPayment.js"></script>
+
 <?php
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 ?>
-<script type="text/javascript" src="scripts/jsAddPayment.js"></script>
-<form id="fAdd">
+
+<form id="fAddPayment" class="fAdd">
     <p>ФИО мастера: <select name="fio" id="fio">
 <!--подгрузка artist из бд-->
     <?php
