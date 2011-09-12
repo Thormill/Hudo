@@ -12,12 +12,45 @@ $aMasters = $oDB->selectTable('
         ORDER BY `master_fio` ASC'
 );
 
-$aPayments = $oDB->selectTable('
-    SELECT * FROM `history`
-        WHERE FROM_UNIXTIME(`date`, "%d") = ' . $_POST['s_day'] . '
-        AND FROM_UNIXTIME(`date`, "%m") = ' . $_POST['s_month'] . '
-        AND FROM_UNIXTIME(`date`, "%Y") = ' . $_POST['s_year']
-);
+$sQuery = 'SELECT *
+    FROM `payments_history`
+    WHERE (`master_id` = ' . $aMasters[0]['m_id'];   
 
-//FROM_UNIXTIME(`date`, "%d %m %Y")
+foreach ($aMasters as $iMaster => $aMaster)
+    $sQuery .= '
+        OR `master_id` = ' . $aMaster['m_id'];
+$sQuery .= ')';
+
+if ($_POST['s_day'] != 0)
+    $sQuery .= '
+        AND FROM_UNIXTIME(`date`, "%d") = ' . $_POST['s_day'];
+
+if ($_POST['s_month'] != 0)
+    $sQuery .= '
+        AND FROM_UNIXTIME(`date`, "%m") = ' . $_POST['s_month'];
+
+if ($_POST['s_year'] != 0)
+    $sQuery .= '
+        AND FROM_UNIXTIME(`date`, "%Y") = ' . $_POST['s_year'];
+
+$sQuery .= '
+    AND LOCATE("' . $_POST['s_price']. '", `price`)
+    ORDER BY `h_id` ASC';
+
+$aPayments = $oDB->selectTable($sQuery);
+
+$sTable = '<table>';
+foreach ($aPayments as $iPayment => $aPayment) {
+    $sTable .= '<tr>
+        <td>' . $iPayment . '</td>
+        <td>' . $aPayment['date'] . '</td>
+        <td>' . $aPayment['date'] . '</td>
+        <td>' . $aPayment['type_name'] . ' | ' . $aPayment['category_name'] . ' | ' . $aPayment['item_name'] . '</td>
+        <td>' . $aPayment['amount'] . '</td>
+        <td>' . $aPayment['price'] . '</td>
+        </tr>';
+}
+$sTable .= '</table>';
 print_r($aPayments);
+echo $sQuery;
+echo $_POST['s_day'];

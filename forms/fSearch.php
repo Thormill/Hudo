@@ -11,31 +11,25 @@
             </td>
             <td>
                 <p>День: <select name="s_day">
-                <?php
-                    for ($i = 1; $i < 32; $i++)
-                        if (idate("d") == $i)
-                            echo '<option value="' . $i . '" selected="selected">' . $i . '</option>'; 
-                        else
+                    <option value="0">все</option>
+                    <?php
+                        for ($i = 1; $i < 32; $i++)
                             echo '<option value="' . $i . '">' . $i . '</option>'; 
-                ?>
+                    ?>
                 </select></p>
                 <p>Месяц: <select name="s_month">
-                <?php 
-                    for ($i = 1; $i < 13; $i++) 
-                        if (idate("m") == $i)
-                            echo '<option value="' . $i . '" selected="selected">' . $i . '</option>'; 
-                        else
+                    <option value="0">все</option>
+                    <?php 
+                        for ($i = 1; $i < 13; $i++) 
                             echo '<option value="' . $i . '">' . $i . '</option>'; 
-                ?>
+                    ?>
                 </select></p>
                 <p>Год: <select name="s_year">
-                <?php
-                    for ($i = 2011; $i < idate("Y")+1; $i++) 
-                        if (idate("Y") == $i)
-                            echo '<option value="' . $i . '" selected="selected">' . $i . '</option>'; 
-                        else
+                    <option value="0">все</option>
+                    <?php
+                        for ($i = 2011; $i < idate("Y")+1; $i++) 
                             echo '<option value="' . $i . '">' . $i . '</option>'; 
-                ?>
+                    ?>
                 </select></p>
             </td>
             <td>
