@@ -57,12 +57,12 @@ while($row = mysql_fetch_array($res)){
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 $file = (str_replace('.php', '.xlsx', __FILE__));
-$objWriter->save($file);/*
+$objWriter->save($file);
 header ("Content-Type: application/octet-stream");
 header ("Accept-Ranges: bytes");
 header ("Content-Length: ".filesize($file));
 header ("Content-Disposition: attachment; filename=".$file);  
-readfile($file);*/
+readfile($file);
 //echo "ok";
 ?>
 
