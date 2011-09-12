@@ -1,12 +1,12 @@
 function Import(){
-  $.post("forms/ajax/Import.php", null,
+  $.post("ajax/Import.php", null,
     function (data) {
       alert(data);
     });
 }
 
 function Export(){
-  $.post("forms/ajax/Export.php", null,
+  $.post("ajax/Export.php", null,
     function (data) {
       alert(data);
     });

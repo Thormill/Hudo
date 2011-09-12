@@ -1,5 +1,5 @@
 <?php
-define('ROOT', '../../modules/');
+define('ROOT', '../modules/');
 require_once ROOT . 'phpexcel/PHPExcel.php';
 include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
 include_once ROOT . 'phpexcel/PHPExcel/Writer/Excel5.php';

@@ -1,5 +1,5 @@
 function getCategories() {
-    $.post("forms/ajax/getCategories.php", { iType : $("#type option:selected").val() },
+    $.post("ajax/getCategories.php", { iType : $("#type option:selected").val() },
         function (data) {
             $("#category").html(data);
         });
@@ -10,7 +10,7 @@ function getCategories() {
 }
 
 function getItems() {
-    $.post("forms/ajax/getItems.php", { iCategory : $("#category option:selected").val() },
+    $.post("ajax/getItems.php", { iCategory : $("#category option:selected").val() },
         function (data) {
             $("#item").html(data);
         });
@@ -21,7 +21,7 @@ function getItems() {
 
 function getAmount() {
     $("#amount").html('Количество: <input type="text" name="amount" />');
-    $.post("forms/ajax/getPrice.php", { iItem : $("#item option:selected").val() },
+    $.post("ajax/getPrice.php", { iItem : $("#item option:selected").val() },
         function (data) {
             $("#price").html(data);
         });
@@ -35,7 +35,7 @@ function addPayment() {
             regexp_amount = /^[1-9][0-9]*$/;
             if (regexp_amount.test($("[name=amount]").val())) {
                 if (regexp_amount.test($("[name=price]").val())) {
-                    $.post("forms/ajax/addPayment.php", $("#fAddPayment").serialize(),
+                    $.post("ajax/addPayment.php", $("#fAddPayment").serialize(),
                         function (data) {
                             alert(data);
                         });
