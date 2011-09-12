@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 12 2011 г., 12:25
+-- Время создания: Сен 12 2011 г., 12:33
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -103,24 +103,6 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (63, 16, 'средний шир.'),
 (64, 16, 'средний узкий'),
 (65, 16, 'узкий');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `payment_history`
---
-
-CREATE TABLE IF NOT EXISTS `payment_history` (
-  `h_id` int(5) NOT NULL AUTO_INCREMENT,
-  `artist_id` int(5) NOT NULL,
-  `type_id` int(3) NOT NULL,
-  `category_id` int(4) NOT NULL,
-  `item_id` int(5) NOT NULL,
-  `amount` int(10) NOT NULL,
-  `price` int(10) NOT NULL,
-  `date` date NOT NULL,
-  PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -565,6 +547,24 @@ INSERT INTO `masters` (`m_id`, `master_fio`, `phone`) VALUES
 (104, 'Черлова Екатерина', '921-39-50-136'),
 (105, 'Гамзова Ирина Владимировна', '921-387-09-74'),
 (106, 'Доброедова Ольга Петровна', '921-970-84-55');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payments_history`
+--
+
+CREATE TABLE IF NOT EXISTS `payments_history` (
+  `h_id` int(5) NOT NULL AUTO_INCREMENT,
+  `artist_id` int(5) NOT NULL,
+  `type_name` varchar(100) NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `item_name` varchar(100) NOT NULL,
+  `amount` int(10) NOT NULL,
+  `price` int(10) NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`h_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
