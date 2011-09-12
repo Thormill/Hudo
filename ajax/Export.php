@@ -41,9 +41,9 @@ while($row = mysql_fetch_array($res)){
 	$i++;
 	$type = mysql_query("SELECT type_name FROM types WHERE t_id='".$row['type_id']."'");
 	$type_name = mysql_fetch_array($type);
-	$cat = mysql_query("SELECT category_name FROM categories WHERE c_id='".$row['type_id']."'");
+	$cat = mysql_query("SELECT category_name FROM categories WHERE c_id='".$row['category_id']."'");
 	$cat_name = mysql_fetch_array($cat);
-	$item = mysql_query("SELECT item_name FROM items WHERE i_id='".$row['type_id']."'");
+	$item = mysql_query("SELECT item_name FROM items WHERE i_id='".$row['item_id']."'");
 	$item_name = mysql_fetch_array($item);
 	$aSheet->setCellValue("A".$i, $type_name['type_name']);     //тип изделия
 	$aSheet->setCellValue("B".$i, $cat_name['category_name']); //категория
@@ -52,34 +52,13 @@ while($row = mysql_fetch_array($res)){
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
-/*header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="rate.xls"');
-header('Cache-Control: max-age=0');
-$objWriter->save('php://output');
-
-if ($fd = fopen ((str_replace('.php', '.xlsx', __FILE__), "r")) {
-    $fsize = filesize((str_replace('.php', '.xlsx', __FILE__));
-    $path_parts = pathinfo((str_replace('.php', '.xlsx', __FILE__));
-    $ext = strtolower($path_parts["extension"]);
-    switch ($ext) {
-        case "pdf":
-        header("Content-type: application/pdf"); // add here more headers for diff. extensions
-        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
-        break;
-        default;
-        header("Content-type: application/octet-stream");
-        header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-    }
-    header("Content-length: $fsize");
-    header("Cache-control: private"); //use this to open files directly
-    while(!feof($fd)) {
-        $buffer = fread($fd, 2048);
-        echo $buffer;
-    }
-}
-fclose ($fd);
-exit;*/
-echo "ok";
+$file = (str_replace('.php', '.xlsx', __FILE__));
+$objWriter->save($file);
+header ("Content-Type: application/octet-stream");
+header ("Accept-Ranges: bytes");
+header ("Content-Length: ".filesize($file));
+header ("Content-Disposition: attachment; filename=".$file);  
+readfile($file);
+//echo "ok";
 ?>
 
