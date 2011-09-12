@@ -5,7 +5,7 @@
     <p>При импортировании все данные, которые есть в системе, будут удалены и заменены на новые.</p>
     <p><input type="button" onclick="Import();" value="Импортировать данные из файла" /></p>
 <br>
-    <p>Выберите файл для импорта<input type="file"></input></p>
+    <p>Выберите файл для импорта<input type="file"></input><input type=submit value=Загрузить></p>
 </form>
 
 <form id="fExport" class="fExport">

@@ -80,20 +80,22 @@ while($row = mysql_fetch_array($res)){
 	$aSheet->setCellValue("B".$i, $cat_name['category_name']); //категория
 	$aSheet->setCellValue("C".$i, $item_name['item_name']);     //итем
 	$aSheet->setCellValue("D".$i, $row['price']);    //цена
-	$aSheet->getStyle('A'.$i)->applyFromArray($center);
-	$aSheet->getStyle('B'.$i)->applyFromArray($center);
-	$aSheet->getStyle('C'.$i)->applyFromArray($center);
-	$aSheet->getStyle('D'.$i)->applyFromArray($center);
+	$aSheet->getStyle('A'.$i)->applyFromArray($left);
+	$aSheet->getStyle('B'.$i)->applyFromArray($left);
+	$aSheet->getStyle('C'.$i)->applyFromArray($left);
+	$aSheet->getStyle('D'.$i)->applyFromArray($left);
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-$file = (str_replace('.php', '.xlsx', __FILE__));
+$file = "../files/export.xlsx";
 $objWriter->save($file);
+/*
 header ("Content-Type: application/octet-stream");
 header ("Accept-Ranges: bytes");
 header ("Content-Length: ".filesize($file));
 header ("Content-Disposition: attachment; filename=".$file);  
 readfile($file);
-//echo "ok";
+*/
+echo "ok";
 ?>
 
