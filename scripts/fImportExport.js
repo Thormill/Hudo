@@ -3,5 +3,5 @@ function Import(){
     function (data) {
       alert(data);
     });
-  }
 }
+

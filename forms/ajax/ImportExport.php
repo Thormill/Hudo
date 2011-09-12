@@ -1,11 +1,8 @@
 <?php
-require_once '../../modules/phpexcel/PHPExcel.php';
-include_once '../../modules/phpexcel/PHPExcel/IOFactory.php';
-include('../../modules/phpexcel/PHPExcel/Writer/Excel5.php');
-
-iconv_set_encoding("internal_encoding", "UTF-8");
-iconv_set_encoding("input_encoding", "UTF-8");
-iconv_set_encoding("output_encoding", "UTF-8");
+define('ROOT', '../../modules/');
+require_once ROOT . 'phpexcel/PHPExcel.php';
+include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
+include(ROOT . 'phpexcel/PHPExcel/Writer/Excel5.php');
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../import/given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
@@ -33,11 +30,8 @@ for($i=2;$i<=$max;$i++){
 	$query = "INSERT INTO masters (master_fio,phone) VALUES ('$master_fio','$phone')";
 	mysql_query($query) or die(" fail");
 }
-echo "<br>добавлено $count новых художников.<br>";
+echo "Добавлено $count новых художников.\n";
 
-/*
-  изделия
-*/
 $objPHPExcel->setActiveSheetIndex(1); //изделия
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
@@ -81,6 +75,6 @@ for($i=2;$i<=$max;$i++){
 		mysql_query($query) or die('insert price error');
 	}
 }
-echo "<br>добавлено $count новых изделий.";
+echo "Добавлено $count новых изделий.";
 ?>
 
