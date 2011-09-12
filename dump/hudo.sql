@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 12 2011 г., 15:27
+-- Время создания: Сен 12 2011 г., 18:04
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -563,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `item_name` varchar(100) NOT NULL,
   `amount` int(10) NOT NULL,
   `price` int(10) NOT NULL,
-  `date` date NOT NULL,
+  `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
