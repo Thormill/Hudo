@@ -3,7 +3,7 @@ define('ROOT', '../modules/');
 require_once ROOT . 'phpexcel/PHPExcel.php';
 include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
 
-$objPHPExcel = PHPExcel_IOFactory::load("../../import/given.xls");
+$objPHPExcel = PHPExcel_IOFactory::load("../import/given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();

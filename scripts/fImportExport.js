@@ -8,7 +8,9 @@ function Import(){
 function Export(){
   $.post("ajax/Export.php", null,
     function (data) {
-      alert(data);
+      //alert(data);
+      var url='ajax/Export.xlsx'; 
+      window.open(url,'Download');
     });
 }
 
