@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 12 2011 г., 14:49
+-- Время создания: Сен 12 2011 г., 15:27
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -557,7 +557,7 @@ INSERT INTO `masters` (`m_id`, `master_fio`, `phone`) VALUES
 
 CREATE TABLE IF NOT EXISTS `payments_history` (
   `h_id` int(5) NOT NULL AUTO_INCREMENT,
-  `artist_id` int(5) NOT NULL,
+  `master_id` int(5) NOT NULL,
   `type_name` varchar(100) NOT NULL,
   `category_name` varchar(100) NOT NULL,
   `item_name` varchar(100) NOT NULL,
