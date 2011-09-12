@@ -52,12 +52,11 @@ while($row = mysql_fetch_array($res)){
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
-/*
+$objWriter->save(str_replace('.php', '.xlsx', __FILE__));/*
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="rate.xls"');
 header('Cache-Control: max-age=0');
-$objWriter->save('php://output');
-*/
+$objWriter->save('php://output');*/
+echo "ok";
 ?>
 

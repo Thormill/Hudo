@@ -1,9 +1,12 @@
 .fImport {
-    width:770px;
-    height:300px;
+    width:784px;
+    height:135px;
     padding-left:15px;
     padding-top:15px;
     line-height: 25px;
+    border-bottom-style: solid;
+    border-width: 1pt;
+    border-color: #face8d;
 }
 
 .fImport p input {
@@ -13,8 +16,8 @@
 }
 
 .fExport {
-    width:770px;
-    height:300px;
+    width:784px;
+    height:135px;
     padding-left:15px;
     padding-top:15px;
     line-height: 25px;

@@ -7,6 +7,6 @@
 </form>
 
 <form id="fExport" class="fExport">
-    <p>Экспорт списка художников и списка изделий</p>
+    <p>Экспорт списка художников и списка изделий.</p>
     <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
 </form>
