@@ -52,11 +52,34 @@ while($row = mysql_fetch_array($res)){
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-$objWriter->save(str_replace('.php', '.xlsx', __FILE__));/*
-header('Content-Type: application/vnd.ms-excel');
+$objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+/*header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="rate.xls"');
 header('Cache-Control: max-age=0');
-$objWriter->save('php://output');*/
+$objWriter->save('php://output');
+
+if ($fd = fopen ((str_replace('.php', '.xlsx', __FILE__), "r")) {
+    $fsize = filesize((str_replace('.php', '.xlsx', __FILE__));
+    $path_parts = pathinfo((str_replace('.php', '.xlsx', __FILE__));
+    $ext = strtolower($path_parts["extension"]);
+    switch ($ext) {
+        case "pdf":
+        header("Content-type: application/pdf"); // add here more headers for diff. extensions
+        header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+        break;
+        default;
+        header("Content-type: application/octet-stream");
+        header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
+    }
+    header("Content-length: $fsize");
+    header("Cache-control: private"); //use this to open files directly
+    while(!feof($fd)) {
+        $buffer = fread($fd, 2048);
+        echo $buffer;
+    }
+}
+fclose ($fd);
+exit;*/
 echo "ok";
 ?>
 
