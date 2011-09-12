@@ -107,10 +107,10 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `history`
+-- Структура таблицы `payment_history`
 --
 
-CREATE TABLE IF NOT EXISTS `history` (
+CREATE TABLE IF NOT EXISTS `payment_history` (
   `h_id` int(5) NOT NULL AUTO_INCREMENT,
   `artist_id` int(5) NOT NULL,
   `type_id` int(3) NOT NULL,
