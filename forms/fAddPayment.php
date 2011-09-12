@@ -25,14 +25,14 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p>Вид изделия: <select name="type" id="type" onchange="getCategories();">
 <!--подгрузка type из бд-->
     <?php
-        $aTypes = $oDB->selectColumn('
-            SELECT `type_name`
+        $aTypes = $oDB->selectTable('
+            SELECT `t_id`, `type_name`
                 FROM `types`
                 ORDER BY `type_name` ASC'
         );
         echo '<option value="0">--Выберите вид изделия--</option>';
-        foreach ($aTypes as $iType => $sType)
-            echo '<option value="' . ($iType+1) . '">' . $sType . '</option>';
+        foreach ($aTypes as $iType => $aType)
+            echo '<option value="' . $aType['t_id'] . '">' . $aType['type_name'] . '</option>';
     ?>
 <!-- -->
     </select></p>
