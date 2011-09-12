@@ -2,7 +2,6 @@
 define('ROOT', '../../modules/');
 require_once ROOT . 'phpexcel/PHPExcel.php';
 include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
-include(ROOT . 'phpexcel/PHPExcel/Writer/Excel5.php');
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../import/given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
@@ -30,7 +29,7 @@ for($i=2;$i<=$max;$i++){
 	$query = "INSERT INTO masters (master_fio,phone) VALUES ('$master_fio','$phone')";
 	mysql_query($query) or die(" fail");
 }
-echo "Добавлено $count новых художников.\n";
+echo "Добавлено $count художников.\n";
 
 $objPHPExcel->setActiveSheetIndex(1); //изделия
 $aSheet = $objPHPExcel->getActiveSheet();
@@ -70,11 +69,10 @@ for($i=2;$i<=$max;$i++){
 		$count++;
 		mysql_query($item_query) or die('insert item error');
 	}
-	if($price != ''){
-		$query = "INSERT INTO prices(category_id, type_id, item_id, price) VALUES ('$c_id', '$t_id', '$i_id', '$price')";
-		mysql_query($query) or die('insert price error');
-	}
+	$query = "INSERT INTO prices(category_id, type_id, item_id, price) VALUES ('$c_id', '$t_id', '$i_id', '$price')";
+	mysql_query($query) or die('insert price error');    //price is set up by default
+	
 }
-echo "Добавлено $count новых изделий.";
+echo "Добавлено $count изделий.";
 ?>
 

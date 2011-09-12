@@ -1,5 +1,12 @@
 function Import(){
-  $.post("forms/ajax/ImportExport.php", $("#fImportExport").serialize(),
+  $.post("forms/ajax/Import.php", $("#fImport").serialize(),
+    function (data) {
+      alert(data);
+    });
+}
+
+function Export(){
+  $.post("forms/ajax/Export.php", $("#fExport").serialize(),
     function (data) {
       alert(data);
     });
