@@ -11,6 +11,28 @@ $aSheet->setTitle('Художники');
 $aSheet->getColumnDimension('A')->setWidth(35);
 $aSheet->getColumnDimension('B')->setWidth(20);
 
+$boldFont = array(
+	'font'=>array(
+		'name'=>'Arial Cyr',
+		'size'=>'10',
+		'bold'=>true
+	)
+);
+$center = array(
+	'alignment'=>array(
+		'horizontal'=>PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+		'vertical'=>PHPExcel_Style_Alignment::VERTICAL_CENTER
+	)
+);
+$left = array(
+	'alignment'=>array(
+		'horizontal'=>PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+		'vertical'=>PHPExcel_Style_Alignment::VERTICAL_CENTER
+	)
+);
+$aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($center);
+$aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($center);
+
 mysql_connect('localhost','hudo','oduh');
 mysql_query('SET NAMES "utf8"');
 mysql_select_db('hudo');
@@ -24,6 +46,7 @@ while($row = mysql_fetch_array($res)){
 	$i++;
 	$aSheet->setCellValue("A".$i, $row['master_fio']);
 	$aSheet->setCellValue("B".$i, $row['phone']);
+	$aSheet->getStyle('B'.$i)->applyFromArray($center);
 }
 /*--------------------------------------------------------------*/
 $objPHPExcel->createSheet();
@@ -35,9 +58,13 @@ $aSheet->setCellValue("B1", "Категория");
 $aSheet->setCellValue("C1", "Изделие");
 $aSheet->setCellValue("D1", "Цена");
 $aSheet->getColumnDimension('A')->setWidth(15);
-$aSheet->getColumnDimension('B')->setWidth(15);
-$aSheet->getColumnDimension('C')->setWidth(15);
+$aSheet->getColumnDimension('B')->setWidth(30);
+$aSheet->getColumnDimension('C')->setWidth(30);
 $aSheet->getColumnDimension('D')->setWidth(10);
+$aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
+$aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
+$aSheet->getStyle('C1')->applyFromArray($boldFont)->applyFromArray($left);
+$aSheet->getStyle('D1')->applyFromArray($boldFont)->applyFromArray($center);
 
 $res = mysql_query("SELECT * FROM prices");
 $i = 1;
@@ -53,6 +80,10 @@ while($row = mysql_fetch_array($res)){
 	$aSheet->setCellValue("B".$i, $cat_name['category_name']); //категория
 	$aSheet->setCellValue("C".$i, $item_name['item_name']);     //итем
 	$aSheet->setCellValue("D".$i, $row['price']);    //цена
+	$aSheet->getStyle('A'.$i)->applyFromArray($center);
+	$aSheet->getStyle('B'.$i)->applyFromArray($center);
+	$aSheet->getStyle('C'.$i)->applyFromArray($center);
+	$aSheet->getStyle('D'.$i)->applyFromArray($center);
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
