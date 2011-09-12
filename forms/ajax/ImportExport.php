@@ -1,36 +1,36 @@
 <?php
-require_once '../lib/phpexcel/PHPExcel.php';
-include_once '../lib/phpexcel/PHPExcel/IOFactory.php';
-include("../lib/phpexcel/PHPExcel/Writer/Excel5.php");
+require_once '../../modules/phpexcel/PHPExcel.php';
+include_once '../../modules/phpexcel/PHPExcel/IOFactory.php';
+include('../../modules/phpexcel/PHPExcel/Writer/Excel5.php');
 
 iconv_set_encoding("internal_encoding", "UTF-8");
 iconv_set_encoding("input_encoding", "UTF-8");
 iconv_set_encoding("output_encoding", "UTF-8");
 
-$objPHPExcel = PHPExcel_IOFactory::load("given.xls");
+$objPHPExcel = PHPExcel_IOFactory::load("../../import/given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = $max-1;
 mysql_connect('localhost','hudo','oduh');
-@mysql_query('SET NAMES "utf8"');
+mysql_query('SET NAMES "utf8"');
 mysql_select_db('hudo');
-mysql_query("TRUNCATE artists") or die('can not empty tables');
+mysql_query("TRUNCATE masters") or die('can not empty tables');
 mysql_query("TRUNCATE categories") or die('can not empty tables');
 mysql_query("TRUNCATE types") or die('can not empty tables');
 mysql_query("TRUNCATE prices") or die('can not empty tables');
 mysql_query("TRUNCATE items") or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
-	$fio = $aSheet->getCell("B".$i)->getValue(); //fio
+	$master_fio = $aSheet->getCell("B".$i)->getValue(); //master_fio
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
 
-	if(($fio == '') && ($phone == '')){
+	if(($master_fio == '') && ($phone == '')){
 		$count--;
 		continue;
 	}
 
-	$query = "INSERT INTO artists (fio,phone) VALUES ('$fio','$phone')";
+	$query = "INSERT INTO masters (master_fio,phone) VALUES ('$master_fio','$phone')";
 	mysql_query($query) or die(" fail");
 }
 echo "<br>добавлено $count новых художников.<br>";

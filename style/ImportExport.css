@@ -1,0 +1,13 @@
+.fImport {
+    width:770px;
+    height:300px;
+    padding-left:15px;
+    padding-top:15px;
+    line-height: 25px;
+}
+
+.fImport p input {
+    float:right;
+    width:300px;
+    height:25px;
+}
