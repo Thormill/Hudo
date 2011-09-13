@@ -3,9 +3,9 @@
 
 <form id="fImport" class="fImport">
     <p>При импортировании все данные, которые есть в системе, будут удалены и заменены на новые.</p>
-    <p><input type="button" onclick="Import();" value="Импортировать данные из файла" /></p>
-<br>
-    <p>Выберите файл для импорта<input type="file"></input><input type=submit value=Загрузить></p>
+    <input type="button" onclick="Import();" value="Восстановить данные по умолчанию" />
+<br><br>
+    Выберите файл для импорта<input type="file"></input><input type=submit value=Загрузить>
 </form>
 
 <form id="fExport" class="fExport">
@@ -17,6 +17,8 @@
 <div>
     <input type="checkbox" name="export_settings[3]" value="Items" checked>Изделия</input><br>
     <input type="checkbox" name="export_settings[4]" value="Prices" checked>Стоимость</input><br>
-    <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" />
 </div>
+<div>
+</div>
+<p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
 </form>

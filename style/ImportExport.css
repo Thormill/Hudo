@@ -1,8 +1,8 @@
 .fImport {
     width:784px;
-    height:135px;
+    height:130px;
     padding-left:15px;
-    padding-top:15px;
+    padding-top:10px;
     line-height: 25px;
     border-bottom-style: solid;
     border-width: 1pt;
@@ -10,21 +10,32 @@
 }
 
 .fImport p input {
-    float:right;
-    width:300px;
-    height:25px;
+    float: right;
+    width: 300px;
+    height: 25px;
 }
 
 .fExport {
-    width:784px;
-    height:135px;
-    padding-left:15px;
-    padding-top:15px;
+    width: 784px;
+    height: 170px;
+    padding-left: 15px;
+    padding-top: 10px;
     line-height: 25px;
 }
 
-.fExport p input {
-    float:right;
-    width:300px;
-    height:25px;
+.fExport div input {
+    float: right;
+    width: 300px;
+    height: 25px;
+}
+
+.fExport div {
+    width: 200px;
+    height: 75px;
+    margin: 5px;
+    padding: 5px;
+    float: right;
+    border-style: solid;
+    border-color: #face8d;
+    border-width: 1pt;
 }
