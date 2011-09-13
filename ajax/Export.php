@@ -44,9 +44,13 @@ $aSheet->setCellValue("B1", "Телефон");
 
 while($row = mysql_fetch_array($res)){
 	$i++;
-	$aSheet->setCellValue("A".$i, $row['master_fio']);
-	$aSheet->setCellValue("B".$i, $row['phone']);
-	$aSheet->getStyle('B'.$i)->applyFromArray($center);
+	if( (isset($_POST['export_settings'][1]) && ($_POST['export_settings'][1] == 1) ){
+		$aSheet->setCellValue("A".$i, $row['master_fio']);
+	}
+	f( (isset($_POST['export_settings'][2]) && ($_POST['export_settings'][2] == 1) ){
+		$aSheet->setCellValue("B".$i, $row['phone']);
+		$aSheet->getStyle('B'.$i)->applyFromArray($center);
+	}
 }
 /*--------------------------------------------------------------*/
 $objPHPExcel->createSheet();
@@ -89,13 +93,6 @@ while($row = mysql_fetch_array($res)){
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 $file = "../files/export.xlsx";
 $objWriter->save($file);
-/*
-header ("Content-Type: application/octet-stream");
-header ("Accept-Ranges: bytes");
-header ("Content-Length: ".filesize($file));
-header ("Content-Disposition: attachment; filename=".$file);  
-readfile($file);
-*/
 echo "ok";
 ?>
 

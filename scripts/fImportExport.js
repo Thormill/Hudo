@@ -6,9 +6,8 @@ function Import(){
 }
 
 function Export(){
-  $.post("ajax/Export.php", null,
+  $.post("ajax/Export.php", $("#fExport").serialize(),
     function (data) {
-      //alert(data);
     });
   var url='/files/export.xlsx'; 
   window.open(url,'Download');

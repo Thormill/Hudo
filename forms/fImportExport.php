@@ -10,7 +10,13 @@
 
 <form id="fExport" class="fExport">
     <p>Экспорт списка художников и списка изделий.</p>
-    <p><input type="checkbox" name="export_settings" value="Maters">Художники + телефоны</p>
-    <p><input type="checkbox" name="export_settings" value="Items" checked>Изделия</p> 
-    <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
+<div>
+    <input type="checkbox" name="export_settings[1]" value="Maters" checked>Художники</input><br>
+    <input type="checkbox" name="export_settings[2]" value="Phones" checked>Телефоны</input><br>
+</div>
+<div>
+    <input type="checkbox" name="export_settings[3]" value="Items" checked>Изделия</input><br>
+    <input type="checkbox" name="export_settings[4]" value="Prices" checked>Стоимость</input><br>
+    <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" />
+</div>
 </form>
