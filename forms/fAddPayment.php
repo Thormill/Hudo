@@ -40,5 +40,5 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p id="item"></p>
     <p id="amount"></p>
     <p id="price"></p>
-    <p id="addbutton"></p>
+    <p id="addbutton"></p><br />
 </form>

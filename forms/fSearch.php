@@ -37,5 +37,5 @@
             </td>
         </tr>
     </table>
-    <p><input type="button" onclick="startSearch();" value="Поиск" /></p>
+    <p><input type="button" onclick="startSearch();" value="Поиск" /></p><br />
 </form>

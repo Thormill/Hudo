@@ -39,18 +39,33 @@ $sQuery .= '
 
 $aPayments = $oDB->selectTable($sQuery);
 
-$sTable = '<table>';
+$sTable = '<table border="1" width="800px">
+    <tr>
+        <td>#</td>
+        <td>ФИО</td>
+        <td>Дата</td>
+        <td>Вид-Категория-Изделие</td>
+        <td>Количество</td>
+        <td>Цена</td>
+    </tr>';
 foreach ($aPayments as $iPayment => $aPayment) {
-    $sTable .= '<tr>
-        <td>' . $iPayment . '</td>
-        <td>' . $aPayment['date'] . '</td>
-        <td>' . $aPayment['date'] . '</td>
-        <td>' . $aPayment['type_name'] . ' | ' . $aPayment['category_name'] . ' | ' . $aPayment['item_name'] . '</td>
-        <td>' . $aPayment['amount'] . '</td>
-        <td>' . $aPayment['price'] . '</td>
+    $sMaster = $oDB->selectField('
+        SELECT `master_fio`
+            FROM `masters`
+            WHERE `m_id` = ' . $aPayment['master_id']
+    );
+
+    $sTable .= '
+        <tr>
+            <td>' . ($iPayment+1) . '</td>
+            <td>' . $sMaster . '</td>
+            <td>' . date('d.m.Y', $aPayment['date']) . '</td>
+            <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
+            <td>' . $aPayment['amount'] . '</td>
+            <td>' . $aPayment['price'] . '</td>
         </tr>';
 }
-$sTable .= '</table>';
-print_r($aPayments);
-echo $sQuery;
-echo $_POST['s_day'];
+$sTable .= '
+    </table>';
+//print_r($aPayments);
+echo $sTable;
