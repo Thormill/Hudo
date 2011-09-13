@@ -44,10 +44,10 @@ $aSheet->setCellValue("B1", "Телефон");
 
 while($row = mysql_fetch_array($res)){
 	$i++;
-	if( (isset($_POST['export_settings'][1]) && ($_POST['export_settings'][1] == 1) ){
+	if(isset($_POST['export_settings'][1])){
 		$aSheet->setCellValue("A".$i, $row['master_fio']);
 	}
-	f( (isset($_POST['export_settings'][2]) && ($_POST['export_settings'][2] == 1) ){
+	if(isset($_POST['export_settings'][2])){
 		$aSheet->setCellValue("B".$i, $row['phone']);
 		$aSheet->getStyle('B'.$i)->applyFromArray($center);
 	}
@@ -80,14 +80,18 @@ while($row = mysql_fetch_array($res)){
 	$cat_name = mysql_fetch_array($cat);
 	$item = mysql_query("SELECT item_name FROM items WHERE i_id='".$row['item_id']."'");
 	$item_name = mysql_fetch_array($item);
-	$aSheet->setCellValue("A".$i, $type_name['type_name']);     //тип изделия
-	$aSheet->setCellValue("B".$i, $cat_name['category_name']); //категория
-	$aSheet->setCellValue("C".$i, $item_name['item_name']);     //итем
-	$aSheet->setCellValue("D".$i, $row['price']);    //цена
-	$aSheet->getStyle('A'.$i)->applyFromArray($left);
-	$aSheet->getStyle('B'.$i)->applyFromArray($left);
-	$aSheet->getStyle('C'.$i)->applyFromArray($left);
-	$aSheet->getStyle('D'.$i)->applyFromArray($left);
+	if(isset($_POST['export_settings'][3])){
+		$aSheet->setCellValue("A".$i, $type_name['type_name']);     //тип изделия
+		$aSheet->setCellValue("B".$i, $cat_name['category_name']); //категория
+		$aSheet->setCellValue("C".$i, $item_name['item_name']);     //итем
+	}
+	if(isset($_POST['export_settings'][4])){
+		$aSheet->setCellValue("D".$i, $row['price']);    //цена
+		$aSheet->getStyle('A'.$i)->applyFromArray($left);
+		$aSheet->getStyle('B'.$i)->applyFromArray($left);
+		$aSheet->getStyle('C'.$i)->applyFromArray($left);
+		$aSheet->getStyle('D'.$i)->applyFromArray($left);
+	}
 }
 
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
