@@ -39,33 +39,41 @@ $sQuery .= '
 
 $aPayments = $oDB->selectTable($sQuery);
 
-$sTable = '<table border="1" width="800px">
-    <tr>
-        <td>#</td>
-        <td>ФИО</td>
-        <td>Дата</td>
-        <td>Вид-Категория-Изделие</td>
-        <td>Количество</td>
-        <td>Цена</td>
-    </tr>';
-foreach ($aPayments as $iPayment => $aPayment) {
-    $sMaster = $oDB->selectField('
-        SELECT `master_fio`
-            FROM `masters`
-            WHERE `m_id` = ' . $aPayment['master_id']
-    );
-
-    $sTable .= '
+if (count($aPayments) > 0) {
+    $sTable = '<table class="searchResult">
         <tr>
-            <td>' . ($iPayment+1) . '</td>
-            <td>' . $sMaster . '</td>
-            <td>' . date('d.m.Y', $aPayment['date']) . '</td>
-            <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
-            <td>' . $aPayment['amount'] . '</td>
-            <td>' . $aPayment['price'] . '</td>
+            <td>#</td>
+            <td>ФИО</td>
+            <td>Дата</td>
+            <td>Вид / Категория / Изделие</td>
+            <td>Количество</td>
+            <td>Цена</td>
         </tr>';
-}
-$sTable .= '
-    </table>';
-//print_r($aPayments);
-echo $sTable;
+    foreach ($aPayments as $iPayment => $aPayment) {
+        $sMaster = $oDB->selectField('
+            SELECT `master_fio`
+                FROM `masters`
+                WHERE `m_id` = ' . $aPayment['master_id']
+        );
+
+        if ($iPayment % 2 == 0)
+            $sRowColor = '#bbbbbb';
+        else
+            $sRowColor = '#ffffff';
+
+        $sTable .= '
+            <tr bgcolor="' . $sRowColor . '">
+                <td>' . ($iPayment+1) . '</td>
+                <td>' . $sMaster . '</td>
+                <td>' . date('d.m.Y', $aPayment['date']) . '</td>
+                <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
+                <td>' . $aPayment['amount'] . '</td>
+                <td>' . $aPayment['price'] . '</td>
+            </tr>';
+    }
+    $sTable .= '
+        </table>';
+    //print_r($aPayments);
+    echo $sTable;
+} else
+    echo 'Поиск не дал результатов';

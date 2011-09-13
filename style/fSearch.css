@@ -7,7 +7,7 @@
 
 .fSearch table{
     width:770px;
-    border:1px #888899 solid;
+    border:1px solid #888899;
 }
 
 .fSearch table td{
@@ -22,7 +22,7 @@
     height:25px;
     background: url('../img/find.png') no-repeat 2px 3px;
     text-indent:20px;
-    border:solid 1px #848388;
+    border:1px solid #848488;
 }
 
 .fSearch table p select {
@@ -35,4 +35,21 @@
     float:right;
     width:770px;
     height:25px;
+}
+
+.searchResult {
+    width:770px;
+    border-collapse:collapse;
+    line-height: 30px;
+}
+
+.searchResult td {
+    border:1px solid ;
+}
+
+#content {
+    width:770px;
+    padding-left:15px;
+    padding-top:15px;
+    line-height: 25px;
 }
