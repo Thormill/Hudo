@@ -45,3 +45,7 @@
     float: left;
     margin: 5px;
 }
+
+.fExport div label{
+  float: left;
+}
