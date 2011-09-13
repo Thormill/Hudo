@@ -10,8 +10,7 @@
 }
 
 .fImport p input {
-    float: right;
-    width: 300px;
+    margin: 5px;
     height: 25px;
 }
 

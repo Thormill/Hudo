@@ -28,4 +28,5 @@ $(function() {
 			dates.not( this ).datepicker( "option", option, date );
 		}
 	});
+$("#from").text() = "trololo";
 });
