@@ -25,6 +25,6 @@
     <input type="checkbox" name="export_settings[5]" value="History" checked>История платежей</input><br>
     <label for="from">c</label><input id="from" type="text"></input>
     <label for="to">по</label><input id="to" type="text"></input>
-</div>
+</div><br>
 <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
 </form>

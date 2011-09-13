@@ -18,6 +18,6 @@
         <div id="form"></div>
         <div id="content"></div>
     </div>
-    <div id="footer">Имя вашей кампании © 2011 </div>
+    <div id="footer">Имя вашей кампании © 2011</div>
 </body>
 </html>
