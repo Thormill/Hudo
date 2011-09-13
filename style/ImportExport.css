@@ -39,3 +39,9 @@
     border-color: #face8d;
     border-width: 1pt;
 }
+
+.fExport div input{
+    width: 50pt;
+    float: left;
+    margin: 5px;
+}

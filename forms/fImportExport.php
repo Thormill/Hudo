@@ -1,4 +1,7 @@
 <link rel="stylesheet" type="text/css" href="style/ImportExport.css" />
+<link rel="stylesheet" type="text/css" href="style/sunny/jquery-ui-1.8.16.custom.css" />
+<script type="text/javascript" src="scripts/jquery-datepicker.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
 <script type="text/javascript" src="scripts/fImportExport.js"></script>
 
 <form id="fImport" class="fImport">
@@ -19,6 +22,9 @@
     <input type="checkbox" name="export_settings[4]" value="Prices" checked>Стоимость</input><br>
 </div>
 <div>
+    <input type="checkbox" name="export_settings[5]" value="History" checked>История платежей</input><br>
+    <input id="from" type="text"></input>
+    <input id="to" type="text"></input>
 </div>
 <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
 </form>
