@@ -20,12 +20,18 @@ function getItems() {
 }
 
 function getAmount() {
-    $("#amount").html('Количество: <input type="text" name="amount" />');
+    $("#amount").html('Количество: <input type="text" name="amount" id="multiplier" onchange="count()"/>');
     $.post("ajax/getPrice.php", { iItem : $("#item option:selected").val() },
         function (data) {
             $("#price").html(data);
         });
     $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
+}
+
+function count(){
+    var multiplier = $("#multiplier").val();
+    var given = $("#given").val();
+    $("#given").val(given * multiplier);
 }
 
 function addPayment() {
