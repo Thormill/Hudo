@@ -24,17 +24,36 @@ $sQuery .= ')';
 if ($_POST['s_date'] != 0) {
     if ($_POST['s_date'] == 1)
         $sQuery .= '
-            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . date('d/m/Y', strtotime('-1 day')) . '"';
-    if ($_POST['s_date'] == 2)
+            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . date('d/m/Y') . '"';
+    else
+        if ($_POST['s_date'] == 2)
+            $sQuery .= '
+                AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . date('d/m/Y', strtotime('-1 day')) . '"';
+        else
+            if ($_POST['s_date'] == 3)
+                $sQuery .= '
+                    AND FROM_UNIXTIME(`date`, "%d/%m/%Y") > "' . date('d/m/Y', strtotime('-7 day')) . '"';
+            else
+                if ($_POST['s_date'] == 4)
+                    $sQuery .= '
+                        AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . $_POST['datepicker'] . '"';        
+}
+
+if ($_POST['v_price'] != '') {
+    if ($_POST['s_price'] == 0)
         $sQuery .= '
-            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") > "' . date('d/m/Y', strtotime('-7 day')) . '"';
-    if ($_POST['s_date'] == 3)
-        $sQuery .= '
-            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . $_POST['datepicker'] . '"';        
+            AND `price` > ' . $_POST['v_price'];
+        else
+            if ($_POST['s_price'] == 1)
+                $sQuery .= '
+                    AND `price` < ' . $_POST['v_price'];
+            else
+                if ($_POST['s_price'] == 2)
+                    $sQuery .= '
+                        AND `price` = ' . $_POST['v_price'];
 }
 
 $sQuery .= '
-    AND LOCATE("' . $_POST['s_price']. '", `price`)
     ORDER BY `h_id` ASC
     LIMIT 0, 30';
 

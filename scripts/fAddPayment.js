@@ -37,6 +37,10 @@ function count(){
         $("#given").val(iCurrPrice);
 }
 
+function changePrice() {
+    iCurrPrice = $("#given").val();
+}
+
 function addPayment() {
 //    regexp_fio = /^\s*[a-zа-яё]+\s[a-zа-яё]+\s*[a-zа-яё]*\s*$/i;
     if ($("#fio").val() != 0) {

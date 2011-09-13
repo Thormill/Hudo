@@ -7,7 +7,7 @@ function addMaster() {
                 function (data) {
                     alert(data);
                 });
-            }
+        }
         else
             alert("Ошибка! \r\n>> Введите телефон в формате ХХХ-ХХХХ (городской) \r\n>> или XXX-XXXXXXX (мобильный)");    
     }

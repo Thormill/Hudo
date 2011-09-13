@@ -17,14 +17,20 @@
             <td>
                 <p>Дата: <select id="s_date" name="s_date" onchange="pickDate()">
                     <option value="0">не важно</option>
-                    <option value="1">вчера</option>
-                    <option value="2">последние 7 дней</option>
-                    <option value="3">своя дата</option>
+                    <option value="1">сегодня</option>
+                    <option value="2">вчера</option>
+                    <option value="3">последние 7 дней</option>
+                    <option value="4">своя дата</option>
                 </select></p>
                 <p id="p_datepicker"></p>
             </td>
             <td>
-                <p>Размер оплаты (руб.): <input type="text" name="s_price" /></p>
+                <p>Размер оплаты (руб.): <select name="s_price">
+                    <option value="0">больше</option>
+                    <option value="1">меньше</option>
+                    <option value="2">равняется</option>
+                </select></p>
+                <p><input type="text" name="v_price" /></p>
             </td>
         </tr>
     </table>
