@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 12 2011 г., 18:04
+-- Время создания: Сен 13 2011 г., 15:21
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -103,6 +103,21 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (63, 16, 'средний шир.'),
 (64, 16, 'средний узкий'),
 (65, 16, 'узкий');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `comment_id` int(5) NOT NULL AUTO_INCREMENT,
+  `author_id` int(2) NOT NULL,
+  `comment_text` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment_date` date NOT NULL,
+  `payment_id` int(9) NOT NULL,
+  PRIMARY KEY (`comment_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -565,7 +580,14 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `price` int(10) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `payments_history`
+--
+
+INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `date`) VALUES
+(1, 94, '10', '23 см', 'картинка', 1, 900, 1315912730);
 
 -- --------------------------------------------------------
 
