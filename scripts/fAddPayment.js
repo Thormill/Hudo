@@ -1,3 +1,5 @@
+var iCurrPrice
+
 function getCategories() {
     $.post("ajax/getCategories.php", { iType : $("#type option:selected").val() },
         function (data) {
@@ -20,18 +22,19 @@ function getItems() {
 }
 
 function getAmount() {
-    $("#amount").html('Количество: <input type="text" name="amount" id="multiplier" onchange="count()"/>');
+    $("#amount").html('Количество: <input type="text" name="amount" id="multiplier" onkeyup="count()"/>');
     $.post("ajax/getPrice.php", { iItem : $("#item option:selected").val() },
         function (data) {
             $("#price").html(data);
+            iCurrPrice = $("#given").val();
         });
     $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
 }
 
 function count(){
-    var multiplier = $("#multiplier").val();
-    var given = $("#given").val();
-    $("#given").val(given * multiplier);
+    $("#given").val($("#multiplier").val() * iCurrPrice);
+    if ($("#multiplier").val() == 0 || $("#multiplier").val() == "")
+        $("#given").val(iCurrPrice);
 }
 
 function addPayment() {

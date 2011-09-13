@@ -21,21 +21,22 @@ foreach ($aMasters as $iMaster => $aMaster)
         OR `master_id` = ' . $aMaster['m_id'];
 $sQuery .= ')';
 
-if ($_POST['s_day'] != 0)
-    $sQuery .= '
-        AND FROM_UNIXTIME(`date`, "%d") = ' . $_POST['s_day'];
-
-if ($_POST['s_month'] != 0)
-    $sQuery .= '
-        AND FROM_UNIXTIME(`date`, "%m") = ' . $_POST['s_month'];
-
-if ($_POST['s_year'] != 0)
-    $sQuery .= '
-        AND FROM_UNIXTIME(`date`, "%Y") = ' . $_POST['s_year'];
+if ($_POST['s_date'] != 0) {
+    if ($_POST['s_date'] == 1)
+        $sQuery .= '
+            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . date('d/m/Y', strtotime('-1 day')) . '"';
+    if ($_POST['s_date'] == 2)
+        $sQuery .= '
+            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") > "' . date('d/m/Y', strtotime('-7 day')) . '"';
+    if ($_POST['s_date'] == 3)
+        $sQuery .= '
+            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . $_POST['datepicker'] . '"';        
+}
 
 $sQuery .= '
     AND LOCATE("' . $_POST['s_price']. '", `price`)
-    ORDER BY `h_id` ASC';
+    ORDER BY `h_id` ASC
+    LIMIT 0, 30';
 
 $aPayments = $oDB->selectTable($sQuery);
 
@@ -76,4 +77,4 @@ if (count($aPayments) > 0) {
     //print_r($aPayments);
     echo $sTable;
 } else
-    echo 'Поиск не дал результатов';
+    echo '<p>Поиск не дал результатов</p>';
