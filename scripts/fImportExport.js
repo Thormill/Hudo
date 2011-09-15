@@ -28,7 +28,6 @@ $(function() {
 			dates.not( this ).datepicker( "option", option, date );
 		}
 	});
-//$("#from").val($.datepicker.getDate());
 });
 
 /* Russian (UTF-8) initialisation for the jQuery UI date picker plugin. */
