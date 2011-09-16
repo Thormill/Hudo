@@ -20,3 +20,24 @@
     border-color: blue;
 }
 
+.dItems {
+    width: 250px;
+}
+
+.dItems p {
+    width: 230px;
+    height: 50px;
+    margin: 5px;
+}
+
+.dItems label {
+    float: left;
+}
+
+.dItems select {
+    float: right;
+}
+
+.dItems input {
+    float: right;
+}
