@@ -4,7 +4,13 @@
     padding-left:15px;
     padding-top:10px;
     line-height: 25px;
+    color: orange;
 }
+
+.fControl label {
+    color: #000000;
+}
+
 
 .fControl p input {
     margin: 5px;
@@ -21,21 +27,24 @@
 }
 
 .dItems {
-    width: 250px;
+    width: 350px;
 }
 
 .dItems p {
-    width: 230px;
+    width: 330px;
     height: 50px;
     margin: 5px;
+    color: orange;
 }
 
 .dItems label {
     float: left;
+    color: #000000;
 }
 
 .dItems select {
     float: right;
+    width: 100px;
 }
 
 .dItems input {
