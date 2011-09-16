@@ -1,12 +1,12 @@
 .fSearch {
-    width:770px;
+    width:970px;
     padding-left:15px;
     padding-top:15px;
     line-height: 25px;
 }
 
 .fSearch table{
-    width:770px;
+    width:970px;
     border:1px solid #888899;
 }
 
@@ -33,7 +33,7 @@
 
 .fSearch p input {
     float:right;
-    width:770px;
+    width:970px;
     height:25px;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .searchResult {
-    width:770px;
+    width:970px;
     border-collapse:collapse;
     line-height: 30px;
 }
@@ -54,7 +54,7 @@
 }
 
 #content {
-    width:770px;
+    width:970px;
     padding-left:15px;
     padding-top:15px;
     line-height: 25px;
