@@ -20,7 +20,7 @@
     <p><input type="checkbox" name="export_settings[4]" value="Prices" checked>Стоимость</input></p>
 </div>
 <div>
-    <p><input type="checkbox" name="export_settings[5]" value="History">История платежей</input></p>
+    <p><input type="checkbox" name="export_settings[5]" value="History" checked>История платежей</input></p>
     <label for="from">c</label><input id="from" type="text"></input>
     <label for="to">по</label><input id="to" type="text"></input>
 </div>

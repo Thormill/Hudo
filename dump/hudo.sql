@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 13 2011 г., 15:21
+-- Время создания: Сен 22 2011 г., 14:26
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -578,16 +578,18 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `item_name` varchar(100) NOT NULL,
   `amount` int(10) NOT NULL,
   `price` int(10) NOT NULL,
+  `comment_id` int(5) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `payments_history`
 --
 
-INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `date`) VALUES
-(1, 94, '10', '23 см', 'картинка', 1, 900, 1315912730);
+INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `comment_id`, `date`) VALUES
+(1, 94, '10', '23 см', 'картинка', 1, 900, 0, 1315912730),
+(2, 82, 'ангел ', 'ангел ', 'ангел ', 2, 100, 0, 1315914153);
 
 -- --------------------------------------------------------
 
