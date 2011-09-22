@@ -106,12 +106,12 @@ $aSheet->setCellValue("D1", "Количество");
 $aSheet->setCellValue("E1", "Цена");
 $aSheet->setCellValue("F1", "комментарий");
 
-$aSheet->getColumnDimension('A')->setWidth(15);
-$aSheet->getColumnDimension('B')->setWidth(30);
+$aSheet->getColumnDimension('A')->setWidth(30);
+$aSheet->getColumnDimension('B')->setWidth(25);
 $aSheet->getColumnDimension('C')->setWidth(30);
 $aSheet->getColumnDimension('D')->setWidth(10);
-$aSheet->getColumnDimension('E')->setWidth(30);
-$aSheet->getColumnDimension('F')->setWidth(10);
+$aSheet->getColumnDimension('E')->setWidth(10);
+$aSheet->getColumnDimension('F')->setWidth(40);
 
 $aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
 $aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
@@ -124,13 +124,13 @@ $res = mysql_query("SELECT * FROM payments_history");
 $i = 1;
 while($row = mysql_fetch_array($res)){
 	$i++;
-//	if(isset($_POST['export_settings'][5])){
+	if(isset($_POST['export_settings'][5])){
 		$master_fio = mysql_query("SELECT master_fio FROM masters WHERE m_id='".$row['master_id']."'");
                 $fio = mysql_fetch_array($master_fio);
 
 		$aSheet->setCellValue("A".$i, $fio['master_fio']);
 		$aSheet->getStyle('A'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("B".$i, $row['date']);
+		$aSheet->setCellValue("B".$i, date('Y-M-d / H:m', $row['date']));
 		$aSheet->getStyle('B'.$i)->applyFromArray($center);
 		$aSheet->setCellValue("C".$i, $row['type_name']." / ".$row['category_name']." / ".$row['item_name']);
 		$aSheet->getStyle('C'.$i)->applyFromArray($center);
@@ -140,7 +140,7 @@ while($row = mysql_fetch_array($res)){
 		$aSheet->getStyle('E'.$i)->applyFromArray($center);
 		$aSheet->setCellValue("F".$i, $row['comment_id']);
 		$aSheet->getStyle('F'.$i)->applyFromArray($center);
-//	}
+	}
 }
 /*----file create----*/
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
