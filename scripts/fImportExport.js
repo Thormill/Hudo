@@ -9,7 +9,7 @@ function Export(){
   $.post("ajax/Export.php", $("#fExport").serialize(),
     function (data) {
     });
-  var url='files/export.xlsx'; 
+  var url='modules/download.php'; 
   window.open(url,'Download');
 }
 

@@ -5,7 +5,7 @@
 
 div#main {
     margin:0 auto;
-    width:800px;
+    width:1000px;
     border-right:1px #888899 solid;
     border-left:1px #888899 solid;
     border-bottom:1px #888899 solid;
@@ -44,7 +44,7 @@ ul.menu li a.selected {
 }
 
 #footer {
-    width:800px;
+    width:1000px;
     margin:0 auto;
     padding-top:10px;
     text-align:right;
