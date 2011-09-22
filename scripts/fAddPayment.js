@@ -61,18 +61,18 @@ function addPayment() {
                 if (regexp_amount.test($("[name=price]").val())) {
                     $.post("ajax/addPayment.php", $("#fAddPayment").serialize(),
                         function (data) {
-                            alert(data);
+                            showMessage(data, "info");
                         });
                 }
                 else
-                    alert("Ошибка! \r\n>> Введите цену");    
+                    showMessage("<br />Введите цену", "err");    
             }
             else
-                alert("Ошибка! \r\n>> Введите количество");
+                showMessage("<br />Введите количество", "err");
         }
         else
-            alert("Ошибка! \r\n>> Выберите Вид-Категорию-Изделие");
+            showMessage("<br />Выберите Вид-Категорию-Изделие", "err");
     }
     else
-        alert("Ошибка! \r\n>> Выберите мастера");
+        showMessage("<br />Выберите мастера", "err");
 }
