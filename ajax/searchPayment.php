@@ -14,7 +14,7 @@ $aMasters = $oDB->selectTable('
 
 $sQuery = 'SELECT *
     FROM `payments_history`
-    WHERE (`master_id` = ' . $aMasters[0]['m_id'];   
+    WHERE (0';   
 
 foreach ($aMasters as $iMaster => $aMaster)
     $sQuery .= '
@@ -36,7 +36,11 @@ if ($_POST['s_date'] != 0) {
             else
                 if ($_POST['s_date'] == 4)
                     $sQuery .= '
-                        AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . $_POST['datepicker'] . '"';        
+                        AND FROM_UNIXTIME(`date`, "%m/%Y") = "' . date('m/Y') . '"';
+                else
+                    if ($_POST['s_date'] == 5)
+                        $sQuery .= '
+                            AND FROM_UNIXTIME(`date`, "%d/%m/%Y") = "' . $_POST['datepicker'] . '"';        
 }
 
 if ($_POST['v_price'] != '') {
@@ -54,8 +58,7 @@ if ($_POST['v_price'] != '') {
 }
 
 $sQuery .= '
-    ORDER BY `h_id` ASC
-    LIMIT 0, 30';
+    ORDER BY `h_id` ASC';
 
 $aPayments = $oDB->selectTable($sQuery);
 

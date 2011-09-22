@@ -18,7 +18,7 @@
 
 .fSearch table p input {
     float:right;
-    width:150px;
+    width:200px;
     height:25px;
     background: url('../img/find.png') no-repeat 2px 3px;
     text-indent:20px;
@@ -27,13 +27,13 @@
 
 .fSearch table p select {
     float:right;
-    width:100px;
+    width:150px;
     height:25px;
 }
 
 .fSearch p input {
     float:right;
-    width:970px;
+    width:300px;
     height:25px;
 }
 
@@ -58,4 +58,26 @@
     padding-left:15px;
     padding-top:15px;
     line-height: 25px;
+}
+
+#modal {
+    background-color:#fff;
+    padding:20px;
+    display:none;
+    overflow: auto;
+    position:absolute;
+    z-index:9999;
+}
+
+#mask {
+    top:0px;
+    left:0px;
+    background-color:#000;
+    display:none;
+    position:absolute;
+    z-index:9000;
+}
+
+#close {
+    float:right;
 }

@@ -1,5 +1,13 @@
 var iCurrPrice
 
+function ShowPhone(mId) {
+    $("#phone").html(mId);
+    $.post("ajax/getPhone.php",{ mId : mId },
+        function (data) {
+            $("#phone").html(data);
+        });
+}
+
 function getCategories() {
     $.post("ajax/getCategories.php", { iType : $("#type option:selected").val() },
         function (data) {
