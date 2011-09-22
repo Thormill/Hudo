@@ -9,6 +9,7 @@ function getCategories() {
     $("#amount").html("");
     $("#price").html("");
     $("#addbutton").html("");
+    $("#addcomment").html("");
 }
 
 function getItems() {
@@ -19,6 +20,7 @@ function getItems() {
     $("#amount").html("");
     $("#price").html("");
     $("#addbutton").html("");
+    $("#addcomment").html("");
 }
 
 function getAmount() {
@@ -28,6 +30,7 @@ function getAmount() {
             $("#price").html(data);
             iCurrPrice = $("#given").val();
         });
+    $("#addcomment").html('Ваш комментарий: <input type="text" name="comment_text" />');
     $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
 }
 

@@ -30,8 +30,10 @@ $iInsert = $oDB->insert('
         `item_name`     = "' . $sItem  . '",
         `amount`        = ' . $_POST['amount'] . ',
         `price`         = ' . $_POST['price'] . ',
+        `comment_text`  = "' . $_POST['comment_text'] .'",
         `date`          = UNIX_TIMESTAMP()'
 );
+//`comment_author` = "' . $_SESSION['username'] . '",
 
 if ($iInsert != 0)
     echo "Информация\r\n>> Платеж добавлен";

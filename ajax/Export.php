@@ -8,6 +8,7 @@ $objPHPExcel = new PHPExcel();
 $objPHPExcel->setActiveSheetIndex(0);
 $aSheet = $objPHPExcel->getActiveSheet();
 $aSheet->setTitle('Художники');
+
 $aSheet->getColumnDimension('A')->setWidth(35);
 $aSheet->getColumnDimension('B')->setWidth(20);
 
@@ -57,10 +58,12 @@ $objPHPExcel->createSheet();
 $objPHPExcel->setActiveSheetIndex(1);
 $aSheet = $objPHPExcel->getActiveSheet();
 $aSheet->setTitle('Изделия');
+
 $aSheet->setCellValue("A1", "Тип изделия");
 $aSheet->setCellValue("B1", "Категория");
 $aSheet->setCellValue("C1", "Изделие");
 $aSheet->setCellValue("D1", "Цена");
+
 $aSheet->getColumnDimension('A')->setWidth(15);
 $aSheet->getColumnDimension('B')->setWidth(30);
 $aSheet->getColumnDimension('C')->setWidth(30);
@@ -105,6 +108,7 @@ $aSheet->setCellValue("C1", "Вид/Категория/Изделие");
 $aSheet->setCellValue("D1", "Количество");
 $aSheet->setCellValue("E1", "Цена");
 $aSheet->setCellValue("F1", "комментарий");
+$aSheet->setCellValue("G1", "автор комментария");
 
 $aSheet->getColumnDimension('A')->setWidth(30);
 $aSheet->getColumnDimension('B')->setWidth(25);
@@ -112,6 +116,7 @@ $aSheet->getColumnDimension('C')->setWidth(30);
 $aSheet->getColumnDimension('D')->setWidth(10);
 $aSheet->getColumnDimension('E')->setWidth(10);
 $aSheet->getColumnDimension('F')->setWidth(40);
+$aSheet->getColumnDimension('G')->setWidth(40);
 
 $aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
 $aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
@@ -119,6 +124,7 @@ $aSheet->getStyle('C1')->applyFromArray($boldFont)->applyFromArray($left);
 $aSheet->getStyle('D1')->applyFromArray($boldFont)->applyFromArray($center);
 $aSheet->getStyle('E1')->applyFromArray($boldFont)->applyFromArray($left);
 $aSheet->getStyle('F1')->applyFromArray($boldFont)->applyFromArray($left);
+$aSheet->getStyle('G1')->applyFromArray($boldFont)->applyFromArray($left);
 
 $res = mysql_query("SELECT * FROM payments_history");
 $i = 1;
@@ -138,8 +144,10 @@ while($row = mysql_fetch_array($res)){
 		$aSheet->getStyle('D'.$i)->applyFromArray($center);
 		$aSheet->setCellValue("E".$i, $row['price']);
 		$aSheet->getStyle('E'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("F".$i, $row['comment_id']);
+		$aSheet->setCellValue("F".$i, $row['comment_text']);
 		$aSheet->getStyle('F'.$i)->applyFromArray($center);
+		$aSheet->setCellValue("G".$i, $row['comment_author']);
+		$aSheet->getStyle('G'.$i)->applyFromArray($center);
 	}
 }
 /*----file create----*/

@@ -10,7 +10,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 
 <form id="fAddPayment" class="fAdd">
     <p>ФИО мастера: <select name="fio" id="fio">
-<!--подгрузка artist из бд-->
+<!--подгрузка master из бд-->
     <?php
         $aMasters = $oDB->selectTable('
             SELECT `m_id`, `master_fio`
@@ -40,5 +40,6 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p id="item"></p>
     <p id="amount"></p>
     <p id="price"></p>
+    <p id="addcomment" />
     <p id="addbutton"></p><br />
 </form>
