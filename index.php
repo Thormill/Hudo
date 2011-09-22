@@ -19,6 +19,6 @@
         <div id="form"></div>
         <div id="content"></div>
     </div>
-    <div id="footer">Имя вашей компании © 2011</div>
+    <div id="footer">Белые Ночи © 2011</div>
 </body>
 </html>

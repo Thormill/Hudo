@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 22 2011 г., 14:26
+-- Время создания: Сен 22 2011 г., 17:16
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -103,21 +103,6 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (63, 16, 'средний шир.'),
 (64, 16, 'средний узкий'),
 (65, 16, 'узкий');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `comments`
---
-
-CREATE TABLE IF NOT EXISTS `comments` (
-  `comment_id` int(5) NOT NULL AUTO_INCREMENT,
-  `author_id` int(2) NOT NULL,
-  `comment_text` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment_date` date NOT NULL,
-  `payment_id` int(9) NOT NULL,
-  PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -578,18 +563,23 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `item_name` varchar(100) NOT NULL,
   `amount` int(10) NOT NULL,
   `price` int(10) NOT NULL,
-  `comment_id` int(5) NOT NULL,
+  `comment_text` text NOT NULL,
+  `comment_author` int(11) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `payments_history`
 --
 
-INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `comment_id`, `date`) VALUES
-(1, 94, '10', '23 см', 'картинка', 1, 900, 0, 1315912730),
-(2, 82, 'ангел ', 'ангел ', 'ангел ', 2, 100, 0, 1315914153);
+INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `comment_text`, `comment_author`, `date`) VALUES
+(1, 28, '20', 'большая', 'картинка', 3, 6300, '2', 0, 1316695086),
+(2, 28, '5', '14 см пузатая', 'Карнавал', 2, 12, '3', 0, 1316695729),
+(3, 28, '5', '14 см пузатая', 'Карнавал', 2, 12, '3', 0, 1316695775),
+(4, 102, '10', '17 см', 'картинка', 2, 1400, '', 0, 1316696592),
+(5, 102, '10', '17 см', 'картинка', 2, 1400, 'as', 0, 1316696595),
+(6, 50, '7', 'оформление', 'оформление', 2, 1560, 'as', 0, 1316696709);
 
 -- --------------------------------------------------------
 
