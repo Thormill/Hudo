@@ -14,7 +14,7 @@ $aMasters = $oDB->selectTable('
 
 $sQuery = 'SELECT *
     FROM `payments_history`
-    WHERE (`master_id` = ' . $aMasters[0]['m_id'];   
+    WHERE (0';   
 
 foreach ($aMasters as $iMaster => $aMaster)
     $sQuery .= '
