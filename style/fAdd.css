@@ -16,3 +16,9 @@
     width:300px;
     height:25px;
 }
+
+.fAdd table tr td span {
+    margin: 5px;
+    float: right;
+    color: gray;
+}
