@@ -20,7 +20,8 @@
                     <option value="1">сегодня</option>
                     <option value="2">вчера</option>
                     <option value="3">последние 7 дней</option>
-                    <option value="4">своя дата</option>
+                    <option value="4">за последний месяц</option>
+                    <option value="5">своя дата</option>
                 </select></p>
                 <p id="p_datepicker"></p>
             </td>
@@ -36,3 +37,9 @@
     </table>
     <p><input type="button" onclick="startSearch();" value="Поиск" /></p><br />
 </form>
+
+<div id="mask"></div>
+<div id="modal">
+    <a href="#" id="close">X</a>
+    <div id="modal-content"></div>
+</div>
