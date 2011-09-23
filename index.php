@@ -20,5 +20,22 @@
         <div id="content"></div>
     </div>
     <div id="footer">Белые Ночи © 2011</div>
+    <div id="mask"></div>
+    <div id="modal">
+        <a href="#" id="close">X</a>
+        <div id="modal-content"></div>
+    </div>
 </body>
 </html>
+
+ <script type="text/javascript">
+    $("#close").click(function (e) {
+        e.preventDefault();
+        $("#mask, #modal").hide();
+    });
+
+    $("#mask").click(function () {
+        $(this).hide();
+        $("#modal").hide();
+    });
+ </script>
