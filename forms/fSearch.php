@@ -37,9 +37,3 @@
     </table>
     <p><input type="button" onclick="startSearch();" value="Поиск" /></p><br />
 </form>
-
-<div id="mask"></div>
-<div id="modal">
-    <a href="#" id="close">X</a>
-    <div id="modal-content"></div>
-</div>
