@@ -53,12 +53,22 @@ function changePrice() {
     iCurrPrice = $("#given").val();
 }
 
+function createForm() {
+}
+
+function ToggleMain() {
+      $("#headline1").slideToggle("slow", function(){});
+      $("#1").slideToggle("slow", function(){});
+}
+
 function addMore() {
     $("#1").slideToggle("slow", function () {
       $("#headline1").slideToggle("slow", function(){});
       var div_text = $("#multiplier").val() + ": " + $("#type option:selected").text() + 
           " / " + $("#category option:selected").text() + " / " + $("#item option:selected").text();
-      $("#headline1").text(div_text);
+      $("#headline1").html(div_text + '<input type="button" onclick="ToggleMain();" value="edit"></input>');
+      //$("#headline1").html() + '<input type="button" onclick="ToggleMain();" value="edit"></input>';
+      createForm();
     });
 }
 

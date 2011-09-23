@@ -27,7 +27,9 @@
     margin: 5px;
     padding: 5px;
     display: none;
-    background-color: gray;
+    background-color: #AAAAAA;
+    color: #FFFFFF;
     width: 300px;
     height: 25px;
+    border-raius: 20px;
 }
