@@ -52,7 +52,7 @@
   </form>
 
   </td>
-  <td>
+  <td id="right">
     <SPAN id="phone"></SPAN>
   </td>
 </table>

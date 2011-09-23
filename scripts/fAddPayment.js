@@ -9,6 +9,8 @@ function ShowPhone(mId) {
 }
 
 function getCategories() {
+    alert($(this).parent().parent().attr("id"));//добираемся до формы через родителей - надо узнать родителей, что бы менять их селекты
+	
     $.post("ajax/getCategories.php", { iType : $("#type option:selected").val() },
         function (data) {
             $("#category").html(data);
@@ -55,13 +57,13 @@ function changePrice() {
 
 function createForm() {
 	var dynId = 1;
-	var form = $('<div>', {
+	var form = $('<form>', {
 		id: "dynform" + dynId,
 		class: 'fAdd'
 	});
 
 	$('#left').append(form);
-	$('#dynform' + dynId).html('trololo');
+	$('#dynform' + dynId).html($('#main_form').html());
 	dynId++;
 }
 
