@@ -20,12 +20,17 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
       <input type="button" value="Добавить" onClick=""/>
     </p>
   </div>
+  <div class="cMasters">
+    <p>Здесь можно отредактировать мастеров</p>
+      <p><label>Фио:</label>    <input type="text"></input><SELECT name="fio" /></p>
+      <p><label>Телефон:</label><input type="text"></input><SELECT name="phone" /></p>
+  </div>
   <div class="dItems">
     <p>Здесь можно отредактировать существующую категорию.</p>
       <p><label>Тип</label>      <input type="text"></input><SELECT name="type" /></p>
       <p><label>Категория</label><input type="text"></input><SELECT name="category" /></p>
       <p><label>Изделие</label>  <input type="text"></input><SELECT name="item" /></p>
-      <p><label>Цена</label>     <input type="text"></input><SELECT name="price" /></p>
+      <p><label>Цена</label>     <input type="text"></input></p>
   </div>
 </form>
 

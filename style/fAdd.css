@@ -17,8 +17,8 @@
     height:25px;
 }
 
-.fAdd table tr td span {
-    margin: 5px;
-    float: right;
-    color: gray;
+#phone {
+	position: absolute;
+    margin-top: 30px;
+    color: #888888;
 }

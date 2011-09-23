@@ -50,3 +50,29 @@
 .dItems input {
     float: right;
 }
+
+.cMasters {
+	float: right;
+	width: 350px;
+}
+
+.cMasters p {
+    width: 330px;
+    height: 50px;
+    margin: 5px;
+    color: orange;
+}
+
+.cMasters label {
+    float: left;
+    color: #000000;
+}
+
+.cMasters select {
+    float: right;
+    width: 100px;
+}
+
+.cMasters input {
+    float: right;
+}
