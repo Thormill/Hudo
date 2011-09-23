@@ -54,20 +54,28 @@ function changePrice() {
 }
 
 function createForm() {
+	var dynId = 1;
+	var form = $('<div>', {
+		id: "dynform" + dynId,
+		class: 'fAdd'
+	});
+
+	$('#left').append(form);
+	$('#dynform' + dynId).html('trololo');
+	dynId++;
 }
 
 function ToggleMain() {
-      $("#headline1").slideToggle("slow", function(){});
-      $("#1").slideToggle("slow", function(){});
+      $("#main_headline").slideToggle("slow", function(){});
+      $("#main_form").slideToggle("slow", function(){});
 }
 
 function addMore() {
-    $("#1").slideToggle("slow", function () {
-      $("#headline1").slideToggle("slow", function(){});
+    $("#main_form").slideToggle("slow", function () {
+      $("#main_headline").slideToggle("slow", function(){});
       var div_text = $("#multiplier").val() + ": " + $("#type option:selected").text() + 
           " / " + $("#category option:selected").text() + " / " + $("#item option:selected").text();
-      $("#headline1").html(div_text + '<input type="button" onclick="ToggleMain();" value="edit"></input>');
-      //$("#headline1").html() + '<input type="button" onclick="ToggleMain();" value="edit"></input>';
+      $("#main_headline").html(div_text + '<input type="button" onclick="ToggleMain();" value="edit"></input>');
       createForm();
     });
 }

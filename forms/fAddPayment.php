@@ -6,11 +6,10 @@
   require_once ROOT . 'constants.php';
   require_once ROOT . 'database.class.php';
   $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
-  $count = 1; //для отсчета динамических дивов
 ?>
 <TABLE>
   <tr>
-    <td>
+    <td id="left">
       <form id="fAddPayment" class="fAdd">
         <p>ФИО мастера: <select name="fio" id="fio" onChange="ShowPhone(this.options[this.selectedIndex].value);">
 <!--подгрузка master из бд-->
@@ -26,8 +25,8 @@
           ?>
           </select>
         </p>
-  	<div id="headline<?=$count; ?>" class="item_title"></div>
-    <div id="<?=$count; ?>">
+  	<div id="main_headline" class="item_title"></div>
+    <div id="main_form">
         <p>Вид изделия: <select name="type" id="type" onchange="getCategories();">
 <!--подгрузка type из бд-->
         <?php
@@ -50,10 +49,10 @@
       <p id="addmore" />
       <p id="addbutton" /><br />
     </div>
-</form>
+  </form>
 
-</td>
-<td>
-<SPAN id="phone"></SPAN>
-</td>
+  </td>
+  <td>
+    <SPAN id="phone"></SPAN>
+  </td>
 </table>
