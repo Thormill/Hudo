@@ -13,11 +13,11 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 <form id="fControl" class="fControl">
   <div>
     <p>Здесь можно добавить тип, категорию и само изделие, а также указать его стоимость.<br>
-      <label for="type">Тип</label><input type="text" id="type"></input>
-      <label for="category">Категория</label><input type="text" id="category"></input>
-      <label for="item">Изделие</label><input type="text" id="item"></input>
-      <label for="price">Цена</label><input type="text" id="price"></input>
-      <input type="button" value="Добавить" onClick=""/>
+      <label for="atype">Тип</label><input type="text" id="atype"></input>
+      <label for="acategory">Категория</label><input type="text" id="acategory"></input>
+      <label for="aitem">Изделие</label><input type="text" id="aitem"></input>
+      <label for="aprice">Цена</label><input type="text" id="aprice"></input>
+      <input type="button" value="Добавить" onClick="ItemAdd();"/>
     </p>
   </div>
   <div class="cMasters">
