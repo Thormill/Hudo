@@ -6,11 +6,13 @@ define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
+$count = 1;
 ?>
 <TABLE>
 <tr>
 <td>
 <form id="fAddPayment" class="fAdd">
+  <div id="<?=$count; ?>">
     <p>ФИО мастера: <select name="fio" id="fio" onChange="ShowPhone(this.options[this.selectedIndex].value);">
 <!--подгрузка master из бд-->
     <?php
@@ -39,12 +41,14 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     ?>
 <!-- -->
     </select></p>
-    <p id="category"></p>
-    <p id="item"></p>
-    <p id="price"></p>
-    <p id="amount"></p>
+    <p id="category" />
+    <p id="item" />
+    <p id="price" />
+    <p id="amount" />
     <p id="addcomment" />
-    <p id="addbutton"></p><br />
+    <p id="addmore" />
+    <p id="addbutton" /><br />
+</div>
 </form>
 
 </td>

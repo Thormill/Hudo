@@ -40,6 +40,7 @@ function getAmount() {
         });
     $("#addcomment").html('Ваш комментарий: <input type="text" name="comment_text" />');
     $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
+    $("#addmore").html('<input type="button" onClick="addMore();" value="Добавить изделие" />');
 }
 
 function count(){
@@ -50,6 +51,10 @@ function count(){
 
 function changePrice() {
     iCurrPrice = $("#given").val();
+}
+
+function addMore() {
+    $("#1").slideUp();
 }
 
 function addPayment() {
