@@ -38,7 +38,7 @@ function getAmount() {
             iCurrPrice = $('#given').val();
         });
     $('#comment').html('Ваш комментарий: <input type="text" name="comment" />');
-    $('#roll_button').html('<input type="button" onclick="rollPayment();" value="Добавить платеж" />');
+    $('#roll_button').html('<input type="button" onclick="validPayment();" value="Добавить платеж" />');
 }
 
 function count(){
@@ -51,51 +51,14 @@ function changePrice() {
     iCurrPrice = $('#given').val();
 }
 
-function rollPayment()
+function validPayment()
 {
-    jsonPayment =   '{"type" : "' + $('#type option:selected').val() + '",';
-    jsonPayment +=  ' "category" : "' + $('#category option:selected').val() + '",';
-    jsonPayment +=  ' "item" : "' + $('#item option:selected').val() + '",';
-    jsonPayment +=  ' "price" : "' + $('[name=price]').val() + '",';
-    jsonPayment +=  ' "amount" : "' + $('[name=amount]').val() + '",';
-    jsonPayment +=  ' "comment" : "' + $('[name=comment]').val() + '"}';
-    
-    sPayment =  $('#type option:selected').html() + ' / ';
-    sPayment += $('#category option:selected').html() + ' / ';
-    sPayment += $('#item option:selected').html() + ' / ';
-    sPayment += $('[name=price]').val() + ' / ';
-    sPayment += $('[name=amount]').val() + ' / ';
-    sPayment += $('[name=comment]').val();
-    
-    iPaymentCount++;
-    $('#added_payments').html($('#added_payments').html() + 
-        '<div>' + sPayment + '</div><input type="hidden" name="payment' + 
-        iPaymentCount + '" value=\'' + jsonPayment +'\'>');
-    
-    alert($('[name=payment' + iPaymentCount + ']').val());
-    
-//    $("#type select").selectedIndex = 0;
-    
-    $('#category').html('');
-    $('#item').html('');
-    $('#amount').html('');
-    $('#price').html('');
-    $('#add_button').html('');
-    $('#comment').html('');
-    $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
-}
-
-function addPayment() {
-//    regexp_fio = /^\s*[a-zа-яё]+\s[a-zа-яё]+\s*[a-zа-яё]*\s*$/i;
     if ($('#fio').val() != 0) {
         if ($('#type').val() != 0 && $('#category option:selected').val() != 0 && $('#item option:selected').val() != 0) {
             regexp_amount = /^[1-9][0-9]*$/;
             if (regexp_amount.test($('[name=amount]').val())) {
                 if (regexp_amount.test($('[name=price]').val())) {
-                    $.post('ajax/addPayment.php', $('#fAddPayment').serialize(),
-                        function (data) {
-                            showMessage(data, 'info');
-                        });
+                    rollPayment();
                 }
                 else
                     showMessage('Введите цену', 'err');    
@@ -108,4 +71,50 @@ function addPayment() {
     }
     else
         showMessage('Выберите мастера', 'err');
+}
+
+function rollPayment()
+{
+// генерация json кода
+    jsonPayment =   '{"fio":' + $('#fio').val() + ',';
+    jsonPayment +=  '"type":' + $('#type option:selected').val() + ',';
+    jsonPayment +=  '"category":' + $('#category option:selected').val() + ',';
+    jsonPayment +=  '"item":' + $('#item option:selected').val() + ',';
+    jsonPayment +=  '"price":' + $('[name=price]').val() + ',';
+    jsonPayment +=  '"amount":' + $('[name=amount]').val() + ',';
+    jsonPayment +=  '"comment":"' + $('[name=comment]').val() + '"}';
+// генерация текстового хэндла
+    sPayment =  'Мастер: ' + $('#fio option:selected').html() + '<br />';
+    sPayment +=  'К-В-И: ' + $('#type option:selected').html() + ' - ';
+    sPayment += $('#category option:selected').html() + ' - ';
+    sPayment += $('#item option:selected').html() + '<br />';
+    sPayment += 'Цена: ' + $('[name=price]').val() + '<br />';
+    sPayment += 'Количество: ' + $('[name=amount]').val() + '<br />';
+    sPayment += 'Комментарий: ' + $('[name=comment]').val();
+// добавление платежа в колонку платежей    
+    iPaymentCount++;
+    if (iPaymentCount == 1)
+        $('#added_payments').html("<b>Добавленные платежи:</b><br />")
+    $('#added_payments').html($('#added_payments').html() + 
+        '<div class="payment"><div id="delPayment">X</div>' + sPayment + '</div><input type="hidden" name="payment' + 
+        iPaymentCount + '" value=\'' + jsonPayment +'\'>');    
+// выставление контролов в состояние по умолчанию
+//    $("#type select").selectedIndex = 0;
+    $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
+    $('#add_button').html(''); $('#comment').html('');
+    $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
+}
+
+$('#delPayment').click(function(e) {
+    alert(e);
+});
+
+function addPayment() {
+    $.post('ajax/addPayment.php', $('#fAddPayment').serialize(),
+        function (data) {
+            showMessage(data, 'info');
+            $('#added_payments').html('');
+            $('#add_button').html('')
+            iPaymentCount = 0;
+        });
 }

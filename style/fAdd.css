@@ -4,11 +4,6 @@
     line-height:25px;
 }
 
-#fAddPayment {
-    position:absolute;
-    top:100px;
-}
-
 .fAdd p input {
     float:right;
     width:300px;
@@ -21,6 +16,7 @@
     height:25px;
 }
 
-#phone_info {
-    color:#888;
+.fAdd .payment {
+    border: 2px dotted #888899;
+    padding:0 5px 0 5px;
 }

@@ -29,13 +29,13 @@
 </html>
 
  <script type="text/javascript">
-    $("#close").click(function (e) {
+    $('#close').click(function (e) {
         e.preventDefault();
-        $("#mask, #modal").hide();
+        $('#mask, #modal').hide();
     });
 
-    $("#mask").click(function () {
+    $('#mask').click(function () {
         $(this).hide();
-        $("#modal").hide();
+        $('#modal').hide();
     });
  </script>
