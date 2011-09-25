@@ -1,10 +1,21 @@
 .fControl {
     width:984px;
-    height:400px;
+    height:200px;
     padding-left:15px;
     padding-top:10px;
     line-height: 25px;
-    color: orange;
+}
+
+#ItemControl {
+    border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #888888;
+}
+
+#MasterControl {
+    border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #888888;
 }
 
 .fControl label {
@@ -21,9 +32,12 @@
 .fControl div {
     margin: 5px;
     padding: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: blue;
+}
+
+.fControl span {
+    float: left;
+    margin: 5px;
+    padding: 5px;
 }
 
 .dItems {
@@ -34,7 +48,6 @@
     width: 330px;
     height: 50px;
     margin: 5px;
-    color: orange;
 }
 
 .dItems label {
@@ -52,7 +65,6 @@
 }
 
 .cMasters {
-	float: right;
 	width: 350px;
 }
 
@@ -60,7 +72,6 @@
     width: 330px;
     height: 50px;
     margin: 5px;
-    color: orange;
 }
 
 .cMasters label {
