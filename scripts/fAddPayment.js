@@ -31,7 +31,7 @@ function getItems() {
 }
 
 function getAmount() {
-    $('#amount').html('Количество: <input type="text" name="amount" id="multiplier" onkeyup="count()"/>');
+    $('#amount').html('Количество: <input type="text" name="amount" id="multiplier" onkeyup="count()" value="1"/>');
     $.post('ajax/getPrice.php', { iItem : $('#item option:selected').val() },
         function (data) {
             $('#price').html(data);
