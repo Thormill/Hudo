@@ -40,13 +40,22 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p>Здесь можно отредактировать мастеров</p>
     <p>
 	  <label>Фио:</label>
-	  <input type="text" id="fio"></input>
-	  <SELECT onChange="document.getElementById('fio').value = this.options[this.selectedIndex].value">
-	    <?php for($i = 0; $i < 10; $i++) echo "<option value = $i>$i</option>"; ?>
+	  <input type="text" id="fio" name="fio"></input>
+	  <SELECT id="MasterList" onChange="MasterSelect(this.options[this.selectedIndex].text);">
+	    <?php
+          $aMasters = $oDB->selectTable('
+            SELECT `m_id`, `master_fio`
+                    FROM `masters`
+                    ORDER BY `master_fio` ASC'
+          );
+          echo '<option value="0">--Выберите мастера--</option>';
+          foreach ($aMasters as $iMaster => $aMaster)
+            echo '<option value="' . $aMaster['m_id'] . '">' . $aMaster['master_fio'] . '</option>';
+        ?>
 	  </SELECT>
 	</p>
-    <p><label>Телефон:</label><input type="text"></input></p>
-	<input type="button" onClick="" value="изменить" />
+    <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
+	<input type="button" onClick="addMaster();" value="изменить" />
   </div>
 </form>
 
