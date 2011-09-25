@@ -1,4 +1,4 @@
-function ItemAdd() {
+п»їfunction ItemAdd() {
 	$.post('ajax/addItem.php', { Type : $('#atype').val(), Category : $('#acategory').val(),
 	 Item : $('#aitem').val(), Price : $('#aprice').val() },
     function (data) {
@@ -6,7 +6,7 @@ function ItemAdd() {
     });
 }
 
-function ShowPhone() {  //взято из fAddPayment.js. придумать как сделать DRY
+function ShowPhone() {  //РІР·СЏР» РёР· fAddPayment.js. РїСЂРёРґСѓРјР°С‚СЊ РєР°Рє РїРµСЂРµРґРµР»Р°С‚СЊ РїРѕ РїСЂРёРЅС†РёРїСѓ DRY
     var m_id = $('#MasterList option:selected').val();
     $.post('ajax/getPhone.php', { m_id : m_id },
         function (data) {
@@ -21,7 +21,7 @@ function MasterSelect(fio) {
 
 
 function addMaster() {
-    regexp_fio = /^\s*[a-zа-яё]+\s[a-zа-яё]+\s*[a-zа-яё]*\s*$/i;
+    regexp_fio = /^\s*[A-zРђ-СЏ]+\s[A-zРђ-СЏ]+\s*[A-zРђ-СЏ]*\s*$/i;
     if (regexp_fio.test($('#fio').val())) {
         regexp_phone = /^[1-9][0-9]{2}-[0-9]{4,7}$/;
         if (regexp_phone.test($('#phone').val())) {
@@ -31,8 +31,8 @@ function addMaster() {
                 });
         }
         else
-            showMessage("Введите телефон в формате ХХХ-ХХХХ (городской) <br /> или XXX-XXXXXXX (мобильный)", 'err');
+            showMessage("Р’РІРµРґРёС‚Рµ С‚РµР»РµС„РѕРЅРІ С„РѕСЂРјР°С‚Рµ XXX-XXXX (РіРѕСЂРѕРґСЃРєРѕР№) <br /> РёР»Рё XXX-XXXXXXX (РјРѕР±РёР»СЊРЅС‹Р№)", 'err');
     }
     else
-        showMessage("Введите адекватное ФИО мастера", 'err');
+        showMessage("Р’РІРµРґРёС‚Рµ Р°РґРµРєРІР°С‚РЅРѕРµ РёРјСЏ РјР°СЃС‚РµСЂР°", 'err');
 }
