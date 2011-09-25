@@ -30,15 +30,15 @@ $iInsert = $oDB->insert('
         `item_name`     = "' . $sItem  . '",
         `amount`        = ' . $_POST['amount'] . ',
         `price`         = ' . $_POST['price'] . ',
-        `comment_text`  = "' . $_POST['comment_text'] .'",
+        `comment_text`  = "' . $_POST['comment'] .'",
         `date`          = UNIX_TIMESTAMP()'
 );
 //`comment_author` = "' . $_SESSION['username'] . '",
 
 if ($iInsert != 0)
-    echo "Информация\r\n>> Платеж добавлен";
+    echo "Платеж добавлен";
 else
 {
-    echo "Ошибка базы данных\r\n";
-    echo '>> ' . $oDB->getError();
+    echo "<b>Ошибка базы данных</b><br />";
+    echo $oDB->getError();
 }

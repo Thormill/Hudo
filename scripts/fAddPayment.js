@@ -1,78 +1,111 @@
-var iCurrPrice
+var iCurrPrice;
+var iPaymentCount = 0;
 
-function ShowPhone(mId) {
-    $("#phone").html(mId);
-    $.post("ajax/getPhone.php",{ mId : mId },
+function ShowPhone(m_id) {
+    $('#phone_info').html(m_id);
+    $.post('ajax/getPhone.php', { m_id : m_id },
         function (data) {
-            $("#phone").html(data);
+            $('#phone_info').html('Телефон:<div style="float:right;">' + data + '</div>');
         });
 }
 
 function getCategories() {
-    $.post("ajax/getCategories.php", { iType : $("#type option:selected").val() },
+    $.post('ajax/getCategories.php', { iType : $('#type option:selected').val() },
         function (data) {
-            $("#category").html(data);
+            $('#category').html(data);
         });
-    $("#item").html("");
-    $("#amount").html("");
-    $("#price").html("");
-    $("#addbutton").html("");
-    $("#addcomment").html("");
+    $('#item').html('');
+    $('#amount').html('');
+    $('#price').html('');
+    $('#comment').html('');
 }
 
 function getItems() {
-    $.post("ajax/getItems.php", { iCategory : $("#category option:selected").val() },
+    $.post('ajax/getItems.php', { iCategory : $('#category option:selected').val() },
         function (data) {
-            $("#item").html(data);
+            $('#item').html(data);
         });
-    $("#amount").html("");
-    $("#price").html("");
-    $("#addbutton").html("");
-    $("#addcomment").html("");
+    $('#amount').html('');
+    $('#price').html('');
+    $('#comment').html('');
 }
 
 function getAmount() {
-    $("#amount").html('Количество: <input type="text" name="amount" id="multiplier" onkeyup="count()"/>');
-    $.post("ajax/getPrice.php", { iItem : $("#item option:selected").val() },
+    $('#amount').html('Количество: <input type="text" name="amount" id="multiplier" onkeyup="count()"/>');
+    $.post('ajax/getPrice.php', { iItem : $('#item option:selected').val() },
         function (data) {
-            $("#price").html(data);
-            iCurrPrice = $("#given").val();
+            $('#price').html(data);
+            iCurrPrice = $('#given').val();
         });
-    $("#addcomment").html('Ваш комментарий: <input type="text" name="comment_text" />');
-    $("#addbutton").html('<input type="button" onclick="addPayment();" value="Работа оплачена" />');
+    $('#comment').html('Ваш комментарий: <input type="text" name="comment" />');
+    $('#roll_button').html('<input type="button" onclick="rollPayment();" value="Добавить платеж" />');
 }
 
 function count(){
-    $("#given").val($("#multiplier").val() * iCurrPrice);
-    if ($("#multiplier").val() == 0 || $("#multiplier").val() == "")
-        $("#given").val(iCurrPrice);
+    $('#given').val($('#multiplier').val() * iCurrPrice);
+    if ($('#multiplier').val() == 0 || $('#multiplier').val() == '')
+        $('#given').val(iCurrPrice);
 }
 
 function changePrice() {
-    iCurrPrice = $("#given").val();
+    iCurrPrice = $('#given').val();
+}
+
+function rollPayment()
+{
+    jsonPayment =   '{"type" : "' + $('#type option:selected').val() + '",';
+    jsonPayment +=  ' "category" : "' + $('#category option:selected').val() + '",';
+    jsonPayment +=  ' "item" : "' + $('#item option:selected').val() + '",';
+    jsonPayment +=  ' "price" : "' + $('[name=price]').val() + '",';
+    jsonPayment +=  ' "amount" : "' + $('[name=amount]').val() + '",';
+    jsonPayment +=  ' "comment" : "' + $('[name=comment]').val() + '"}';
+    
+    sPayment =  $('#type option:selected').html() + ' / ';
+    sPayment += $('#category option:selected').html() + ' / ';
+    sPayment += $('#item option:selected').html() + ' / ';
+    sPayment += $('[name=price]').val() + ' / ';
+    sPayment += $('[name=amount]').val() + ' / ';
+    sPayment += $('[name=comment]').val();
+    
+    iPaymentCount++;
+    $('#added_payments').html($('#added_payments').html() + 
+        '<div>' + sPayment + '</div><input type="hidden" name="payment' + 
+        iPaymentCount + '" value=\'' + jsonPayment +'\'>');
+    
+    alert($('[name=payment' + iPaymentCount + ']').val());
+    
+//    $("#type select").selectedIndex = 0;
+    
+    $('#category').html('');
+    $('#item').html('');
+    $('#amount').html('');
+    $('#price').html('');
+    $('#add_button').html('');
+    $('#comment').html('');
+    $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
 }
 
 function addPayment() {
 //    regexp_fio = /^\s*[a-zа-яё]+\s[a-zа-яё]+\s*[a-zа-яё]*\s*$/i;
-    if ($("#fio").val() != 0) {
-        if ($("#type").val() != 0 && $("#category option:selected").val() != 0 && $("#item option:selected").val() != 0) {
+    if ($('#fio').val() != 0) {
+        if ($('#type').val() != 0 && $('#category option:selected').val() != 0 && $('#item option:selected').val() != 0) {
             regexp_amount = /^[1-9][0-9]*$/;
-            if (regexp_amount.test($("[name=amount]").val())) {
-                if (regexp_amount.test($("[name=price]").val())) {
-                    $.post("ajax/addPayment.php", $("#fAddPayment").serialize(),
+            if (regexp_amount.test($('[name=amount]').val())) {
+                if (regexp_amount.test($('[name=price]').val())) {
+                    $.post('ajax/addPayment.php', $('#fAddPayment').serialize(),
                         function (data) {
-                            showMessage(data, "info");
+                            showMessage(data, 'info');
                         });
                 }
                 else
-                    showMessage("<br />Введите цену", "err");    
+                    showMessage('Введите цену', 'err');    
             }
             else
-                showMessage("<br />Введите количество", "err");
+                showMessage('Введите количество', 'err');
         }
         else
-            showMessage("<br />Выберите Вид-Категорию-Изделие", "err");
+            showMessage('Выберите Вид-Категорию-Изделие', 'err');
     }
     else
-        showMessage("<br />Выберите мастера", "err");
+        showMessage('Выберите мастера', 'err');
 }

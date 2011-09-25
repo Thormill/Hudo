@@ -4,7 +4,8 @@
 }
 
 div#main {
-    margin:0 auto;
+    margin:0px auto;
+    padding-top:15px;
     width:1000px;
     border-right:1px #888899 solid;
     border-left:1px #888899 solid;
@@ -60,9 +61,17 @@ ul.menu li a.selected {
     z-index:9999;
 }
 
-#modal img {float:left;}
+#modal img {
+    height:32px;
+    width:32px;
+    float:left;
+}
 
 #close {float:right;}
+
+#message {
+    padding:0 32px 0 32px;
+}
 
 #footer {
     width:1000px;
