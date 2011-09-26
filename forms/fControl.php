@@ -14,7 +14,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   <div>
     <p>Здесь можно добавить тип, категорию и само изделие, а также указать его стоимость.</p>
 	  <div id="loaded">
-	    <SELECT size="5" class="multiselect" id="mType" onChange="TypeClick();">
+	    <SELECT size="5" class="multiselect" id="mType" name="t_id" onChange="TypeClick();">
 	      <?php
           $aType = $oDB->selectTable('
             SELECT `t_id`, `type_name`
@@ -26,18 +26,19 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             echo '<option value="' . $aType['t_id'] . '">' . $aType['type_name'] . '</option>';
         ?>
 	    </SELECT>
-		<SELECT size="5" class="multiselect" id="mCategory" onChange="CategoryClick();">
+		<SELECT size="5" class="multiselect" id="mCategory" name="c_id" onChange="CategoryClick();">
         </SELECT>
-		<SELECT size="5" class="multiselect" id="mItem" onChange="ItemClick();">
+		<SELECT size="5" class="multiselect" id="mItem" name="i_id" onChange="ItemClick();">
 	    </SELECT>
+	    <input type="button" onClick="ItemsClear();" value="Сбросить выбор" />
 	  </div>
 	  
 	  <div id="edited">
-	    <label for="atype">Тип</label><input type="text" id="atype"></input>
-	    <label for="acategory">Категория</label><input type="text" id="acategory"></input>
-	    <label for="aitem">Изделие</label><input type="text" id="aitem"></input>
-	    <label for="aprice">Цена</label><input type="text" id="aprice"></input>
-        <input type="button" value="Добавить" onClick="ItemAdd();"/>
+	    <label for="atype">Тип</label><input type="text" id="atype" />
+	    <label for="acategory">Категория</label><input type="text" id="acategory" />
+	    <label for="aitem">Изделие</label><input type="text" id="aitem" />
+	    <label for="aprice">Цена</label><input type="text" id="aprice" name="price" />
+        <input type="button" value="Добавить" id="ibutton" onClick="ItemAdd();"/>
 	</div>
   </div>
 </form>

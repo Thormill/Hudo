@@ -4,6 +4,7 @@
     function (data) {
        $('#mCategory').html(data);
     });
+    $('#ibutton').val('изменить');
 }
 
 function CategoryClick() {
@@ -20,6 +21,13 @@ function ItemClick() {
     function (data) {
        $('#aprice').val(data);
     });
+}
+
+function ItemsClear() {
+    $('#mType option').attr('selected', false);
+    $('#mCategory option').attr('selected', false);
+    $('#mItem option').attr('selected', false);
+    $('#ibutton').val('добавить');    
 }
 
 function ShowPhone() {  //взял из fAddPayment.js. придумать как переделать по принципу DRY
