@@ -98,8 +98,7 @@ function rollPayment()
     $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iPaymentCount +
         '" class="payment"><div class="delete" onclick="delPayment(' + iPaymentCount + ');return false;">X</div>' + sPayment +
         '<input type="hidden" name="payment' + iPaymentCount + '" value=\'' + jsonPayment +'\' /></div>');    
-// выставление контролов в состояние по умолчанию
-//    $("#type select").selectedIndex = 0;
+    $('#type option:first').attr('selected','1');
     $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
     $('#add_button').html(''); $('#comment').html('');
     $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
