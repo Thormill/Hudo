@@ -21,7 +21,7 @@
     <div id="footer">Белые Ночи © 2011</div>
     <div id="mask"></div>
     <div id="modal">
-        <a href="#" id="close">X</a>
+        <div id="close"><b>X</b></div>
         <div id="modal-content"></div>
     </div>
 </body>

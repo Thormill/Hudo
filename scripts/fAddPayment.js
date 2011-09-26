@@ -95,9 +95,9 @@ function rollPayment()
     iPaymentCount++;
     if (iPaymentCount == 1)
         $('#added_payments').html("<b>Добавленные платежи:</b><br />")
-    $('#added_payments').html($('#added_payments').html() + 
-        '<div class="payment"><div id="delPayment">X</div>' + sPayment + '</div><input type="hidden" name="payment' + 
-        iPaymentCount + '" value=\'' + jsonPayment +'\'>');    
+    $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iPaymentCount +
+        '" class="payment"><div class="delete" onclick="delPayment(' + iPaymentCount + ');return false;">X</div>' + sPayment +
+        '<input type="hidden" name="payment' + iPaymentCount + '" value=\'' + jsonPayment +'\' /></div>');    
 // выставление контролов в состояние по умолчанию
 //    $("#type select").selectedIndex = 0;
     $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
@@ -105,11 +105,13 @@ function rollPayment()
     $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
 }
 
-$('#delPayment').click(function(e) {
-    alert(e);
-});
+function delPayment(paymentNum) {
+    $('div#payment' + paymentNum).remove();
+    showMessage('Платеж удален', 'info');
+}
 
 function addPayment() {
+    $('#added_payments').append('<input type="hidden" name="iPaymentCount" value="' + iPaymentCount + '" />');
     $.post('ajax/addPayment.php', $('#fAddPayment').serialize(),
         function (data) {
             showMessage(data, 'info');

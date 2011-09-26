@@ -20,3 +20,8 @@
     border: 2px dotted #888899;
     padding:0 5px 0 5px;
 }
+
+.delete {
+    float:right;
+    cursor:pointer;
+}
