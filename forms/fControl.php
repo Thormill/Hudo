@@ -14,14 +14,21 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   <div>
     <p>Здесь можно добавить тип, категорию и само изделие, а также указать его стоимость.</p>
 	  <div id="loaded">
-	    <SELECT size="5" class="multiselect" id="mType" onChange="document.getElementById('atype').value = this.options[this.selectedIndex].value">
-	      <?php for($i = 0; $i < 10; $i++) echo "<option value = $i>$i</option>"; ?>
+	    <SELECT size="5" class="multiselect" id="mType" onChange="TypeClick();">
+	      <?php
+          $aType = $oDB->selectTable('
+            SELECT `t_id`, `type_name`
+                    FROM `types`
+                    ORDER BY `type_name` ASC'
+          );
+          echo '<option value="0">--Выберите тип изделия--</option>';
+          foreach ($aType as $iType => $aType)
+            echo '<option value="' . $aType['t_id'] . '">' . $aType['type_name'] . '</option>';
+        ?>
 	    </SELECT>
-		<SELECT size="5" class="multiselect" id="mCategory" onChange="document.getElementById('acategory').value = this.options[this.selectedIndex].value">
-	      <?php for($i = 0; $i < 10; $i++) echo "<option value = $i>$i</option>"; ?>
-	    </SELECT>
-		<SELECT size="5" class="multiselect" id="mItem" onChange="document.getElementById('aitem').value = this.options[this.selectedIndex].value">
-	      <?php for($i = 0; $i < 10; $i++) echo "<option value = $i>$i</option>"; ?>
+		<SELECT size="5" class="multiselect" id="mCategory" onChange="CategoryClick();">
+        </SELECT>
+		<SELECT size="5" class="multiselect" id="mItem" onChange="ItemClick();">
 	    </SELECT>
 	  </div>
 	  
@@ -35,8 +42,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   </div>
 </form>
 
-<form id="MasterControl" class="fControl">
-  <div class="cMasters">
+<form id="MasterControl" class="cMasters">
+  <div>
     <p>Здесь можно отредактировать мастеров</p>
     <p>
 	  <label>Фио:</label>
@@ -55,9 +62,13 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  </SELECT>
 	</p>
     <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
-	<span id="masterstatus">Добавить мастера:</span>
-	<input type="button" onClick="addMaster();" value="добавить" id="mbutton" />
-	<input type="button" onClick="MasterClear();" value="снять выделение" />
+	<p>
+	  <span id="masterstatus">Добавить мастера:</span>
+	  <span>
+	    <input type="button" onClick="addMaster();" value="добавить" id="mbutton" />
+	    <input type="button" onClick="MasterClear();" value="снять выделение" />
+	  </span>
+	</p>
   </div>
 </form>
 

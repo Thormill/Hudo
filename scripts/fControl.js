@@ -1,8 +1,24 @@
-﻿function ItemAdd() {
-	$.post('ajax/addItem.php', { Type : $('#atype').val(), Category : $('#acategory').val(),
-	 Item : $('#aitem').val(), Price : $('#aprice').val() },
+﻿function TypeClick() {
+    $('#atype').val( $('#mType option:selected').text() );
+    $.post('ajax/loadCategories.php', { t_id : $('#mType option:selected').val()},
     function (data) {
-       alert(data);
+       $('#mCategory').html(data);
+    });
+}
+
+function CategoryClick() {
+    $('#acategory').val( $('#mCategory option:selected').text() );
+    $.post('ajax/loadItems.php', { c_id : $('#mCategory option:selected').val()},
+    function (data) {
+       $('#mItem').html(data);
+    });
+}
+
+function ItemClick() {
+    $('#aitem').val( $('#mItem option:selected').text() );
+    $.post('ajax/loadPrice.php', { item_id : $('#mItem option:selected').val()},
+    function (data) {
+       $('#aprice').val(data);
     });
 }
 
@@ -42,4 +58,12 @@ function addMaster() {
     }
     else
         showMessage("Введите адекватное имя мастера", 'err');
+}
+
+function ItemAdd() {
+	$.post('ajax/ItemControl.php', { Type : $('#atype').val(), Category : $('#acategory').val(),
+	 Item : $('#aitem').val(), Price : $('#aprice').val() },
+    function (data) {
+       alert(data);
+    });
 }

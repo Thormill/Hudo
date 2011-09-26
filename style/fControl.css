@@ -65,11 +65,15 @@
 }
 
 .cMasters {
-	width: 350px;
+	width: 990px;
+	height: 250px;
+	padding-left:15px;
+    padding-top:10px;
+    line-height: 25px;
 }
 
 .cMasters p {
-    width: 330px;
+    width: 800px;
     height: 50px;
     margin: 5px;
 }
@@ -81,9 +85,14 @@
 
 .cMasters select {
     float: right;
-    width: 100px;
+    width: 300px;
 }
 
 .cMasters input {
     float: right;
+    width: 300px;
+}
+
+.cMasters span {
+    float: left;
 }
