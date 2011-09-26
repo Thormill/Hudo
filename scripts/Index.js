@@ -6,9 +6,9 @@ function showMessage(sHtml, sType) {
     $('#mask').fadeIn(250);    
             
     if (sType == 'err')
-        sHtml = '<img src="img/err.png" alt="ошибка..."><div id="message">' + sHtml + '</div>';
+        sHtml = '<img src="img/err.png" alt="ошибка"><div id="message">' + sHtml + '</div>';
     if (sType == 'info')
-        sHtml = '<img src="img/info.png" alt="ошибка..."><div id="message">' + sHtml + '</div>';
+        sHtml = '<img src="img/info.png" alt="инофрмация"><div id="message">' + sHtml + '</div>';
     $('#modal-content').html(sHtml);
 
     var winH = $(window).height();

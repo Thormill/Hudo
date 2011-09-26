@@ -57,7 +57,7 @@ td {
 
 #modal {
     background-color:#fff;
-    padding:20px;
+    padding:10px;
     display:none;
     min-width:350px;
     max-height:500px;
@@ -70,9 +70,13 @@ td {
     height:32px;
     width:32px;
     float:left;
+    margin-right: 10px;
 }
 
-#close {float:right;}
+#close {
+    float:right;
+    cursor:pointer;
+}
 
 #message {
     padding:0 32px 0 32px;
