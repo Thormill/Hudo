@@ -40,14 +40,12 @@ function ShowPhone() {  //взял из fAddPayment.js. придумать ка�
 
 function MasterSelect(fio) {
     $('#fio').val(fio);
-    $('#masterstatus').html('Изменить мастера ' + fio);
     $('#mbutton').val('изменить');
 	ShowPhone();
 }
 
 function MasterClear() {
     $('#masterlist option').attr('selected', false);
-    $('#masterstatus').html('Добавить мастера');
     $('#mbutton').val('добавить');    
 }
 

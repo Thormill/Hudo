@@ -64,7 +64,6 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	</p>
     <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
 	<p>
-	  <span id="masterstatus">Добавить мастера:</span>
 	  <span>
 	    <input type="button" onClick="addMaster();" value="добавить" id="mbutton" />
 	    <input type="button" onClick="MasterClear();" value="снять выделение" />
