@@ -27,7 +27,11 @@ function ItemsClear() {
     $('#mType option').attr('selected', false);
     $('#mCategory option').attr('selected', false);
     $('#mItem option').attr('selected', false);
-    $('#ibutton').val('добавить');    
+    $('#ibutton').val('добавить');
+    $('#atype').val('');
+    $('#acategory').val('');
+    $('#aitem').val('');
+    $('#aprice').val('');
 }
 
 function ShowPhone() {  //взял из fAddPayment.js. придумать как переделать по принципу DRY
@@ -46,7 +50,9 @@ function MasterSelect(fio) {
 
 function MasterClear() {
     $('#masterlist option').attr('selected', false);
-    $('#mbutton').val('добавить');    
+    $('#mbutton').val('добавить');
+    $('#fio').val('');
+    $('#phone').val('');    
 }
 
 function addMaster() {
