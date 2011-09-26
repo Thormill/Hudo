@@ -3,7 +3,10 @@ define('ROOT', '../modules/');
 require_once ROOT . 'phpexcel/PHPExcel.php';
 include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
 include_once ROOT . 'phpexcel/PHPExcel/Writer/Excel5.php';
+require_once ROOT . 'constants.php';
+require_once ROOT . 'database.class.php';
 
+$oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->setActiveSheetIndex(0);
 $aSheet = $objPHPExcel->getActiveSheet();
@@ -34,25 +37,23 @@ $left = array(
 $aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($center);
 $aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($center);
 
-mysql_connect('localhost','hudo','oduh');
-mysql_query('SET NAMES "utf8"');
-mysql_select_db('hudo');
-
-$i = 1;
-$res = mysql_query("SELECT * FROM masters ORDER BY master_fio");
-$aSheet->setCellValue("A1", "Художник");
-$aSheet->setCellValue("B1", "Телефон");
-
-while($row = mysql_fetch_array($res)){
-	$i++;
+$sMasters = $oDB->selectTable('
+    SELECT `master_fio`, `phone`, `m_id`
+        FROM `masters`
+    ');
+if($sMasters != 0){
 	if(isset($_POST['export_settings'][1])){
-		$aSheet->setCellValue("A".$i, $row['master_fio']);
+		$aSheet->setCellValue("A1", "Художник");
+		foreach ($sMasters as $iMaster => $sMaster)
+			$aSheet->setCellValue("A".($sMaster['m_id']+1), $sMaster['master_fio']);
 	}
 	if(isset($_POST['export_settings'][2])){
-		$aSheet->setCellValue("B".$i, $row['phone']);
-		$aSheet->getStyle('B'.$i)->applyFromArray($center);
+		$aSheet->setCellValue("B1", "Телефон");
+		foreach ($sMasters as $iMaster => $sMaster)
+			$aSheet->setCellValue("B".($sMaster['m_id']+1), $sMaster['phone']);
 	}
 }
+
 /*--------------------------------------------------------------*/
 $objPHPExcel->createSheet();
 $objPHPExcel->setActiveSheetIndex(1);

@@ -12,6 +12,7 @@
         <ul class="menu">
             <li><a id="AddPayment" href="/nojs.php" onclick="menuClick(this);return false">Добавить платеж</a></li>
             <li><a id="Search" href="/nojs.php" onclick="menuClick(this);return false">Поиск платежей</a></li>
+            <li><a id="Plans" href="/nojs.php" onclick="menuClick(this);return false">Планы</a></li>
             <li><a id="Control" href="/nojs.php" onclick="menuClick(this);return false">Управление данными</a></li>
             <li><a id="ImportExport" href="/nojs.php" onclick="menuClick(this);return false">Импорт/Экспорт</a></li>
         </ul>

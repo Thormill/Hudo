@@ -2,7 +2,10 @@
 define('ROOT', '../modules/');
 require_once ROOT . 'phpexcel/PHPExcel.php';
 include_once ROOT . 'phpexcel/PHPExcel/IOFactory.php';
+require_once ROOT . 'constants.php';
+require_once ROOT . 'database.class.php';
 
+$oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 $objPHPExcel = PHPExcel_IOFactory::load("../files/given.xls");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();

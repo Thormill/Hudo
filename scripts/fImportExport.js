@@ -9,8 +9,8 @@ function Export(){
   $.post("ajax/Export.php", $("#fExport").serialize(),
     function (data) {
     });
-  var url='modules/download.php'; 
-  window.open(url,'Download');
+  var url='/modules/download.php'; 
+  setTimeout("window.open(" + url + ",'Download')", 1000);
 }
 
 $(function() {
