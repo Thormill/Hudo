@@ -41,7 +41,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p>
 	  <label>Фио:</label>
 	  <input type="text" id="fio" name="fio"></input>
-	  <SELECT id="MasterList" onChange="MasterSelect(this.options[this.selectedIndex].text);">
+	  <SELECT id="MasterList" name="m_id" onChange="MasterSelect(this.options[this.selectedIndex].text);">
 	    <?php
           $aMasters = $oDB->selectTable('
             SELECT `m_id`, `master_fio`
@@ -55,7 +55,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  </SELECT>
 	</p>
     <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
-	<input type="button" onClick="addMaster();" value="изменить" />
+	<span id="masterstatus">Добавить мастера:</span>
+	<input type="button" onClick="addMaster();" value="изменить" id="mbutton" />
+	<input type="button" onClick="MasterClear();" value="снять выделение" />
   </div>
 </form>
 
