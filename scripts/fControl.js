@@ -69,8 +69,7 @@ function addMaster() {
 }
 
 function ItemAdd() {
-	$.post('ajax/ItemControl.php', { Type : $('#atype').val(), Category : $('#acategory').val(),
-	 Item : $('#aitem').val(), Price : $('#aprice').val() },
+	$.post('ajax/ItemControl.php', $('#ItemControl').serialize(),
     function (data) {
        alert(data);
     });

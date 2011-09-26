@@ -4,16 +4,15 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
-if( (isset($_POST['m_id'])) && ($_POST['m_id'] != 0) ) //установлен тип - обновляем тип, добавляем категорию + итем + цену
+if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) ) //установлен тип - обновляем тип, добавляем категорию + итем + цену
 {
-	$uMaster = $oDB->query('
-    UPDATE `masters` 
-        SET `master_fio` = "' . $_POST['fio'] . '",
-            `phone` = "' . $_POST['phone'] . '"
-        WHERE `m_id` = "' . $_POST['m_id'] . '"'
+	$uType = $oDB->query('
+    UPDATE `types` 
+        SET `type_name` = "' . $_POST['type_name'] . '"
+        WHERE `t_id` = "' . $_POST['t_id'] . '"'
     );
-    if ($uMaster != 0)
-	  echo "Информация о " . $_POST['fio'] . " обновлена";
+    if ($uType != 0)
+	  echo "Информация о " . $_POST['type_name'] . " обновлена";
     else
     {
         echo "<b>Ошибка базы данных</b><br />";

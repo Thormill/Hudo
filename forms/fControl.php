@@ -34,9 +34,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  </div>
 	  
 	  <div id="edited">
-	    <label for="atype">Тип</label><input type="text" id="atype" />
-	    <label for="acategory">Категория</label><input type="text" id="acategory" />
-	    <label for="aitem">Изделие</label><input type="text" id="aitem" />
+	    <label for="atype">Тип</label><input type="text" id="atype" name="type_name" />
+	    <label for="acategory">Категория</label><input type="text" id="acategory" name="category_name" />
+	    <label for="aitem">Изделие</label><input type="text" id="aitem" name="item_name" />
 	    <label for="aprice">Цена</label><input type="text" id="aprice" name="price" />
         <input type="button" value="Добавить" id="ibutton" onClick="ItemAdd();"/>
 	</div>
