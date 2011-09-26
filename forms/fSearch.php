@@ -2,9 +2,7 @@
 <link rel="stylesheet" type="text/css" href="style/sunny/jquery-ui-1.8.16.custom.css" />
 <script type="text/javascript" src="scripts/fSearch.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
-<script type="text/javascript" src="scripts/jquery-datepicker.js"></script>
 <script type="text/javascript" src="scripts/jquery.ui.datepicker-ru.js"></script>
-
 
 <form id="fSearch" class="fSearch">
     <p>Введите данные для поиска:</p>

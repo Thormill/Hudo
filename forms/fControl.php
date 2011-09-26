@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="style/fControl.css" />
 <script type="text/javascript" src="scripts/fControl.js"></script>
 <link rel="stylesheet" type="text/css" href="style/sunny/jquery-ui-1.8.16.custom.css" />
-<script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
+<script type="text/javascript" src="scripts/jquery.ui.datepicker-ru.js"></script>
 
 <?php
 define('ROOT', '../modules/');
@@ -56,7 +56,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	</p>
     <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
 	<span id="masterstatus">Добавить мастера:</span>
-	<input type="button" onClick="addMaster();" value="изменить" id="mbutton" />
+	<input type="button" onClick="addMaster();" value="добавить" id="mbutton" />
 	<input type="button" onClick="MasterClear();" value="снять выделение" />
   </div>
 </form>
