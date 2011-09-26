@@ -4,9 +4,9 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
+//установлен тип - обновляем тип
 if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) && ($_POST['category_name'] == '')) 
 {
-	//установлен тип - обновляем тип, добавляем категорию + итем + цену
 	$uType = $oDB->query('
     UPDATE `types` 
         SET `type_name` = "' . $_POST['type_name'] . '"
@@ -22,9 +22,14 @@ if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) && ($_POST['category_name']
 	exit();
 }
 
-if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) && ($_POST['category_name'] != '') && ($_POST['c_id'] == 0)) 
-{
-	//меняем тип и подвязыаем к нему категорию + итем + цену
+//меняем тип и подвязыаем к нему категорию
+if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) && ($_POST['category_name'] != '') && ($_POST['c_id'] == 0)){
+  $uType = $oDB->query('
+  UPDATE `types` 
+      SET `type_name` = "' . $_POST['type_name'] . '"
+      WHERE `t_id` = "' . $_POST['t_id'] . '"'
+  );
+  
   $sCat = $oDB->selectField('
       SELECT `category_name`
           FROM `categories`
@@ -41,15 +46,56 @@ if( (isset($_POST['t_id'])) && ($_POST['t_id'] != 0) && ($_POST['category_name']
 
       if ($cInsert != 0)
           echo "Информация\r\n>> Категория добавлена\r\n";
+      else{
+          echo "Ошибка базы данных\r\n";
+          echo '>> ' . $oDB->getError();
+      }
+  } 
+  else{
+      echo "Ошибка\r\n";
+      echo ">> Эта категория уже есть в БД\r\n";
+  }
+}
+
+if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) ){
+    $uType = $oDB->query('
+             UPDATE `types` 
+             SET `type_name` = "' . $_POST['type_name'] . '"
+             WHERE `t_id` = "' . $_POST['t_id'] . '"'
+             );
+
+    $uCategory = $oDB->query('
+             UPDATE `categories` 
+             SET `t_id` = "' . $_POST['t_id'] . '",
+                 `categorie_name` = "' . $_POST['category_name'] . '"
+             WHERE `c_id` = "' . $_POST['c_id'] . '"'
+             );	
+	
+	  $sItem = $oDB->selectField('
+      SELECT `item_name`
+          FROM `items`
+          WHERE `item_name` = "' . $_POST['Item'] . '"
+          AND `category_id` = "' . $_POST['c_id'] . '"
+  ');
+
+  if ($sItem == "") {
+      $iInsert = $oDB->insert('
+          INSERT INTO `items`
+              SET `item_name` = "' . $_POST['item_name'] . '",
+                  `category_id` = "' . $_POST['c_id'] . '",
+                  `type_id` = "' . $_POST['t_id'] . '"
+     ');
+
+      if ($iInsert != 0)
+          echo "Информация\r\n>> Изделие добавлено\r\n";
       else
       {
           echo "Ошибка базы данных\r\n";
           echo '>> ' . $oDB->getError();
       }
-  } 
-  else {
+  } else {
       echo "Ошибка\r\n";
-      echo ">> Эта категория уже есть в БД\r\n";
+      echo ">> Это изделие уже есть в БД\r\n";
   }
 }
 
@@ -76,6 +122,10 @@ if( (isset($_POST['Type'])) && ($_POST['Type'] != '') ){
   } else {
       echo "Ошибка\r\n";
       echo ">> Этот тип уже есть в БД\r\n";
+  }
+  
+  if( (isset($_POST['price'])) && ($_POST['price'] != '') ){
+    //добавляем цену. 
   }
 }
 if( (isset($_POST['Category'])) && ($_POST['Category'] != '') ){
