@@ -3,7 +3,7 @@ function showMessage(sHtml, sType) {
     var maskWidth = $(window).width();
     $('#mask').css({'width':maskWidth,'height':maskHeight});
     $('#mask').fadeTo('slow',0.9);
-    $('#mask').fadeIn(250);    
+    $('#mask').fadeIn(200);    
             
     if (sType == 'err')
         sHtml = '<img src="img/err.png" alt="ошибка"><div id="message">' + sHtml + '</div>';

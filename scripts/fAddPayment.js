@@ -94,7 +94,7 @@ function rollPayment()
 // добавление платежа в колонку платежей    
     iPaymentCount++;
     if (iPaymentCount == 1)
-        $('#added_payments').html("<b>Добавленные платежи:</b><br />")
+        $('#added_payments').html('<b>Добавленные платежи:</b><br />')
     $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iPaymentCount +
         '" class="payment"><div class="delete" onclick="delPayment(' + iPaymentCount + ');return false;">X</div>' + sPayment +
         '<input type="hidden" name="payment' + iPaymentCount + '" value=\'' + jsonPayment +'\' /></div>');    
@@ -108,6 +108,11 @@ function rollPayment()
 function delPayment(paymentNum) {
     $('div#payment' + paymentNum).remove();
     showMessage('Платеж удален', 'info');
+    if ($('#added_payments').html() == '<b>Добавленные платежи:</b><br>')
+    {
+        $('#added_payments').html('');
+        $('#add_button').html('');
+    }
 }
 
 function addPayment() {
