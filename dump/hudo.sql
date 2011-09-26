@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 22 2011 г., 17:16
+-- Время создания: Сен 26 2011 г., 18:19
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `type_id` int(3) NOT NULL,
   `category_name` varchar(30) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
 -- Дамп данных таблицы `categories`
@@ -102,7 +102,9 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (62, 16, 'широкий'),
 (63, 16, 'средний шир.'),
 (64, 16, 'средний узкий'),
-(65, 16, 'узкий');
+(65, 16, 'узкий'),
+(66, 4, '2'),
+(67, 4, '1111');
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `category_id` int(4) NOT NULL,
   `item_name` varchar(30) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=300 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=303 ;
 
 --
 -- Дамп данных таблицы `items`
@@ -421,7 +423,10 @@ INSERT INTO `items` (`i_id`, `type_id`, `category_id`, `item_name`) VALUES
 (296, 16, 65, 'Огурцы'),
 (297, 16, 65, 'Сердце'),
 (298, 16, 65, 'Зебра'),
-(299, 16, 65, 'узор, поталь');
+(299, 16, 65, 'узор, поталь'),
+(300, 4, 11, 'as'),
+(301, 4, 66, '2'),
+(302, 4, 67, '2');
 
 -- --------------------------------------------------------
 
@@ -552,6 +557,18 @@ INSERT INTO `masters` (`m_id`, `master_fio`, `phone`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `materials`
+--
+
+CREATE TABLE IF NOT EXISTS `materials` (
+  `material_id` int(11) NOT NULL AUTO_INCREMENT,
+  `material_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`material_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `payments_history`
 --
 
@@ -567,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `comment_author` int(11) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `payments_history`
@@ -579,7 +596,8 @@ INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name
 (3, 28, '5', '14 см пузатая', 'Карнавал', 2, 12, '3', 0, 1316695775),
 (4, 102, '10', '17 см', 'картинка', 2, 1400, '', 0, 1316696592),
 (5, 102, '10', '17 см', 'картинка', 2, 1400, 'as', 0, 1316696595),
-(6, 50, '7', 'оформление', 'оформление', 2, 1560, 'as', 0, 1316696709);
+(6, 50, '7', 'оформление', 'оформление', 2, 1560, 'as', 0, 1316696709),
+(7, 94, '15', 'пузатая', 'лицо', 2, 600, 'фы', 0, 1316766370);
 
 -- --------------------------------------------------------
 
@@ -594,7 +612,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
   `item_id` int(5) NOT NULL,
   `price` int(10) NOT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=304 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=305 ;
 
 --
 -- Дамп данных таблицы `prices`
@@ -613,7 +631,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (10, 4, 2, 10, 1800),
 (11, 4, 2, 11, 1800),
 (12, 4, 2, 12, 400),
-(13, 5, 3, 13, 1750),
+(13, 5, 3, 13, 17),
 (14, 5, 3, 14, 2500),
 (15, 5, 3, 15, 350),
 (16, 6, 3, 16, 1400),
@@ -903,7 +921,8 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (300, 65, 16, 296, 0),
 (301, 65, 16, 297, 50),
 (302, 65, 16, 298, 50),
-(303, 65, 16, 299, 50);
+(303, 65, 16, 299, 50),
+(304, 67, 4, 302, 100500);
 
 -- --------------------------------------------------------
 
