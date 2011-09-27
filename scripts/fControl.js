@@ -64,6 +64,7 @@ function addMaster() {
                 function (data) {
                     showMessage(data);
                 });
+			MasterClear();
         }
         else
             showMessage("Введите телефонв формате XXX-XXXX (городской) <br /> или XXX-XXXXXXX (мобильный)", 'err');
@@ -76,6 +77,7 @@ function ItemAdd() {
 	$.post('ajax/ItemControl.php', $('#ItemControl').serialize(),
     function (data) {
        alert(data);
+	ItemsClear();
     });
 }
 
@@ -89,6 +91,7 @@ function MaterialAdd() {
     function (data) {
        showMessage(data);
     });
+	MaterialClear();
 }
 
 function MaterialClear() {
