@@ -1,5 +1,5 @@
-function MaterialClick(material_out_id) {
-    $.post('ajax/MaterialCheck.php', { id : material_out_id},
+function MaterialClick(material) {
+    $.post('ajax/MaterialCheck.php', { id : $(material).val()},
     function (data) {
        alert(data);
     });

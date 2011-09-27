@@ -24,10 +24,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				    SELECT `material_name`
 				    FROM `materials`
 				    WHERE `material_id` = "' . $sMaterial['material_id'] . '"
-				');
+				');//имя заготовки
 				
 			if($sMaterial['master_id'] != $m_id){
-				$m_id = $sMaterial['master_id'];
+				$m_id = $sMaterial['master_id'];//отдельный блок под каждого мастера
 				$master_fio = $oDB->SelectField('
 				    SELECT `master_fio`
 				    FROM `masters`
@@ -36,10 +36,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				echo '<p>Мастер: ' . $master_fio;
 			}
             echo '<input type="checkbox" value="' . $sMaterial['id'] . '" 
-                 name="material[]" onClick="MaterialClick(this.value);">' . $material . '</input>';
+                 name="material[]" onClick="MaterialClick(this);">' . $material . '</input>';
             echo '(' . $sMaterial['amount'] . ' штуки)';
             if($sMaterial['master_id'] != $m_id){
-				$m_id = $sMaterial['master_id'];
+				$m_id = $sMaterial['master_id']; //временное хранение имени мастера
             echo '</p>';
 		    }
 		}
