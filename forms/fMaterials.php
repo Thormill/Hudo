@@ -10,7 +10,7 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 ?>
-<form id="">
+<form id="" class="fControl">
     <?php
         $sMaterials = $oDB->SelectTable('
            SELECT `id`, `master_id`, `material_id`, `amount`, `date`
@@ -36,7 +36,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				echo '<p>Мастер: ' . $master_fio;
 			}
             echo '<input type="checkbox" value="' . $sMaterial['id'] . '" 
-                 name="material[]" onClick="MaterialClick();">' . $material . '</input>';
+                 name="material[]" onClick="MaterialClick(this.value);">' . $material . '</input>';
             echo '(' . $sMaterial['amount'] . ' штуки)';
             if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id'];
