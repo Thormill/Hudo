@@ -19,6 +19,7 @@ mysql_query("TRUNCATE categories") or die('can not empty tables');
 mysql_query("TRUNCATE types") or die('can not empty tables');
 mysql_query("TRUNCATE prices") or die('can not empty tables');
 mysql_query("TRUNCATE items") or die('can not empty tables');
+mysql_query("TRUNCATE materials") or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
 	$master_fio = $aSheet->getCell("B".$i)->getValue(); //master_fio

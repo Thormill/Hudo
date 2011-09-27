@@ -79,7 +79,16 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p>Здесь можно отредактировать заготовки</p>
 	<div class="dItems">
 	  <SELECT size="5" class="multiselect" id="mItem" onChange="document.getElementById('premade').value = this.options[this.selectedIndex].value">
-	    <?php for($i = 0; $i < 10; $i++) echo "<option value = $i>$i</option>"; ?>
+        <?php
+          $sMaterials = $oDB->selectTable('
+            SELECT `material_id`, `material_name`
+                    FROM `materials`
+                    ORDER BY `material_name` ASC'
+          );
+          echo '<option value="0">--Выберите заготовку--</option>';
+          foreach ($sMaterials as $sMaterial => $uMaterial)
+            echo '<option value="' . $uMaterial['material_id'] . '">' . $uMaterial['material_name'] . '</option>';
+        ?>
 	  </SELECT>      
     </div>
 	<div>
