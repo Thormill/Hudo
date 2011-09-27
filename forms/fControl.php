@@ -74,11 +74,11 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   </div>
 </form>
 
-<form id="PremadeControl" class="fControl">
+<form id="MaterialControl" class="fControl">
   <div>
     <p>Здесь можно отредактировать заготовки</p>
 	<div class="dItems">
-	  <SELECT size="5" class="multiselect" id="mItem" onChange="document.getElementById('premade').value = this.options[this.selectedIndex].value">
+	  <SELECT size="5" class="multiselect" id="materiallist" onChange="MaterialClick();" name="material_id">
         <?php
           $sMaterials = $oDB->selectTable('
             SELECT `material_id`, `material_name`
@@ -92,8 +92,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  </SELECT>      
     </div>
 	<div>
-	  <label for="premade">Название</label><input type="text" id="premade"></input>	  
+	  <label for="amaterial">Название</label><input type="text" id="amaterial" name="material_name"></input>	  
 	</div>
-    <input type="button" onClick="" value="изменить" />
+    <input type="button" onClick="MaterialAdd();" value="добавить" id="matbutton" />
+    <input type="button" onClick="MaterialClear();" value="очистить" />    
   </div>
 </form>

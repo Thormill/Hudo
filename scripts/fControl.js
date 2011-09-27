@@ -78,3 +78,21 @@ function ItemAdd() {
        alert(data);
     });
 }
+
+function MaterialClick() {
+    $('#matbutton').val('изменить');
+    $('#amaterial').val( $('#materiallist option:selected').text() );
+}
+
+function MaterialAdd() {
+    $.post('ajax/MaterialControl.php', $('#MaterialControl').serialize(),
+    function (data) {
+       showMessage(data);
+    });
+}
+
+function MaterialClear() {
+    $('#materiallist option').attr('selected', false);
+    $('#matbutton').val('добавить');
+    $('#amaterial').val('');    
+}
