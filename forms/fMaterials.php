@@ -37,9 +37,15 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				    FROM `masters`
 				    WHERE `m_id` = "' . $sMaterial['master_id'] . '"
 				');
+				$master_phone = $oDB->SelectField('
+				    SELECT `phone`
+				    FROM `masters`
+				    WHERE `m_id` = "' . $sMaterial['master_id'] . '"
+				');
 				echo '<div class="container"><div class="master_container">
-				      Мастер: ' . $master_fio . 
-				     '</div><div class="materials_container">';
+				      <p>Мастер: ' . $master_fio . '</p> 
+				      <p>Телефон: ' . $master_phone . '</p>
+				      </div><div class="materials_container">';
 			}
 			
             echo '<p><input type="checkbox" value="' . $sMaterial['id'] . '" 
