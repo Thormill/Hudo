@@ -101,6 +101,23 @@ while($row = mysql_fetch_array($res)){
 $objPHPExcel->createSheet();
 $objPHPExcel->setActiveSheetIndex(2);
 $aSheet = $objPHPExcel->getActiveSheet();
+$aSheet->setTitle('Заготовки');
+
+$sMaterials = $oDB->selectTable('
+    SELECT `material_name`, `material_id`
+        FROM `materials`
+    ');
+if($sMaterials != 0){
+	if(isset($_POST['export_settings'][6])){
+		$aSheet->setCellValue("A1", "Наименование");
+		foreach ($sMaterials as $iMaterial => $sMaterial)
+			$aSheet->setCellValue("A".($sMaterial['material_id']+1), $sMaterial['material_name']);
+	}
+}
+/*-------------------------------------------------------------------------*/
+$objPHPExcel->createSheet();
+$objPHPExcel->setActiveSheetIndex(3);
+$aSheet = $objPHPExcel->getActiveSheet();
 $aSheet->setTitle('Платежи');
 
 $aSheet->setCellValue("A1", "Мастер");
