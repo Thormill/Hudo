@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 26 2011 г., 18:19
+-- Время создания: Сен 27 2011 г., 15:05
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `type_id` int(3) NOT NULL,
   `category_name` varchar(30) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
 
 --
 -- Дамп данных таблицы `categories`
@@ -102,9 +102,7 @@ INSERT INTO `categories` (`c_id`, `type_id`, `category_name`) VALUES
 (62, 16, 'широкий'),
 (63, 16, 'средний шир.'),
 (64, 16, 'средний узкий'),
-(65, 16, 'узкий'),
-(66, 4, '2'),
-(67, 4, '1111');
+(65, 16, 'узкий');
 
 -- --------------------------------------------------------
 
@@ -118,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `category_id` int(4) NOT NULL,
   `item_name` varchar(30) NOT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=303 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=300 ;
 
 --
 -- Дамп данных таблицы `items`
@@ -423,10 +421,7 @@ INSERT INTO `items` (`i_id`, `type_id`, `category_id`, `item_name`) VALUES
 (296, 16, 65, 'Огурцы'),
 (297, 16, 65, 'Сердце'),
 (298, 16, 65, 'Зебра'),
-(299, 16, 65, 'узор, поталь'),
-(300, 4, 11, 'as'),
-(301, 4, 66, '2'),
-(302, 4, 67, '2');
+(299, 16, 65, 'узор, поталь');
 
 -- --------------------------------------------------------
 
@@ -564,7 +559,132 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `material_id` int(11) NOT NULL AUTO_INCREMENT,
   `material_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`material_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=94 ;
+
+--
+-- Дамп данных таблицы `materials`
+--
+
+INSERT INTO `materials` (`material_id`, `material_name`) VALUES
+(1, 'М-30 большая'),
+(2, 'М-30 пузатая'),
+(3, 'М-20 большая'),
+(4, 'М-20 пузатая'),
+(5, 'М-15 большая'),
+(6, 'М-15 пузатая'),
+(7, 'М-10 большая'),
+(8, 'М-10 пузатая'),
+(9, 'М-5 18 см'),
+(10, 'М-5 14 см'),
+(11, 'М-5 12 см'),
+(12, 'М-5 9см'),
+(13, 'М-3 14 см'),
+(14, ' М-3 9 см'),
+(15, 'Колокольчик малый'),
+(16, 'Колокольчик большой'),
+(17, 'Яйцо'),
+(18, 'Шар малый'),
+(19, 'Шар большой'),
+(20, 'Ангел'),
+(21, 'Неваляшка'),
+(22, 'Футляр 0,05'),
+(23, 'куколка сарафан'),
+(24, 'Яблоко'),
+(25, 'Груша'),
+(26, 'Браслет 1'),
+(27, 'Браслет 2'),
+(28, 'Браслет 3'),
+(29, 'Браслет 4'),
+(30, 'Браслет 5'),
+(31, 'Браслет 6'),
+(32, 'М-30 большая'),
+(33, 'М-30 пузатая'),
+(34, 'М-20 большая'),
+(35, 'М-20 пузатая'),
+(36, 'М-15 большая'),
+(37, 'М-15 пузатая'),
+(38, 'М-10 большая'),
+(39, 'М-10 пузатая'),
+(40, 'М-5 18 см'),
+(41, 'М-5 14 см'),
+(42, 'М-5 12 см'),
+(43, 'М-5 9см'),
+(44, 'М-3 14 см'),
+(45, ' М-3 9 см'),
+(46, 'Колокольчик малый'),
+(47, 'Колокольчик большой'),
+(48, 'Яйцо'),
+(49, 'Шар малый'),
+(50, 'Шар большой'),
+(51, 'Ангел'),
+(52, 'Неваляшка'),
+(53, 'Футляр 0,05'),
+(54, 'куколка сарафан'),
+(55, 'Яблоко'),
+(56, 'Груша'),
+(57, 'Браслет 1'),
+(58, 'Браслет 2'),
+(59, 'Браслет 3'),
+(60, 'Браслет 4'),
+(61, 'Браслет 5'),
+(62, 'Браслет 6'),
+(63, 'М-30 большая'),
+(64, 'М-30 пузатая'),
+(65, 'М-20 большая'),
+(66, 'М-20 пузатая'),
+(67, 'М-15 большая'),
+(68, 'М-15 пузатая'),
+(69, 'М-10 большая'),
+(70, 'М-10 пузатая'),
+(71, 'М-5 18 см'),
+(72, 'М-5 14 см'),
+(73, 'М-5 12 см'),
+(74, 'М-5 9см'),
+(75, 'М-3 14 см'),
+(76, ' М-3 9 см'),
+(77, 'Колокольчик малый'),
+(78, 'Колокольчик большой'),
+(79, 'Яйцо'),
+(80, 'Шар малый'),
+(81, 'Шар большой'),
+(82, 'Ангел'),
+(83, 'Неваляшка'),
+(84, 'Футляр 0,05'),
+(85, 'куколка сарафан'),
+(86, 'Яблоко'),
+(87, 'Груша'),
+(88, 'Браслет 1'),
+(89, 'Браслет 2'),
+(90, 'Браслет 3'),
+(91, 'Браслет 4'),
+(92, 'Браслет 5'),
+(93, 'Браслет 6');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `materials_out`
+--
+
+CREATE TABLE IF NOT EXISTS `materials_out` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `master_id` int(5) NOT NULL,
+  `material_id` int(5) NOT NULL,
+  `amount` int(5) NOT NULL,
+  `date` int(12) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `materials_out`
+--
+
+INSERT INTO `materials_out` (`id`, `master_id`, `material_id`, `amount`, `date`, `status`) VALUES
+(1, 1, 2, 3, 0, 0),
+(2, 2, 3, 4, 5, 0),
+(3, 1, 5, 6, 1, 0),
+(4, 3, 12, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -602,6 +722,21 @@ INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `plans`
+--
+
+CREATE TABLE IF NOT EXISTS `plans` (
+  `plan_id` int(10) NOT NULL,
+  `item_id` int(5) NOT NULL,
+  `amount_to_make` int(4) NOT NULL,
+  `amount_remain` int(4) NOT NULL,
+  `date` int(12) NOT NULL,
+  `comment` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `prices`
 --
 
@@ -612,7 +747,7 @@ CREATE TABLE IF NOT EXISTS `prices` (
   `item_id` int(5) NOT NULL,
   `price` int(10) NOT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=305 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=304 ;
 
 --
 -- Дамп данных таблицы `prices`
@@ -631,7 +766,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (10, 4, 2, 10, 1800),
 (11, 4, 2, 11, 1800),
 (12, 4, 2, 12, 400),
-(13, 5, 3, 13, 17),
+(13, 5, 3, 13, 1750),
 (14, 5, 3, 14, 2500),
 (15, 5, 3, 15, 350),
 (16, 6, 3, 16, 1400),
@@ -921,8 +1056,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (300, 65, 16, 296, 0),
 (301, 65, 16, 297, 50),
 (302, 65, 16, 298, 50),
-(303, 65, 16, 299, 50),
-(304, 67, 4, 302, 100500);
+(303, 65, 16, 299, 50);
 
 -- --------------------------------------------------------
 
