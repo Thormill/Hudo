@@ -76,6 +76,21 @@ for($i=2;$i<=$max;$i++){
 	mysql_query($query) or die('insert price error');    //price is set up by default
 	
 }
-echo "Добавлено $count изделий.";
+echo "Добавлено $count изделий.\n";
+/*заготовки*/
+$objPHPExcel->setActiveSheetIndex(2); //изделия
+$aSheet = $objPHPExcel->getActiveSheet();
+$max =  $aSheet->getHighestRow();
+$count = 0;
+for($i=2;$i<=$max;$i++){
+	$material_name = $aSheet->getCell("A".$i)->getValue(); //master_fio
+
+	$iMaterials = $oDB->insert('
+	    INSERT INTO `materials`
+	    SET `material_name` = "' . $material_name . '"
+	');
+	$count++;
+}
+echo "Добавлено $count заготовок.\n";
 ?>
 

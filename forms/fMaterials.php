@@ -20,6 +20,12 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
         ');
         $m_id = 0;
         foreach($sMaterials as $iMaterial => $sMaterial){
+			$material = $oDB->SelectField('
+				    SELECT `material_name`
+				    FROM `materials`
+				    WHERE `material_id` = "' . $sMaterial['material_id'] . '"
+				');
+				
 			if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id'];
 				$master_fio = $oDB->SelectField('
@@ -30,7 +36,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				echo '<p>Мастер: ' . $master_fio;
 			}
             echo '<input type="checkbox" value="' . $sMaterial['id'] . '" 
-                 name="material[]" onClick="MaterialClick();">' . $sMaterial['material_id'] . '</input>';
+                 name="material[]" onClick="MaterialClick();">' . $material . '</input>';
+            echo '(' . $sMaterial['amount'] . ' штуки)';
             if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id'];
             echo '</p>';
