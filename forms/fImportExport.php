@@ -4,8 +4,8 @@
 <script type="text/javascript" src="scripts/fImportExport.js"></script>
 
 <form id="fImport" class="fImport">
-    <p>При импортировании все данные, которые есть в системе, будут удалены и заменены на новые.</p>
-    <center><input type="button" onclick="Import();" value="Восстановить данные по умолчанию" /></center>
+    <p>При импортировании все данные, которые есть в системе, будут удалены и заменены на новые.
+    <input type="button" onclick="Import();" value="Восстановить данные по умолчанию" /></p>
     <p>Выберите файл для импорта<input type="file"></input> <input type=submit value=Загрузить /> </p>
 </form>
 

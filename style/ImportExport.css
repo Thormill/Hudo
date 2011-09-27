@@ -13,6 +13,7 @@
 .fImport p input {
     margin: 5px;
     height: 25px;
+    float: right;
 }
 
 .fExport {
