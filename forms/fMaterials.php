@@ -19,6 +19,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             ORDER BY `master_id` ASC
         ');
         $m_id = 0;
+        $counter = 0;
         foreach($sMaterials as $iMaterial => $sMaterial){
 			$material = $oDB->SelectField('
 				    SELECT `material_name`
@@ -27,20 +28,26 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				');//имя заготовки
 				
 			if($sMaterial['master_id'] != $m_id){
-				$m_id = $sMaterial['master_id'];//отдельный блок под каждого мастера
+				if($counter > 0)
+                    echo '</div></div>';
+				$counter++;
+				//отдельный блок под каждого мастера
 				$master_fio = $oDB->SelectField('
 				    SELECT `master_fio`
 				    FROM `masters`
 				    WHERE `m_id` = "' . $sMaterial['master_id'] . '"
 				');
-				echo '<p>Мастер: ' . $master_fio;
+				echo '<div class="container"><div class="master_container">
+				      Мастер: ' . $master_fio . 
+				     '</div><div class="materials_container">';
 			}
-            echo '<input type="checkbox" value="' . $sMaterial['id'] . '" 
+			
+            echo '<p><input type="checkbox" value="' . $sMaterial['id'] . '" 
                  name="material[]" onClick="MaterialClick(this);">' . $material . '</input>';
-            echo '(' . $sMaterial['amount'] . ' штуки)';
+            echo '(' . $sMaterial['amount'] . ' штуки)</p>';
+            
             if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id']; //временное хранение имени мастера
-            echo '</p>';
 		    }
 		}
     ?>

@@ -1,8 +1,37 @@
 .fControl {
     width:984px;
-    height:200px;
+    height:400px;
     padding-left:15px;
     padding-top:10px;
     line-height: 25px;
     overflow: auto;
+}
+
+.container {
+    border-style: dotted;
+    border-width: 1px;
+    border-color: red;
+    width: 800px;
+    margin: 5px;
+    overflow: hidden;
+}
+
+.master_container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+    width: 400px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
+
+.materials_container {
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    width: 300px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
 }
