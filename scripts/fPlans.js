@@ -1,4 +1,5 @@
 var count = 0;
+var fixprice = 0;
 
 function TypeClick() {
 	$('#itemlist option').attr('selected', false);
@@ -24,7 +25,18 @@ function ItemClick() {
     $.post('ajax/loadPrice.php', { item_id : $('#itemlist option:selected').val()},
     function (data) {
        $('#price').val(data);
+       fixprice = data;
     });
+}
+
+function AmountChange() {
+	var current_amount = $('#amount').val();
+	if(current_amount > 0){
+	    var result = fixprice * current_amount;
+	    $('#price').val(result);
+	}
+	else
+	    $('#price').val(fixprice);
 }
 
 function AddToList() {

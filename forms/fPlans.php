@@ -40,7 +40,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 		<option>--выберите изделие--</option>
 	</SELECT>
 	
-	<input type="text" name="amount" id="amount" value="1">шт.</input>
+	<input type="text" name="amount" id="amount" value="1" onKeyUp="AmountChange();">шт.</input>
 	<input type="text" name="price" id="price">руб.</input>
 	<input type="button" onClick="AddToList();" value="+" />
     <input type="button" onClick="Add();" value="добавить" />
