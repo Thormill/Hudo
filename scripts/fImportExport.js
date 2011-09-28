@@ -1,7 +1,7 @@
 function Import(){
   $.post("ajax/Import.php", null,
     function (data) {
-      alert(data);
+      showMessage(data);
     });
 }
 

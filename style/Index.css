@@ -62,7 +62,7 @@ td {
     min-width:350px;
     max-height:500px;
     overflow: auto;
-    position:absolute;
+    position: fixed;
     z-index:9999;
 }
 
