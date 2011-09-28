@@ -19,7 +19,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             ORDER BY `master_id` ASC
         ');
         $m_id = 0;
-        $counter = 0;
+        $counter = FALSE;
         foreach($sMaterials as $iMaterial => $sMaterial){
 			$material = $oDB->SelectField('
 				    SELECT `material_name`
@@ -28,9 +28,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				');//имя заготовки
 				
 			if($sMaterial['master_id'] != $m_id){
-				if($counter > 0)
+				if($counter == TRUE)
                     echo '</div></div>';
-				$counter++;
+				$counter = TRUE;
 				//отдельный блок под каждого мастера
 				$master_fio = $oDB->SelectField('
 				    SELECT `master_fio`

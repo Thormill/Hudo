@@ -47,4 +47,28 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   </div>
     <input type="text" value="Ваш комментарий" id="comment" />
 </form>
-<div id = "planlist" class="planlist"></div>
+<div id = "planlist" class="planlist">
+    <?php
+        $sPlans = $oDB->selectTable('
+            SELECT `plan_number`, `item_id`, `amount_to_make`, `amount_remain`, 
+                   `price`, `date`, `comment`
+            FROM `plans`
+            WHERE `status` = 0
+            ORDER BY `plan_number` ASC
+        ');
+        $plan_id = 0;
+        echo '<div>';
+        
+        foreach($sPlans as $iPlan => $aPlan){
+			if($plan_id < $aPlan['plan_number']){
+			    echo '</div>';
+			}
+			echo 'Предмет:' . $aPlan['item_id'];
+			if($plan_id < $aPlan['plan_number']){
+			    echo '<div>';
+			    $plan_id = $aPlan['plan_number'];
+			}
+		}
+        
+    ?>
+</div>
