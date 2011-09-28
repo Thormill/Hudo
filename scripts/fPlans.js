@@ -45,17 +45,26 @@ function AddToList() {
 	text += $('#comment').val() + '<br />';
 	text += '<input type="hidden" name="planpoint' + count + '" value=\'' + jsonPlan + '\' />';
 	$('#currentplan').html(text);
+	
+	PlanClear();
 }
 
 function Add() {
 	$('#planpreview').append('<input type="hidden" name="Count" value="' + count + '" />');
     $.post('ajax/addPlan.php', $('#planpreview').serialize(),
         function (data) {
-			alert(data);
+			showMessage(data);
             PlanClear();
+           	$('#planpreview').html('');
             count = 0;
         });
 }
 
 function PlanClear() {
+	$('#typelist option:first').attr('selected','1');
+	$('#itemlist option').attr('selected', false);
+    $('#itemlist').html('<option>--Сначала выберите категорию--</option>');
+    $('#categorylist option').attr('selected', false);
+    $('#categorylist').html('<option>--Сначала выберите тип--</option>');
+    $('#price').val('');
 }
