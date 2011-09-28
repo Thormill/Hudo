@@ -25,7 +25,7 @@ for ($i = 1; $i <= $k; $i++)
                 `plan_number`    = ' . $plan_number . ',
                 `item_id`        = ' . $aPlan['item_id'] . ',
                 `amount_to_make` = ' . $aPlan['amount_to_make'] . ',
-                `amount_remain`  = ' . $aPlan['amount_to_make'] . ',
+                `amount_made`  =  0 ,
                 `price`          = ' . $aPlan['price'] . ',
                 `comment`        = "' . $aPlan['comment'] . '",
                 `date`           = UNIX_TIMESTAMP()

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 28 2011 г., 15:38
+-- Время создания: Сен 28 2011 г., 17:13
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -674,19 +674,26 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `item_id` int(5) NOT NULL,
   `price` int(6) NOT NULL,
   `amount_to_make` int(4) NOT NULL,
-  `amount_remain` int(4) NOT NULL,
+  `amount_made` int(4) NOT NULL DEFAULT '0',
   `date` int(12) NOT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`plan_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Дамп данных таблицы `plans`
 --
 
-INSERT INTO `plans` (`plan_id`, `plan_number`, `item_id`, `price`, `amount_to_make`, `amount_remain`, `date`, `comment`, `status`) VALUES
-(1, 0, 13, 1750, 1, 1, 1317209824, 'Ваш комментарий', 0);
+INSERT INTO `plans` (`plan_id`, `plan_number`, `item_id`, `price`, `amount_to_make`, `amount_made`, `date`, `comment`, `status`) VALUES
+(11, 1, 7, 2100, 1, 1, 1317210868, 'Ваш комментарий', 0),
+(12, 1, 9, 500, 1, 1, 1317210868, 'Ваш комментарий', 0),
+(13, 1, 28, 650, 1, 1, 1317210943, 'Ваш комментарий', 0),
+(14, 1, 15, 350, 1, 1, 1317210943, 'Ваш комментарий', 0),
+(15, 1, 15, 350, 1, 1, 1317210950, 'Ваш комментарий', 0),
+(16, 2, 1, 5000, 1, 1, 1317210983, 'Ваш комментарий', 0),
+(17, 3, 9, 500, 1, 1, 1317211000, 'Ваш комментарий', 0),
+(18, 3, 15, 350, 1, 1, 1317211000, 'Ваш комментарий', 0);
 
 -- --------------------------------------------------------
 

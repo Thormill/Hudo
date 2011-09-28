@@ -50,7 +50,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 <div id = "planlist" class="planlist">
     <?php
         $sPlans = $oDB->selectTable('
-            SELECT `plan_number`, `item_id`, `amount_to_make`, `amount_remain`, 
+            SELECT `plan_number`, `item_id`, `amount_to_make`, `amount_made`, 
                    `price`, `date`, `comment`
             FROM `plans`
             WHERE `status` = 0
@@ -99,7 +99,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 			
 			echo '<p>';
 			echo $Type . ' / ' . $Category . ' / ' . $Item . '<br />';
-			echo 'сделано ' . $aPlan['amount_remain'] . ' из ' . $aPlan['amount_to_make'] . '<br />';
+			echo 'сделано ' . $aPlan['amount_made'] . ' из ' . $aPlan['amount_to_make'] . '<br />';
 			echo '</p>';
 			
 			if($plan_id != $aPlan['plan_number']){
