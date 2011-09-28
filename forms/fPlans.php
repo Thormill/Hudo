@@ -66,7 +66,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				$counter = TRUE;
 				echo '<div class="container"><div class="plan_container">
 				      <p>План номер: ' . $aPlan['plan_number'] . '</p> 
-				      <p>Добавлен: ' . date('Y/M/d H:i', $aPlan['date']) . '</p>
+				      <p>Добавлен: ' . date('Y/M/d H:i', $aPlan['date']) . 
+				      '</p>
+				      <p>Комментарий:<i>' . $aPlan['comment'] . '</i></p>
 				      </div><div class="items_container">';
 			}
 			$Item = $oDB->selectField('
