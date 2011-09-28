@@ -4,6 +4,13 @@
 .planadd {
 }
 
+.planpreview {
+}
+
+.planpreview SELECT {
+    width: 400px;
+}
+
 #price {
     width: 40px;
 }

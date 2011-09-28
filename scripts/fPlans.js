@@ -26,6 +26,15 @@ function ItemClick() {
 }
 
 function AddToList() {
+	var text = $('#currentplan').html();
+	text += '<option>';
+	text += $('#typelist option:selected').text() + ' / ';
+	text += $('#categorylist option:selected').text() + ' / ';
+	text += $('#itemlist option:selected').text() + ' / ';
+	text += $('#amount').val() + 'шт. / ';
+	text += $('#price').val() + 'руб.';
+	text += '</option>';
+	$('#currentplan').html(text);
 }
 
 function Add() {

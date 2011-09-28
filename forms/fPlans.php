@@ -10,7 +10,14 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 ?>
-<div id = "planpreview" class="planpreview"></div>
+
+<form id="planpreview">
+    <div class="planpreview">
+		<SELECT size="5" id="currentplan">
+		</SELECT>
+    </div>
+</form>
+
 <form id="PlanControl" class="fControl">
     <p>Здесь можно составить план - указать изделие и требуемое количесто.</p>
   <div id="addplan" class="planadd">
