@@ -5,10 +5,9 @@
 }
 
 .planpreview {
-}
-
-.planpreview SELECT {
-    width: 400px;
+    width: 800px;
+    padding: 10px;
+    margin: 5px;
 }
 
 #price {

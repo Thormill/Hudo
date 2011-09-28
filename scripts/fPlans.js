@@ -1,3 +1,5 @@
+var count = 0;
+
 function TypeClick() {
 	$('#itemlist option').attr('selected', false);
     $('#itemlist').html('<option>--Сначала выберите категорию--</option>');
@@ -26,18 +28,34 @@ function ItemClick() {
 }
 
 function AddToList() {
+	count++;
+
+	var jsonPlan = '{"plan_number":' + count + ',';
+    jsonPlan +=  '"item_id":' + $('#itemlist option:selected').val() + ',';
+    jsonPlan +=  '"amount_to_make":' + $('#amount').val() + ',';
+    jsonPlan +=  '"price":' + $('#price').val() + ',';
+    jsonPlan +=  '"comment":"' + $('#comment').val() + '"}';
+	alert(jsonPlan);
+	
 	var text = $('#currentplan').html();
-	text += '<option>';
 	text += $('#typelist option:selected').text() + ' / ';
 	text += $('#categorylist option:selected').text() + ' / ';
 	text += $('#itemlist option:selected').text() + ' / ';
 	text += $('#amount').val() + 'шт. / ';
-	text += $('#price').val() + 'руб.';
-	text += '</option>';
+	text += $('#price').val() + 'руб. /';
+	text += $('#comment').val() + '<br />';
+	text += '<input type="hidden" name="planpoint' + count + '" value="' + jsonPlan + '" />';
 	$('#currentplan').html(text);
 }
 
 function Add() {
+	$('#planpreview').append('<input type="hidden" name="Count" value="' + count + '" />');
+    $.post('ajax/addPlan.php', $('#planpreview').serialize(),
+        function (data) {
+			alert(data);
+            PlanClear();
+            count = 0;
+        });
 }
 
 function PlanClear() {

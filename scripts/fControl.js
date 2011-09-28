@@ -15,7 +15,7 @@
 
 function CategoryClick() {
     $('#acategory').val( $('#mCategory option:selected').text() );
-    $('#mItem option').attr('selected', false);
+    $('#mItem option:first').attr('selected','1');
     $('#aitem').val('');
     $('#aprice').val('');
     $.post('ajax/loadItems.php', { c_id : $('#mCategory option:selected').val()},
@@ -33,10 +33,10 @@ function ItemClick() {
 }
 
 function ItemsClear() {
-    $('#mType option').attr('selected', false);
-    $('#mCategory option').attr('selected', false);
+    $('#mType option:first').attr('selected','1');
+    $('#mCategory option:first').attr('selected','1');
     $('#mCategory').html('<option>----Сначала выберите тип----</option>');
-    $('#mItem option').attr('selected', false);
+    $('#mItem option:first').attr('selected','1');
     $('#mItem').html('<option>--Сначала выберите категорию--</option>');
     $('#ibutton').val('добавить');
     $('#atype').val('');
@@ -60,7 +60,7 @@ function MasterSelect(fio) {
 }
 
 function MasterClear() {
-    $('#masterlist option').attr('selected', false);
+    $('#masterlist option:first').attr('selected','1');
     $('#mbutton').val('добавить');
     $('#fio').val('');
     $('#phone').val('');    
@@ -106,7 +106,7 @@ function MaterialAdd() {
 }
 
 function MaterialClear() {
-    $('#materiallist option').attr('selected', false);
+    $('#materiallist option:first').attr('selected','1');
     $('#matbutton').val('добавить');
     $('#amaterial').val('');    
 }

@@ -12,9 +12,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 ?>
 
 <form id="planpreview">
-    <div class="planpreview">
-		<SELECT size="5" id="currentplan">
-		</SELECT>
+    <div id="currentplan" class="planpreview">
     </div>
 </form>
 
@@ -45,8 +43,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	<input type="text" name="amount" id="amount" value="1">шт.</input>
 	<input type="text" name="price" id="price">руб.</input>
 	<input type="button" onClick="AddToList();" value="+" />
-    
     <input type="button" onClick="Add();" value="добавить" />
   </div>
+    <input type="text" value="Ваш комментарий" id="comment" />
 </form>
 <div id = "planlist" class="planlist"></div>
