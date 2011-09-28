@@ -129,16 +129,16 @@ function rollMaterial()
 {
 // генерация json кода
     jsonMaterial =   '{"fio":' + $('#fio').val() + ',';
-    jsonMaterial +=  '"material_id":' + $('#material_id option:selected').val() + ',';
+    jsonMaterial +=  '"material_id":' + $('#material option:selected').val() + ',';
     jsonMaterial +=  '"amount":' + $('#material_amount').val() + '}';
 // генерация текстового хэндла
     sMaterial =  'Мастер: ' + $('#fio option:selected').text() + '<br />';
-    sMaterial += 'Наименование: ' + $('#material_id option:selected').text();
-    sMaterial += 'Количество: ' + $('#material_amount]').val() + '<br />';
+    sMaterial += 'Наименование: ' + $('#material option:selected').text();
+    sMaterial += 'Количество: ' + $('#material_amount').val() + '<br />';
 // добавление платежа в колонку платежей    
     iMaterialCount++;
     if ($('#added_payments').html() == '')
-        $('#added_payments').html('<b>Добавленные платежи:</b><br />');
+        $('#added_payments').html('<b>Выданные заготовки:</b><br />');
     $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iMaterialCount +
         '" class="payment"><div class="delete" onclick="delPayment(' + iMaterialCount + ');return false;">X</div>' + sMaterial +
         '<input type="hidden" name="payment' + iMaterialCount + '" value=\'' + jsonMaterial +'\' /></div>');    
