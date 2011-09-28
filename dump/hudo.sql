@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.3.2
+-- version 3.2.3
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 28 2011 г., 17:13
--- Версия сервера: 5.1.54
--- Версия PHP: 5.3.5-1ubuntu7.2
+-- Время создания: Сен 28 2011 г., 21:04
+-- Версия сервера: 5.1.40
+-- Версия PHP: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `hudo`
+-- БД: `hudo`
 --
 
 -- --------------------------------------------------------
@@ -559,7 +558,7 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `material_id` int(11) NOT NULL AUTO_INCREMENT,
   `material_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`material_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
 
 --
 -- Дамп данных таблицы `materials`
@@ -585,7 +584,7 @@ INSERT INTO `materials` (`material_id`, `material_name`) VALUES
 (17, 'Яйцо'),
 (18, 'Шар малый'),
 (19, 'Шар большой'),
-(20, 'Ангел12213'),
+(20, 'Ангел'),
 (21, 'Неваляшка'),
 (22, 'Футляр 0,05'),
 (23, 'куколка сарафан'),
@@ -596,8 +595,7 @@ INSERT INTO `materials` (`material_id`, `material_name`) VALUES
 (28, 'Браслет 3'),
 (29, 'Браслет 4'),
 (30, 'Браслет 5'),
-(31, 'Браслет 6'),
-(34, '122');
+(31, 'Браслет 6');
 
 -- --------------------------------------------------------
 
@@ -620,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
 --
 
 INSERT INTO `materials_out` (`id`, `master_id`, `material_id`, `amount`, `date`, `status`) VALUES
-(1, 1, 2, 3, 0, 0),
+(1, 1, 2, 2, 0, 0),
 (2, 2, 3, 4, 5, 0),
 (3, 1, 5, 6, 1, 1),
 (4, 3, 12, 2, 1, 0);
@@ -679,21 +677,22 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`plan_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Дамп данных таблицы `plans`
 --
 
 INSERT INTO `plans` (`plan_id`, `plan_number`, `item_id`, `price`, `amount_to_make`, `amount_made`, `date`, `comment`, `status`) VALUES
-(11, 1, 7, 2100, 1, 1, 1317210868, 'Ваш комментарий', 0),
-(12, 1, 9, 500, 1, 1, 1317210868, 'Ваш комментарий', 0),
-(13, 1, 28, 650, 1, 1, 1317210943, 'Ваш комментарий', 0),
-(14, 1, 15, 350, 1, 1, 1317210943, 'Ваш комментарий', 0),
-(15, 1, 15, 350, 1, 1, 1317210950, 'Ваш комментарий', 0),
-(16, 2, 1, 5000, 1, 1, 1317210983, 'Ваш комментарий', 0),
-(17, 3, 9, 500, 1, 1, 1317211000, 'Ваш комментарий', 0),
-(18, 3, 15, 350, 1, 1, 1317211000, 'Ваш комментарий', 0);
+(11, 1, 7, 2100, 1, 0, 1317210868, 'Ваш комментарий', 0),
+(12, 1, 9, 500, 1, 0, 1317210868, 'Ваш комментарий', 0),
+(13, 1, 28, 650, 1, 0, 1317210943, 'Ваш комментарий', 0),
+(14, 1, 15, 350, 1, 0, 1317210943, 'Ваш комментарий', 0),
+(15, 1, 15, 350, 1, 0, 1317210950, 'Ваш комментарий', 0),
+(16, 2, 1, 5000, 1, 0, 1317210983, 'Ваш комментарий', 0),
+(17, 3, 9, 500, 1, 0, 1317211000, 'Ваш комментарий', 0),
+(18, 3, 15, 350, 1, 0, 1317211000, 'Ваш комментарий', 0),
+(19, 4, 13, 3500, 2, 0, 1317228107, 'Ваш комментарий', 0);
 
 -- --------------------------------------------------------
 
@@ -744,7 +743,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (27, 10, 4, 27, 750),
 (28, 10, 4, 28, 650),
 (29, 11, 4, 29, 450),
-(30, 11, 4, 30, 100),
+(30, 11, 4, 30, 0),
 (31, 11, 4, 31, 450),
 (32, 12, 5, 32, 450),
 (33, 13, 5, 33, 780),
@@ -942,7 +941,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (225, 58, 14, 225, 0),
 (226, 58, 14, 226, 0),
 (227, 58, 14, 227, 0),
-(228, 58, 14, 228, 1),
+(228, 58, 14, 228, 0),
 (229, 58, 14, 229, 0),
 (230, 58, 14, 230, 0),
 (231, 59, 14, 231, 0),
@@ -1066,6 +1065,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`u_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Дамп данных таблицы `users`
+--
+
