@@ -1,5 +1,11 @@
 ﻿function TypeClick() {
     $('#atype').val( $('#mType option:selected').text() );
+    $('#mItem option').attr('selected', false);
+    $('#mItem').html('<option>--Сначала выберите категорию--</option>');
+    $('#aitem').val('');
+    $('#aprice').val('');
+    $('#mCategory option').attr('selected', false);
+    $('#acategory').val('');
     $.post('ajax/loadCategories.php', { t_id : $('#mType option:selected').val()},
     function (data) {
        $('#mCategory').html(data);
@@ -9,6 +15,9 @@
 
 function CategoryClick() {
     $('#acategory').val( $('#mCategory option:selected').text() );
+    $('#mItem option').attr('selected', false);
+    $('#aitem').val('');
+    $('#aprice').val('');
     $.post('ajax/loadItems.php', { c_id : $('#mCategory option:selected').val()},
     function (data) {
        $('#mItem').html(data);
@@ -26,7 +35,9 @@ function ItemClick() {
 function ItemsClear() {
     $('#mType option').attr('selected', false);
     $('#mCategory option').attr('selected', false);
+    $('#mCategory').html('<option>----Сначала выберите тип----</option>');
     $('#mItem option').attr('selected', false);
+    $('#mItem').html('<option>--Сначала выберите категорию--</option>');
     $('#ibutton').val('добавить');
     $('#atype').val('');
     $('#acategory').val('');

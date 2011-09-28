@@ -27,10 +27,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
         ?>
 	    </SELECT>
 		<SELECT size="5" class="multiselect" id="mCategory" name="c_id" onChange="CategoryClick();">
-		    <option value="0">--Выберите категорию изделия--</option>
+		    <option value="0">----Сначала выберите тип----</option>
         </SELECT>
 		<SELECT size="5" class="multiselect" id="mItem" name="i_id" onChange="ItemClick();">
-	        <option value="0">--Выберите изделие--</option>
+	        <option value="0">--Сначала выберите категорию--</option>
 		</SELECT>
 	    <input type="button" onClick="ItemsClear();" value="Сбросить выбор" />
 	  </div>
