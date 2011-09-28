@@ -55,7 +55,7 @@ function Add() {
         function (data) {
 			showMessage(data);
             PlanClear();
-           	$('#planpreview').html('');
+           	$('#planpreview').html('<div id="currentplan" class="planpreview"></div>');
             count = 0;
         });
 }

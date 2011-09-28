@@ -6,6 +6,13 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 
 $c = 1;
 $k = $_POST['Count'];
+$plan_number = $oDB->selectField('
+               SELECT `plan_number` 
+               FROM `plans`
+               ORDER BY `plan_number` DESC
+');
+$plan_number++; //номер добавляемого плана больше последнего на один
+
 for ($i = 1; $i <= $k; $i++)
 {
     if ($_POST['planpoint' . $i])
@@ -15,12 +22,13 @@ for ($i = 1; $i <= $k; $i++)
         $iInsert = $oDB->insert('
             INSERT INTO `plans`
                 SET 
+                `plan_number`    = ' . $plan_number . ',
                 `item_id`        = ' . $aPlan['item_id'] . ',
                 `amount_to_make` = ' . $aPlan['amount_to_make'] . ',
-                `amount_remain` = ' . $aPlan['amount_to_make'] . ',
-                `price`         = ' . $aPlan['price'] . ',
-                `comment`  = "' . $aPlan['comment'] . '",
-                `date`          = UNIX_TIMESTAMP()
+                `amount_remain`  = ' . $aPlan['amount_to_make'] . ',
+                `price`          = ' . $aPlan['price'] . ',
+                `comment`        = "' . $aPlan['comment'] . '",
+                `date`           = UNIX_TIMESTAMP()
         ');
 
         if ($iInsert != 0) {
