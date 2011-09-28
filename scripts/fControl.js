@@ -1,5 +1,11 @@
 ﻿function TypeClick() {
     $('#atype').val( $('#mType option:selected').text() );
+    $('#mItem option').attr('selected', false);
+    $('#mItem').html('<option>--Сначала выберите категорию--</option>');
+    $('#aitem').val('');
+    $('#aprice').val('');
+    $('#mCategory option').attr('selected', false);
+    $('#acategory').val('');
     $.post('ajax/loadCategories.php', { t_id : $('#mType option:selected').val()},
     function (data) {
        $('#mCategory').html(data);
@@ -9,6 +15,9 @@
 
 function CategoryClick() {
     $('#acategory').val( $('#mCategory option:selected').text() );
+    $('#mItem option:first').attr('selected','1');
+    $('#aitem').val('');
+    $('#aprice').val('');
     $.post('ajax/loadItems.php', { c_id : $('#mCategory option:selected').val()},
     function (data) {
        $('#mItem').html(data);
@@ -24,9 +33,11 @@ function ItemClick() {
 }
 
 function ItemsClear() {
-    $('#mType option').attr('selected', false);
-    $('#mCategory option').attr('selected', false);
-    $('#mItem option').attr('selected', false);
+    $('#mType option:first').attr('selected','1');
+    $('#mCategory option:first').attr('selected','1');
+    $('#mCategory').html('<option>----Сначала выберите тип----</option>');
+    $('#mItem option:first').attr('selected','1');
+    $('#mItem').html('<option>--Сначала выберите категорию--</option>');
     $('#ibutton').val('добавить');
     $('#atype').val('');
     $('#acategory').val('');
@@ -49,7 +60,7 @@ function MasterSelect(fio) {
 }
 
 function MasterClear() {
-    $('#masterlist option').attr('selected', false);
+    $('#masterlist option:first').attr('selected','1');
     $('#mbutton').val('добавить');
     $('#fio').val('');
     $('#phone').val('');    
@@ -76,7 +87,7 @@ function addMaster() {
 function ItemAdd() {
 	$.post('ajax/ItemControl.php', $('#ItemControl').serialize(),
     function (data) {
-       alert(data);
+       showMessage(data);
 	ItemsClear();
     });
 }
@@ -95,7 +106,7 @@ function MaterialAdd() {
 }
 
 function MaterialClear() {
-    $('#materiallist option').attr('selected', false);
+    $('#materiallist option:first').attr('selected','1');
     $('#matbutton').val('добавить');
     $('#amaterial').val('');    
 }

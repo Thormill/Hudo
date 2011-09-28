@@ -1,0 +1,43 @@
+.planlist {
+}
+
+.planadd {
+}
+
+.planpreview {
+    width: 800px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.container {
+    border-color: #0000FF;
+    border-width: 1px;
+    border-style: solid;
+    overflow: hidden;
+    width: 800px;
+    margin: 5px;
+}
+
+.plan_container {
+    width: 400px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
+
+.items_container {
+    width: 300px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+    overflow: auto;
+}
+    
+#price {
+    width: 40px;
+}
+
+#amount {
+    width: 40px;
+}

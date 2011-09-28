@@ -94,7 +94,7 @@ function rollPayment()
 // добавление платежа в колонку платежей    
     iPaymentCount++;
     if ($('#added_payments').html() == '')
-        $('#added_payments').html('<b>Добавленные платежи:</b><br />')
+        $('#added_payments').html('<b>Добавленные платежи:</b><br />');
     $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iPaymentCount +
         '" class="payment"><div class="delete" onclick="delPayment(' + iPaymentCount + ');return false;">X</div>' + sPayment +
         '<input type="hidden" name="payment' + iPaymentCount + '" value=\'' + jsonPayment +'\' /></div>');    
@@ -119,7 +119,7 @@ function addPayment() {
         function (data) {
             showMessage(data, 'info');
             $('#added_payments').html('');
-            $('#add_button').html('')
+            $('#add_button').html('');
             iPaymentCount = 0;
         });
 }
