@@ -15,10 +15,9 @@ for ($i = 1; $i <= $k; $i++)
         $iInsert = $oDB->insert('
             INSERT INTO `plans`
                 SET 
-                `plan_number` = ' . $aPlan['number'] . ',
                 `item_id`        = ' . $aPlan['item_id'] . ',
-                `amount_to_make` = "' . $aPlan['amount_to_make'] . '",
-                `amount_remain` = "' . $aPlan['amount_to_make'] . '",
+                `amount_to_make` = ' . $aPlan['amount_to_make'] . ',
+                `amount_remain` = ' . $aPlan['amount_to_make'] . ',
                 `price`         = ' . $aPlan['price'] . ',
                 `comment`  = "' . $aPlan['comment'] . '",
                 `date`          = UNIX_TIMESTAMP()
