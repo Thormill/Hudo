@@ -50,7 +50,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 			
             echo '<p><input type="checkbox" value="' . $sMaterial['id'] . '" 
                  name="material[]" onClick="MaterialClick(this);">' . $material . '</input>';
-            echo '(' . $sMaterial['amount'] . ' штуки)</p>';
+            echo ' (<input type="text" id="amount" value="' . $sMaterial['amount'] . '" /> штуки)</p>';
             
             if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id']; //временное хранение имени мастера

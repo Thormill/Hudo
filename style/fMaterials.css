@@ -35,3 +35,7 @@
     padding: 5px;
     float: left;
 }
+
+.materials_container input {
+    width: 30px;
+}
