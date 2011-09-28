@@ -69,7 +69,39 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				      <p>Дата: ' . $aPlan['date'] . '</p>
 				      </div><div class="items_container">';
 			}
-			echo 'Предмет:' . $aPlan['item_id'];
+			$Item = $oDB->selectField('
+			    SELECT `item_name`
+			    FROM `items`
+			    WHERE `i_id` = ' . $aPlan['item_id'] . '
+			');
+			
+			$Category_id = $oDB->selectField('
+			    SELECT `category_id`
+			    FROM `items`
+			    WHERE `i_id` = ' . $aPlan['item_id'] . '
+			');
+			$Type_id = $oDB->selectField('
+			    SELECT `type_id`
+			    FROM `items`
+			    WHERE `i_id` = ' . $aPlan['item_id'] . '
+			');
+			
+			$Category = $oDB->selectField('
+			    SELECT `category_name`
+			    FROM `categories`
+			    WHERE `c_id` = ' . $Category_id . '
+			');
+			$Type = $oDB->selectField('
+			    SELECT `type_name`
+			    FROM `types`
+			    WHERE `t_id` = ' . $Type_id . '
+			');
+			
+			echo '<p>';
+			echo $Type . ' / ' . $Category . ' / ' . $Item . '<br />';
+			echo 'сделано ' . $aPlan['amount_remain'] . ' из ' . $aPlan['amount_to_make'] . '<br />';
+			echo '</p>';
+			
 			if($plan_id != $aPlan['plan_number']){
 			    $plan_id = $aPlan['plan_number'];
 			}
