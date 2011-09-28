@@ -114,6 +114,15 @@ function delPayment(paymentNum) {
     }
 }
 
+function delMaterial(materialNum) {
+    $('div#material' + materialNum).remove();
+    showMessage('заготовка удалена', 'info');
+    if ($('#added_materials').html() == '<b>Выданные заготовки:</b><br>') {
+        $('#added_materials').html('');
+        $('#add_mbutton').html('');
+    }
+}
+
 function addPayment() {
     $('#added_payments').append('<input type="hidden" name="iPaymentCount" value="' + iPaymentCount + '" />');
     $.post('ajax/addPayment.php', $('#fAddPayment').serialize(),
@@ -133,19 +142,16 @@ function rollMaterial()
     jsonMaterial +=  '"amount":' + $('#material_amount').val() + '}';
 // генерация текстового хэндла
     sMaterial =  'Мастер: ' + $('#fio option:selected').text() + '<br />';
-    sMaterial += 'Наименование: ' + $('#material option:selected').text();
+    sMaterial += 'Наименование: ' + $('#material option:selected').text() + '<br />';
     sMaterial += 'Количество: ' + $('#material_amount').val() + '<br />';
 // добавление платежа в колонку платежей    
     iMaterialCount++;
-    if ($('#added_payments').html() == '')
-        $('#added_payments').html('<b>Выданные заготовки:</b><br />');
-    $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iMaterialCount +
-        '" class="payment"><div class="delete" onclick="delPayment(' + iMaterialCount + ');return false;">X</div>' + sMaterial +
-        '<input type="hidden" name="payment' + iMaterialCount + '" value=\'' + jsonMaterial +'\' /></div>');    
-    $('#type option:first').attr('selected','1');
-    $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
-    $('#add_button').html(''); $('#comment').html('');
-    $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
+    if ($('#added_materials').html() == '')
+        $('#added_materials').html('<b>Выданные заготовки:</b><br />');
+    $('#added_materials').html($('#added_materials').html() + '<div id="material' + iMaterialCount +
+        '" class="payment"><div class="delete" onclick="delMaterial(' + iMaterialCount + ');return false;">X</div>' + sMaterial +
+        '<input type="hidden" name="material' + iMaterialCount + '" value=\'' + jsonMaterial +'\' /></div>');    
+    $('#add_mbutton').html('<input type="button" onclick="addMaterial();" value="Выдать" />');
 }
 
 function MaterialAdd() {
