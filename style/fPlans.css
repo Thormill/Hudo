@@ -12,7 +12,7 @@
 
 .container {
     border-color: red;
-    borer-width: 1px;
+    border-width: 1px;
     border-style: dotted;
     overflow: hidden;
     width: 800px;
@@ -20,9 +20,8 @@
 }
 
 .plan_container {
-    border-color: solid;
-    borer-width: 1px;
-    border-style: dotted;
+    border-style: solid;
+    border-width: 1px;
     width: 400px;
     margin: 5px;
     padding: 5px;
@@ -31,7 +30,7 @@
 
 .items_container {
     border-color: blue;
-    borer-width: 1px;
+    border-width: 1px;
     border-style: solid;
     width: 300px;
     margin: 5px;
