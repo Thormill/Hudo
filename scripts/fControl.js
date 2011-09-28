@@ -87,7 +87,7 @@ function addMaster() {
 function ItemAdd() {
 	$.post('ajax/ItemControl.php', $('#ItemControl').serialize(),
     function (data) {
-       alert(data);
+       showMessage(data);
 	ItemsClear();
     });
 }
