@@ -1,5 +1,6 @@
 var iCurrPrice;
 var iPaymentCount = 0;
+var iMaterialCount = 0;
 
 function ShowPhone(m_id) {
     $('#phone_info').html(m_id);
@@ -121,5 +122,39 @@ function addPayment() {
             $('#added_payments').html('');
             $('#add_button').html('');
             iPaymentCount = 0;
+        });
+}
+
+function rollMaterial()
+{
+// генерация json кода
+    jsonMaterial =   '{"fio":' + $('#fio').val() + ',';
+    jsonMaterial +=  '"material_id":' + $('#material_id option:selected').val() + ',';
+    jsonMaterial +=  '"amount":' + $('#material_amount').val() + '}';
+// генерация текстового хэндла
+    sMaterial =  'Мастер: ' + $('#fio option:selected').text() + '<br />';
+    sMaterial += 'Наименование: ' + $('#material_id option:selected').text();
+    sMaterial += 'Количество: ' + $('#material_amount]').val() + '<br />';
+// добавление платежа в колонку платежей    
+    iMaterialCount++;
+    if ($('#added_payments').html() == '')
+        $('#added_payments').html('<b>Добавленные платежи:</b><br />');
+    $('#added_payments').html($('#added_payments').html() + '<div id="payment' + iMaterialCount +
+        '" class="payment"><div class="delete" onclick="delPayment(' + iMaterialCount + ');return false;">X</div>' + sMaterial +
+        '<input type="hidden" name="payment' + iMaterialCount + '" value=\'' + jsonMaterial +'\' /></div>');    
+    $('#type option:first').attr('selected','1');
+    $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
+    $('#add_button').html(''); $('#comment').html('');
+    $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
+}
+
+function MaterialAdd() {
+    $('#added_materials').append('<input type="hidden" name="iMaterialCount" value="' + iMaterialCount + '" />');
+    $.post('ajax/addMaterial.php', $('#fAddMaterial').serialize(),
+        function (data) {
+            showMessage(data, 'info');
+            $('#added_materials').html('');
+            $('#add_mbutton').html('');
+            iMaterialCount = 0;
         });
 }

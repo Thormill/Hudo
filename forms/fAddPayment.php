@@ -55,4 +55,34 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             </form>
         </td>
     </tr>
+	<tr>
+	    <td>
+		  <div class="fAdd">
+		    <p>Взял заготовку: 
+			    <SELECT name="material_id" id="material">
+				    <?php
+                        $aMaterials = $oDB->selectTable('
+                            SELECT `material_id`, `material_name`
+                                FROM `materials`
+                                ORDER BY `material_name` ASC'
+                        );
+                        echo '<option value="0">--Выберите заготовку--</option>';
+                        foreach ($aMaterials as $iMaterial => $aMaterial)
+                            echo '<option value="' . $aMaterial['material_id'] . '">' . $aMaterial['material_name'] . '</option>';
+                    ?>
+				</SELECT>
+			</p>
+			<p>Кол-во:
+			  <input type="text" value="1" id="material_amount" />
+			</p>
+			<p><input type="button" value="Выдать" onClick="rollMaterial();" /></p>
+	      </div>
+	    </td>
+		<td>
+		    <form id="fAddMaterial" class="fAdd">
+                <p id="added_materials"></p>
+                <p id="add_mbutton"></p>
+            </form>
+		</td>
+	</tr>
 </table>
