@@ -101,7 +101,7 @@ function rollPayment()
         '<input type="hidden" name="payment' + iPaymentCount + '" value=\'' + jsonPayment +'\' /></div>');    
     $('#type option:first').attr('selected','1');
     $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
-    $('#add_button').html(''); $('#comment').html('');
+    $('#roll_button').html(''); $('#comment').html('');
     $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
 }
 
@@ -137,7 +137,7 @@ function addPayment() {
 function rollMaterial()
 {
 // генерация json кода
-    jsonMaterial =   '{"fio":' + $('#fio').val() + ',';
+    jsonMaterial =   '{"master_id":' + $('#fio').val() + ',';
     jsonMaterial +=  '"material_id":' + $('#material option:selected').val() + ',';
     jsonMaterial +=  '"amount":' + $('#material_amount').val() + '}';
 // генерация текстового хэндла
@@ -154,7 +154,7 @@ function rollMaterial()
     $('#add_mbutton').html('<input type="button" onclick="addMaterial();" value="Выдать" />');
 }
 
-function MaterialAdd() {
+function addMaterial() {
     $('#added_materials').append('<input type="hidden" name="iMaterialCount" value="' + iMaterialCount + '" />');
     $.post('ajax/addMaterial.php', $('#fAddMaterial').serialize(),
         function (data) {
