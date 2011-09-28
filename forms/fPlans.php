@@ -57,15 +57,20 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             ORDER BY `plan_number` ASC
         ');
         $plan_id = 0;
-        echo '<div>';
+        $counter = FALSE;
         
         foreach($sPlans as $iPlan => $aPlan){
-			if($plan_id < $aPlan['plan_number']){
-			    echo '</div>';
+			if($plan_id != $aPlan['plan_number']){
+			    if($counter == TRUE)
+                    echo '</div></div>';
+				$counter = TRUE;
+				echo '<div class="container"><div class="plan_container">
+				      <p>План номер: ' . $aPlan['plan_number'] . '</p> 
+				      <p>Дата: ' . $aPlan['date'] . '</p>
+				      </div><div class="items_container">';
 			}
 			echo 'Предмет:' . $aPlan['item_id'];
-			if($plan_id < $aPlan['plan_number']){
-			    echo '<div>';
+			if($plan_id != $aPlan['plan_number']){
 			    $plan_id = $aPlan['plan_number'];
 			}
 		}

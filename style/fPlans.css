@@ -10,6 +10,36 @@
     margin: 5px;
 }
 
+.container {
+    border-color: red;
+    borer-width: 1px;
+    border-style: dotted;
+    overflow: hidden;
+    width: 800px;
+    margin: 5px;
+}
+
+.plan_container {
+    border-color: solid;
+    borer-width: 1px;
+    border-style: dotted;
+    width: 400px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
+
+.items_container {
+    border-color: blue;
+    borer-width: 1px;
+    border-style: solid;
+    width: 300px;
+    margin: 5px;
+    padding: 5px;
+    float: left;
+    overflow: auto;
+}
+    
 #price {
     width: 40px;
 }
