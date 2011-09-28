@@ -30,13 +30,12 @@ function ItemClick() {
 function AddToList() {
 	count++;
 
-	var jsonPlan = '{"plan_number":' + count + ',';
+	var jsonPlan = '{"count":' + count + ',';
     jsonPlan +=  '"item_id":' + $('#itemlist option:selected').val() + ',';
     jsonPlan +=  '"amount_to_make":' + $('#amount').val() + ',';
     jsonPlan +=  '"price":' + $('#price').val() + ',';
     jsonPlan +=  '"comment":"' + $('#comment').val() + '"}';
-	alert(jsonPlan);
-	
+    
 	var text = $('#currentplan').html();
 	text += $('#typelist option:selected').text() + ' / ';
 	text += $('#categorylist option:selected').text() + ' / ';
@@ -44,7 +43,7 @@ function AddToList() {
 	text += $('#amount').val() + 'шт. / ';
 	text += $('#price').val() + 'руб. /';
 	text += $('#comment').val() + '<br />';
-	text += '<input type="hidden" name="planpoint' + count + '" value="' + jsonPlan + '" />';
+	text += '<input type="hidden" name="planpoint' + count + '" value=\'' + jsonPlan + '\' />';
 	$('#currentplan').html(text);
 }
 
