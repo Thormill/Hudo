@@ -10,7 +10,7 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 ?>
-<form id="" class="fControl">
+<form class="fControl">
     <?php
         $sMaterials = $oDB->SelectTable('
            SELECT `id`, `master_id`, `material_id`, `amount`, `date`
@@ -19,8 +19,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
             ORDER BY `master_id` ASC
         ');
         $m_id = 0;
-        $counter = FALSE;
+        $flag = FALSE;
+
         foreach($sMaterials as $iMaterial => $sMaterial){
+		
 			$material = $oDB->SelectField('
 				    SELECT `material_name`
 				    FROM `materials`
@@ -28,9 +30,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				');//имя заготовки
 				
 			if($sMaterial['master_id'] != $m_id){
-				if($counter == TRUE)
+				if($flag == TRUE)
                     echo '</div></div>';
-				$counter = TRUE;
+				$flag = TRUE;
 				//отдельный блок под каждого мастера
 				$master_fio = $oDB->SelectField('
 				    SELECT `master_fio`
@@ -49,9 +51,9 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 			}
 			
             echo '<p><input type="checkbox" value="' . $sMaterial['id'] . '" 
-                 name="material[]" onClick="MaterialClick(this);">' . $material . '</input>';
-            echo ' (<input type="text" id="amount" value="' . $sMaterial['amount'] . '" /> штуки)</p>';
-            
+                  onClick="MaterialClick(this);">' . $material . '</input>';
+            echo ' (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" /> штуки)</p>';
+
             if($sMaterial['master_id'] != $m_id){
 				$m_id = $sMaterial['master_id']; //временное хранение имени мастера
 		    }
