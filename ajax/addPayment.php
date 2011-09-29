@@ -51,6 +51,56 @@ for ($i = 1; $i <= $k; $i++)
             echo $oDB->getError();
             break;
         }
+        /*добавление в план*/
+        $sPlanNum = $oDB->selectField('
+            SELECT `plan_number`
+            FROM `plans`
+            WHERE `item_id` = '. $aPayment['item'] . '
+            AND `status` = 0
+            ORDER BY `date` ASC
+        ');
+        $sPlanMade = $oDB->selectField('
+            SELECT `amount_made`
+            FROM `plans`
+            WHERE `plan_number` = ' . $sPlanNum . '
+            AND `status` = 0
+            AND `item_id` = ' . $aPayment['item'] . '
+            ORDER BY `date` ASC
+        ');
+        $sPlanMake = $oDB->selectField('
+            SELECT `amount_to_make`
+            FROM `plans`
+            WHERE `plan_number` = ' . $sPlanNum . '
+            AND `status` = 0
+            AND `item_id` = ' . $aPayment['item'] . '
+            ORDER BY `date` ASC
+        ');        
+        if($sPlanNum != 0){
+			$dif = $sPlanMake - $sPlanMade;
+			$new_value = $sPlanMade + $aPayment['amount'];
+			echo '<br>План номер ' . $sPlanNum . '<br>';
+			echo '<br>Сделано: ' . $new_value . 'из ' . $sPlanMake;
+			if($dif >= $new_value){
+              $uPlan = $oDB->query('
+                UPDATE `plans`
+                SET `amount_made` =  ' . $aPayment['amount'] . '
+                WHERE `plan_number` = ' . $sPlanNum . '
+                AND `item_id` = ' . $aPayment['item'] . '
+                ORDER BY `date` ASC
+              ');
+            }
+            else{
+				$uPlan = $oDB->query('
+					UPDATE `plans`
+					SET `amount_made` =  ' . $sPlanMake . '
+					WHERE `plan_number` = ' . $sPlanNum . '
+					AND `item_id` = ' . $aPayment['item'] . '
+					ORDER BY `date` ASC
+				');
+				echo '<br>Осталось ' . $left = $new_value - $sPlanMake . ' лишних';
+			}
+		}
+        /**/
     }
 }
 //`comment_author` = "' . $_SESSION['username'] . '",
