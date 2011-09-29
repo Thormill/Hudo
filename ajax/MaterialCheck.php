@@ -13,7 +13,8 @@ $sAmount = $oDB->selectField('
 if($sAmount == $_POST['amount']){
   $sCheck = $oDB->query('
       UPDATE `materials_out`
-      SET `status` = "1"
+      SET `status` = "1",
+	      `amount` = "0"
       WHERE `id` = "' . $_POST['id'] . '"
   ');
 }

@@ -5,7 +5,13 @@ function MaterialClick(material) {
     });
     
     $.post('ajax/currentMaterialAmount.php', { id : $(material).val() },
-    function (data) {
-       $('#amount' + $(material).val()).val(data);
+    function (val) {
+        $('#amount' + $(material).val()).val(val);
+	    if (val == 0)
+	        $(material).parent().html('');
+		if($(material).parent().parent().html() == '')
+		{
+		    $(material).parent().parent().parent().html('');
+		}
     });
 }
