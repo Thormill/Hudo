@@ -92,15 +92,53 @@ for ($i = 1; $i <= $k; $i++)
             else{
 				$uPlan = $oDB->query('
 					UPDATE `plans`
-					SET `amount_made` =  ' . $sPlanMake . '
+					SET `amount_made` =  ' . $sPlanMake . ',
+					    `status` = 1
 					WHERE `plan_number` = ' . $sPlanNum . '
 					AND `item_id` = ' . $aPayment['item'] . '
 					ORDER BY `date` ASC
 				');
-				echo '<br>Осталось ' . $left = $new_value - $sPlanMake . ' лишних';
+				$left = $new_value - $sPlanMake;
+				$sLeftItems = $oDB->selectField('
+				    SELECT `amount` 
+				    FROM `left_items`
+				    WHERE `item_id` = ' . $aPayment['item'] . '
+				');
+				if($sLeftItems != 0)
+				    $uLeftItems = $oDB->query('
+				        UPDATE `left_items`
+				        SET `amount` = ' . $sklad = $left + $sLeftItems . '
+				        WHERE `item_id` = ' . $aPayment['item'] . '
+				    ');
+				else
+				    $uLeftItems = $oDB->insert('
+				        INSERT INTO `left_items`
+				        SET `item_id` = ' . $aPayment['item'] . ',
+				            `amount` = ' . $left . '
+				    ');
+				echo $uLeftItems;
 			}
 		}
-        /**/
+        else{  //если плана нет - просто добавляем в резерв
+			$sLeftItems = $oDB->selectField('
+				    SELECT `amount` 
+				    FROM `left_items`
+				    WHERE `item_id` = ' . $aPayment['item'] . '
+				');
+				if($sLeftItems != 0)
+				    $uLeftItems = $oDB->query('
+				        UPDATE `left_items`
+				        SET `amount` = ' . $sklad = $aPayment['amount'] + $sLeftItems . '
+				        WHERE `item_id` = ' . $aPayment['item'] . '
+				    ');
+				else
+				    $uLeftItems = $oDB->insert('
+				        INSERT INTO `left_items`
+				        SET `item_id` = ' . $aPayment['item'] . ',
+				            `amount` = ' . $aPayment['amount'] . '
+				    ');
+		}
     }
 }
+echo $sLeftItems . '<br>' . $uLeftItems . '<br>';
 //`comment_author` = "' . $_SESSION['username'] . '",
