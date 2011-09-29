@@ -15,6 +15,7 @@
             <li><a id="Plans" href="/nojs.php" onclick="menuClick(this);return false">Планы</a></li>
             <li><a id="Materials" href="/nojs.php" onclick="menuClick(this);return false">Заготовки</a></li>
             <li><a id="Control" href="/nojs.php" onclick="menuClick(this);return false">Управление данными</a></li>
+            <li><a id="Store" href="/nojs.php" onclick="menuClick(this);return false">Склад</a></li>
             <li><a id="ImportExport" href="/nojs.php" onclick="menuClick(this);return false">Импорт/Экспорт</a></li>
         </ul>
         <div id="form"></div>

@@ -1,0 +1,11 @@
+.store_list {
+    padding: 10px;
+    margin: 5px;
+    width: 800px;
+    height: 600px;
+    overflow: auto;
+}
+
+.store_list div {
+    float: right;
+}
