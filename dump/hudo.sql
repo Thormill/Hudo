@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.3
+-- version 3.4.3.2
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Сен 28 2011 г., 21:04
--- Версия сервера: 5.1.40
--- Версия PHP: 5.3.3
+-- Время создания: Сен 29 2011 г., 17:04
+-- Версия сервера: 5.1.54
+-- Версия PHP: 5.3.5-1ubuntu7.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,7 +17,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- БД: `hudo`
+-- База данных: `hudo`
 --
 
 -- --------------------------------------------------------
@@ -425,6 +426,27 @@ INSERT INTO `items` (`i_id`, `type_id`, `category_id`, `item_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `left_items`
+--
+
+CREATE TABLE IF NOT EXISTS `left_items` (
+  `left_item_id` int(5) NOT NULL AUTO_INCREMENT,
+  `item_id` int(4) NOT NULL,
+  `amount` int(4) NOT NULL,
+  `date` int(12) NOT NULL,
+  PRIMARY KEY (`left_item_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `left_items`
+--
+
+INSERT INTO `left_items` (`left_item_id`, `item_id`, `amount`, `date`) VALUES
+(1, 119, 3, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `masters`
 --
 
@@ -558,7 +580,7 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `material_id` int(11) NOT NULL AUTO_INCREMENT,
   `material_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`material_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 --
 -- Дамп данных таблицы `materials`
@@ -584,7 +606,7 @@ INSERT INTO `materials` (`material_id`, `material_name`) VALUES
 (17, 'Яйцо'),
 (18, 'Шар малый'),
 (19, 'Шар большой'),
-(20, 'Ангел'),
+(20, 'Ангел12213'),
 (21, 'Неваляшка'),
 (22, 'Футляр 0,05'),
 (23, 'куколка сарафан'),
@@ -595,7 +617,8 @@ INSERT INTO `materials` (`material_id`, `material_name`) VALUES
 (28, 'Браслет 3'),
 (29, 'Браслет 4'),
 (30, 'Браслет 5'),
-(31, 'Браслет 6');
+(31, 'Браслет 6'),
+(34, '122');
 
 -- --------------------------------------------------------
 
@@ -611,17 +634,18 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
   `date` int(12) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Дамп данных таблицы `materials_out`
 --
 
 INSERT INTO `materials_out` (`id`, `master_id`, `material_id`, `amount`, `date`, `status`) VALUES
-(1, 1, 2, 2, 0, 0),
+(1, 1, 2, 3, 0, 0),
 (2, 2, 3, 4, 5, 0),
 (3, 1, 5, 6, 1, 1),
-(4, 3, 12, 2, 1, 0);
+(4, 3, 12, 2, 1, 0),
+(5, 94, 14, 1, 1317295180, 0);
 
 -- --------------------------------------------------------
 
@@ -641,7 +665,7 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `comment_author` int(11) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- Дамп данных таблицы `payments_history`
@@ -658,7 +682,35 @@ INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name
 (8, 50, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317193178),
 (9, 50, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317193178),
 (10, 50, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317193178),
-(11, 50, '3', '14 см', 'Жостово сложная', 1, 100500, '', 0, 1317193178);
+(11, 50, '3', '14 см', 'Жостово сложная', 1, 100500, '', 0, 1317193178),
+(12, 94, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317296039),
+(13, 102, '20', 'большая', 'картинка', 1, 2100, '', 0, 1317296083),
+(14, 102, '20', 'большая', 'картинка', 1, 2100, '', 0, 1317296223),
+(15, 28, '30', 'большая', 'картинка', 1, 5000, '', 0, 1317296244),
+(16, 28, '30', 'большая', 'картинка', 1, 5000, '', 0, 1317296263),
+(17, 102, '30', 'большая', 'картинка', 1, 5000, '', 0, 1317296292),
+(18, 107, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297049),
+(19, 94, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297103),
+(20, 94, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297288),
+(21, 94, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297394),
+(22, 102, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297417),
+(23, 102, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297480),
+(24, 102, '10', '17 см', 'Жостово', 1, 650, '', 0, 1317297712),
+(25, 94, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317297814),
+(26, 102, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317297883),
+(27, 102, '20', 'большая', 'картинка', 1, 2100, '', 0, 1317297901),
+(28, 94, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317297940),
+(29, 102, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317298279),
+(30, 107, '20', 'большая', 'картинка', 1, 2100, '', 0, 1317298550),
+(31, 107, '20', 'большая', 'картинка', 1, 2100, '', 0, 1317298562),
+(32, 107, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317299440),
+(33, 102, '15', 'большая', 'картинка', 2, 3500, '', 0, 1317299548),
+(34, 50, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317300179),
+(35, 102, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317300814),
+(36, 102, '20', 'большая', 'картинка', 3, 6300, '', 0, 1317300942),
+(37, 102, '10', '14 см', 'Жостово', 1, 450, '', 0, 1317301251),
+(38, 102, '15', 'большая', 'картинка', 1, 1750, '', 0, 1317301336),
+(39, 107, '3', '14 см', 'Жостово ', 3, 100, '', 0, 1317301417);
 
 -- --------------------------------------------------------
 
@@ -677,22 +729,16 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`plan_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
 
 --
 -- Дамп данных таблицы `plans`
 --
 
 INSERT INTO `plans` (`plan_id`, `plan_number`, `item_id`, `price`, `amount_to_make`, `amount_made`, `date`, `comment`, `status`) VALUES
-(11, 1, 7, 2100, 1, 0, 1317210868, 'Ваш комментарий', 0),
-(12, 1, 9, 500, 1, 0, 1317210868, 'Ваш комментарий', 0),
-(13, 1, 28, 650, 1, 0, 1317210943, 'Ваш комментарий', 0),
-(14, 1, 15, 350, 1, 0, 1317210943, 'Ваш комментарий', 0),
-(15, 1, 15, 350, 1, 0, 1317210950, 'Ваш комментарий', 0),
-(16, 2, 1, 5000, 1, 0, 1317210983, 'Ваш комментарий', 0),
-(17, 3, 9, 500, 1, 0, 1317211000, 'Ваш комментарий', 0),
-(18, 3, 15, 350, 1, 0, 1317211000, 'Ваш комментарий', 0),
-(19, 4, 13, 3500, 2, 0, 1317228107, 'Ваш комментарий', 0);
+(22, 2, 7, 2100, 1, 1, 1317297802, 'Ваш комментарий', 1),
+(21, 1, 13, 1750, 1, 1, 1317297781, 'Ваш комментарий', 1),
+(20, 1, 31, 450, 1, 1, 1317297781, 'Ваш комментарий', 1);
 
 -- --------------------------------------------------------
 
@@ -743,7 +789,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (27, 10, 4, 27, 750),
 (28, 10, 4, 28, 650),
 (29, 11, 4, 29, 450),
-(30, 11, 4, 30, 0),
+(30, 11, 4, 30, 100),
 (31, 11, 4, 31, 450),
 (32, 12, 5, 32, 450),
 (33, 13, 5, 33, 780),
@@ -941,7 +987,7 @@ INSERT INTO `prices` (`p_id`, `category_id`, `type_id`, `item_id`, `price`) VALU
 (225, 58, 14, 225, 0),
 (226, 58, 14, 226, 0),
 (227, 58, 14, 227, 0),
-(228, 58, 14, 228, 0),
+(228, 58, 14, 228, 1),
 (229, 58, 14, 229, 0),
 (230, 58, 14, 230, 0),
 (231, 59, 14, 231, 0),
@@ -1065,7 +1111,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`u_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Дамп данных таблицы `users`
---
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
