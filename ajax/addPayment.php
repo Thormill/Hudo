@@ -78,8 +78,7 @@ for ($i = 1; $i <= $k; $i++)
         if($sPlanNum != 0){
 			$dif = $sPlanMake - $sPlanMade;
 			$new_value = $sPlanMade + $aPayment['amount'];
-			echo '<br>План номер ' . $sPlanNum . '<br>';
-			echo '<br>Сделано: ' . $new_value . 'из ' . $sPlanMake;
+
 			if($dif >= $new_value){
               $uPlan = $oDB->query('
                 UPDATE `plans`
@@ -116,7 +115,6 @@ for ($i = 1; $i <= $k; $i++)
 				        SET `item_id` = ' . $aPayment['item'] . ',
 				            `amount` = ' . $left . '
 				    ');
-				echo $uLeftItems;
 			}
 		}
         else{  //если плана нет - просто добавляем в резерв
