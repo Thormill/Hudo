@@ -16,7 +16,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
            SELECT `id`, `master_id`, `material_id`, `amount`, `date`
             FROM `materials_out`
             WHERE `status` = 0
-            ORDER BY `master_id` ASC
+            ORDER BY `date` DESC
         ');
         $m_id = 0;
         $flag = FALSE;
@@ -47,6 +47,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				echo '<div class="container"><div class="master_container">
 				      <p>Мастер: ' . $master_fio . '</p> 
 				      <p>Телефон: ' . $master_phone . '</p>
+				      <p>Дата выдачи: ' . date('Y-M-d, H:i', $sMaterial['date']) . '<p>
 				      </div><div class="materials_container">';
 			}
 			
