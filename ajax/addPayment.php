@@ -140,5 +140,4 @@ for ($i = 1; $i <= $k; $i++)
 		}
     }
 }
-echo $sLeftItems . '<br>' . $uLeftItems . '<br>';
 //`comment_author` = "' . $_SESSION['username'] . '",
