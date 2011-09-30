@@ -11,29 +11,33 @@ $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
 $count = $max-1;
-mysql_connect('localhost','hudo','oduh');
-mysql_query('SET NAMES "utf8"');
-mysql_select_db('hudo');
-mysql_query("TRUNCATE masters") or die('can not empty tables');
-mysql_query("TRUNCATE categories") or die('can not empty tables');
-mysql_query("TRUNCATE types") or die('can not empty tables');
-mysql_query("TRUNCATE prices") or die('can not empty tables');
-mysql_query("TRUNCATE items") or die('can not empty tables');
-mysql_query("TRUNCATE materials") or die('can not empty tables');
+//mysql_connect('localhost','hudo','oduh');
+//mysql_query('SET NAMES "utf8"');
+//mysql_select_db('hudo');
+$oDB->query('TRUNCATE masters');// or die('can not empty tables');
+$oDB->query('TRUNCATE categories');// or die('can not empty tables');
+$oDB->query('TRUNCATE types');// or die('can not empty tables');
+$oDB->query('TRUNCATE prices');// or die('can not empty tables');
+$oDB->query('TRUNCATE items');// or die('can not empty tables');
+$oDB->query('TRUNCATE materials');// or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
+	$j = $i - 1;
 	$master_fio = $aSheet->getCell("B".$i)->getValue(); //master_fio
 	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
-
-	if(($master_fio == '') && ($phone == '')){
-		$count--;
-		continue;
+	if( ($master_fio != $aSheet->getCell("B".$j)->getValue()) && ($phone != $aSheet->getCell("C".$j)->getValue()) ){
+		if(($master_fio == '') && ($phone == '')){
+			$count--;
+			continue;
+		}
+		$mInsert = $oDB->insert('
+			INSERT INTO `masters`
+			SET `master_fio` = "' . $master_fio . '",
+				`phone`      = "' . $phone . '"
+		');
 	}
-
-	$query = "INSERT INTO masters (master_fio,phone) VALUES ('$master_fio','$phone')";
-	mysql_query($query) or die(" fail");
 }
-echo "Добавлено $count художников.\n";
+echo "Добавлено $count художников.<br>";
 
 $objPHPExcel->setActiveSheetIndex(1); //изделия
 $aSheet = $objPHPExcel->getActiveSheet();
@@ -42,39 +46,56 @@ $count = 0;
 $t_id = $c_id = $i_id = 0;
 
 for($i=2;$i<=$max;$i++){
+	$j = $i-1;
 	$type = $aSheet->getCell("A".$i)->getValue();     //тип изделия
 	$category = $aSheet->getCell("B".$i)->getValue(); //категория
 	$item = $aSheet->getCell("C".$i)->getValue();     //итем
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
 
-	if($type != ''){
+	if( ($type != '') && ($type != $aSheet->getCell("A".$j)->getValue()) ){
 		$t_id++;
-		$type_query = "INSERT INTO types(type_name) VALUES ('$type')";
-		mysql_query($type_query) or die('insert type error');
+		$tInsert = $oDB->insert('
+			INSERT INTO `types`
+			SET `type_name` = "' . $type . '"
+		');
+		//mysql_query($type_query) or die('insert type error');
 	}
 
 	if(($type != '')&&($category == '')){
 		$category = $type;
 	}
 
-	if($category != ''){
+	if( ($category != '') && ($category != $aSheet->getCell("B".$j)->getValue()) ){
 		$c_id++;
-		$cat_query = "INSERT INTO categories(category_name, type_id) VALUES ('$category', '$t_id')";
-		mysql_query($cat_query) or die('insert category error');
+		$cInsert = $oDB->insert('
+			INSERT INTO `categories`
+			SET `category_name` = "' . $category . '",
+				`type_id`       = ' . $t_id
+				);
+		//mysql_query($cat_query) or die('insert category error');
 	}
 
-	if(($category != '')&&($item == '')){
+	if( ($category != '') && ($item == '') ){
 		$item = $category;
 	}
 
 	if($item != ''){
 		$i_id++;
-		$item_query = "INSERT INTO items(category_id, type_id, item_name) VALUES ('$c_id', '$t_id', '$item')";
+		$iInsert = $oDB->insert('
+			INSERT INTO `items`
+			SET `category_id` = ' . $c_id . ',
+				`type_id`     = ' . $t_id . ',
+				`item_name`   = "' . $item . '"');
 		$count++;
-		mysql_query($item_query) or die('insert item error');
+		//mysql_query($item_query) or die('insert item error');
 	}
-	$query = "INSERT INTO prices(category_id, type_id, item_id, price) VALUES ('$c_id', '$t_id', '$i_id', '$price')";
-	mysql_query($query) or die('insert price error');    //price is set up by default
+	$pInsert = $oDB->insert('
+		INSERT INTO `prices`
+		SET `type_id`     = ' . $t_id . ',
+			`category_id` = ' . $c_id . ',
+			`item_id`     = ' . $i_id . ',
+			`price`       = ' . $price);
+	//mysql_query($query) or die('insert price error');    //price is set up by default
 	
 }
 echo "Добавлено $count изделий.\n";
@@ -85,7 +106,6 @@ $max =  $aSheet->getHighestRow();
 $count = 0;
 for($i=2;$i<=$max;$i++){
 	$material_name = $aSheet->getCell("A".$i)->getValue(); //master_fio
-
 	$iMaterials = $oDB->insert('
 	    INSERT INTO `materials`
 	    SET `material_name` = "' . $material_name . '"
@@ -94,4 +114,3 @@ for($i=2;$i<=$max;$i++){
 }
 echo "Добавлено $count заготовок.\n";
 ?>
-
