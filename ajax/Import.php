@@ -6,7 +6,7 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
-$objPHPExcel = PHPExcel_IOFactory::load("../files/given.xls");
+$objPHPExcel = PHPExcel_IOFactory::load("../files/given.xlsx");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
@@ -51,6 +51,8 @@ for($i=2;$i<=$max;$i++){
 	$category = $aSheet->getCell("B".$i)->getValue(); //категория
 	$item = $aSheet->getCell("C".$i)->getValue();     //итем
 	$price = $aSheet->getCell("D".$i)->getValue();    //цена
+	if($price == '')
+		$price = 0;
 
 	if( ($type != '') && ($type != $aSheet->getCell("A".$j)->getValue()) ){
 		$t_id++;
