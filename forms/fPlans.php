@@ -45,7 +45,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	<input type="button" onClick="AddToList();" value="+" />
     <input type="button" onClick="Add();" value="добавить" />
   </div>
-    <input type="text" value="Ваш комментарий" id="comment" />
+    Ваш комментарий: <input type="text" value="-" id="comment" />
 </form>
 <div id = "planlist" class="planlist">
     <?php
