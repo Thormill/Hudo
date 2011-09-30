@@ -8,9 +8,10 @@ function Import(){
 function Export(){
   $.post("ajax/Export.php", $("#fExport").serialize(),
     function (data) {
-    });
+    }).done(function(){
   var url='modules/download.php'; 
   setTimeout("window.open('" + url + "','Download')", 1000);
+})
 }
 
 $(function() {

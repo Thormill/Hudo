@@ -13,25 +13,48 @@ for ($i = 1; $i <= $k; $i++)
     {
         $jsonMaterial = str_replace("\\", "", $_POST['material' . $i]);
         $aMaterial = json_decode($jsonMaterial, true);
-
-        $iInsert = $oDB->insert('
-            INSERT INTO `materials_out`
-              SET 
-				`master_id`    = ' . $aMaterial['master_id'] . ',
-                `material_id`  = ' . $aMaterial['material_id'] . ',
-                `amount`       = ' . $aMaterial['amount'] . ',
-				`status`       = 0,
-                `date`         = UNIX_TIMESTAMP()
+		$sMaterial = $oDB->selectField('
+			SELECT `id`
+			FROM `materials_out`
+			WHERE `master_id`    = ' . $aMaterial['master_id'] . '
+			AND   `material_id`  = ' . $aMaterial['material_id'] . '
 		');
+		if($sMaterial != 0){                                            //если у мастера такие заготовки на руках есть
+			$sM_Amount = $oDB->selectField('
+				SELECT `amount`
+				FROM `materials_out`
+				WHERE `id` = ' . $sMaterial 
+			);
+			$sU_Amount = $oDB->query('
+				UPDATE `materials_out`
+				SET `amount` = ' . $new_val = $sM_Amount + $aMaterial['amount'] . ',
+					`date` = UNIX_TIMESTAMP()
+				WHERE `id` = ' . $sMaterial 
+			);
+			echo 'Заготовка ' . $c . ' добавлена к выданным<br />';
+			$c++;
+		}
+		else{                                                           //если нет заготовок этого типа на руках
+			$iInsert = $oDB->insert('
+				INSERT INTO `materials_out`
+				SET 
+					`master_id`    = ' . $aMaterial['master_id'] . ',
+					`material_id`  = ' . $aMaterial['material_id'] . ',
+					`amount`       = ' . $aMaterial['amount'] . ',
+					`status`       = 0,
+					`date`         = UNIX_TIMESTAMP()
+			');
         
-        if ($iInsert != 0) {
-            echo 'Изделие ' . $c . ' выдано<br />';
-            $c++;
-        } else {
-            echo '<b>Ошибка базы данных!</b><br />';
-            echo $oDB->getError();
-            break;
-        }
+			if ($iInsert != 0) {
+				echo 'Изделие ' . $c . ' выдано<br />';
+				$c++;
+			} 
+			else {
+				echo '<b>Ошибка базы данных!</b><br />';
+				echo $oDB->getError();
+				break;
+			}
+		}
     }
 }
 //`comment_author` = "' . $_SESSION['username'] . '",
