@@ -65,13 +65,13 @@ $aPayments = $oDB->selectTable($sQuery);
 if (count($aPayments) > 0) {
     $sTable = '<table class="searchResult">
         <tr>
-            <td>#</td>
-            <td>ФИО</td>
-            <td>Дата</td>
-            <td>Вид / Категория / Изделие</td>
-            <td>Количество</td>
-            <td>Цена</td>
-            <td>Комментарий</td>
+            <td><b>#</b></td>
+            <td><b>ФИО</b></td>
+            <td><b>Дата</b></td>
+            <td><b>Вид / Категория / Изделие</b></td>
+            <td><b>Количество</b></td>
+            <td><b>Цена</b></td>
+            <td><b>Комментарий</b></td>
         </tr>';
     foreach ($aPayments as $iPayment => $aPayment) {
         $sMaster = $oDB->selectField('

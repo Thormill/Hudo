@@ -19,7 +19,6 @@ for ($i = 1; $i <= $k; $i++)
     {
         $jsonPlan = str_replace("\\", "", $_POST['planpoint' . $i]);
         $aPlan = json_decode($jsonPlan, true);
-        
         $sLeftItems = $oDB->selectField('
 			SELECT `amount`
 			FROM `left_items`
@@ -45,10 +44,12 @@ for ($i = 1; $i <= $k; $i++)
 					`comment`        = "' . $aPlan['comment'] . '",
 					`date`           = UNIX_TIMESTAMP(),
 					`status`         = 1
-				');	
+				');
+				echo 'В пункте ' . $c . ' все нужные изделия есть на складе. Автоматически списано со складо и добавлено в план.<br>';
+				$c++;
 				continue;
 			}
-			else {
+			if($sLeftItems < $aPlan['amount_to_make']) {
 				$uLeftItems = $oDB->query('
 					UPDATE `left_items`
 					SET `amount` = 0
@@ -64,7 +65,9 @@ for ($i = 1; $i <= $k; $i++)
 					`price`          = ' . $aPlan['price'] . ',
 					`comment`        = "' . $aPlan['comment'] . '",
 					`date`           = UNIX_TIMESTAMP()
-				');	
+				');
+				echo 'В пункте ' . $c . ' на складе находится ' . $sLeftItems . ' изделий. Автоматически перевел со склада в план<br>';
+				$c++;
 				continue;
 			}
 		}

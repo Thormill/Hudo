@@ -23,9 +23,9 @@ $oDB->query('TRUNCATE materials');// or die('can not empty tables');
 
 for($i=2;$i<=$max;$i++){
 	$j = $i - 1;
-	$master_fio = $aSheet->getCell("B".$i)->getValue(); //master_fio
-	$phone = $aSheet->getCell("C".$i)->getValue(); //phone
-	if( ($master_fio != $aSheet->getCell("B".$j)->getValue()) && ($phone != $aSheet->getCell("C".$j)->getValue()) ){
+	$master_fio = $aSheet->getCell("A".$i)->getValue(); //master_fio
+	$phone = $aSheet->getCell("B".$i)->getValue(); //phone
+	if( ($master_fio != $aSheet->getCell("A".$j)->getValue()) && ($phone != $aSheet->getCell("B".$j)->getValue()) ){
 		if(($master_fio == '') && ($phone == '')){
 			$count--;
 			continue;

@@ -12,7 +12,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	<?php
 	    $sItems = $oDB->selectTable('
 	        SELECT `item_id`, `amount`
-	        FROM `left_items`
+	        FROM   `left_items`
+			WHERE  `amount` <> 0
 	    ');
 	    foreach($sItems as $iItem => $aItem){
 		    $item_name = $oDB->selectField('
