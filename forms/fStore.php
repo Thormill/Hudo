@@ -41,7 +41,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 		        FROM `types`
 		        WHERE `t_id` = ' . $type_id . '
 		    ');
-		    echo '<p>' . $aItem['amount'] . ' шт. ' . $type_name . ' / ' . $category_name . ' / ' . $item_name . '</p>';
+		    echo '<p class="mat">' . $aItem['amount'] . ' шт. ' . $type_name . ' / ' . $category_name . ' / ' . $item_name . '</p>';
 		}
 	?>
 	</div>

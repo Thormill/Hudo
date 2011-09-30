@@ -12,9 +12,9 @@
 .preview {
     border: 2px dotted #888899;
     padding:0 5px 0 5px;
-    width: 400px;
     margin: 5px;
 	overflow: hidden;
+	width: 400px;
 }
 
 .container {

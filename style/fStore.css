@@ -9,3 +9,9 @@
 .store_list div {
     float: right;
 }
+
+.mat {
+    border: 2px dotted #888899;
+    padding:0 5px 0 5px;
+    margin: 5px;
+}

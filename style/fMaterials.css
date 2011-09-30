@@ -8,11 +8,10 @@
 }
 
 .container {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #0000FF;
-    width: 800px;
+    border: 2px dotted #888899;
+    padding:0 5px 0 5px;
     margin: 5px;
+    width: 800px;
     overflow: hidden;
 }
 
