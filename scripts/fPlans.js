@@ -47,7 +47,10 @@ function AddToList() {
     jsonPlan +=  '"amount_to_make":' + $('#amount').val() + ',';
     jsonPlan +=  '"price":' + $('#price').val() + ',';
     jsonPlan +=  '"comment":"' + $('#comment').val() + '"}';
-    
+    	
+	if($('#planpreview').html() == '')
+		$('#planpreview').html("<div id='currentplan' class='preview'></div>");
+	
 	var text = $('#currentplan').html();
 	text += $('#typelist option:selected').text() + ' / ';
 	text += $('#categorylist option:selected').text() + ' / ';
@@ -70,6 +73,7 @@ function Add() {
            	$('#planpreview').html('<div id="currentplan" class="planpreview"></div>');
             count = 0;
         });
+	$('#planpreview').html('');
 }
 
 function PlanClear() {

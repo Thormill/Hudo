@@ -9,16 +9,16 @@
 .planadd {
 }
 
-.planpreview {
-    width: 800px;
-    padding: 10px;
+.preview {
+    border: 2px dotted #888899;
+    padding:0 5px 0 5px;
+    width: 400px;
     margin: 5px;
+	overflow: hidden;
 }
 
 .container {
-    border-color: #0000FF;
-    border-width: 1px;
-    border-style: solid;
+    border: 2px dotted #888899;
     overflow: hidden;
     width: 800px;
     margin: 5px;
