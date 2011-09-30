@@ -19,13 +19,63 @@ for ($i = 1; $i <= $k; $i++)
     {
         $jsonPlan = str_replace("\\", "", $_POST['planpoint' . $i]);
         $aPlan = json_decode($jsonPlan, true);
+        
+        $sLeftItems = $oDB->selectField('
+			SELECT `amount`
+			FROM `left_items`
+			WHERE `item_id` = ' . $aPlan['item_id'] . '
+        ');
+        
+        if($sLeftItems) { //если на складе есть нужная вещь
+			if($sLeftItems >= $aPlan['amount_to_make']) {
+				$tmp = $sLeftItems - $aPlan['amount_to_make'];
+				$uLeftItems = $oDB->query('
+					UPDATE `left_items`
+					SET `amount` = ' . $tmp . '
+					WHERE `item_id` = ' . $aPlan['item_id'] . '
+				');
+			    $iInsert = $oDB->insert('
+					INSERT INTO `plans`
+					SET 
+					`plan_number`    = ' . $plan_number . ',
+					`item_id`        = ' . $aPlan['item_id'] . ',
+					`amount_to_make` = ' . $aPlan['amount_to_make'] . ',
+					`amount_made`    = ' . $aPlan['amount_to_make'] . ' ,
+					`price`          = ' . $aPlan['price'] . ',
+					`comment`        = "' . $aPlan['comment'] . '",
+					`date`           = UNIX_TIMESTAMP(),
+					`status`         = 1
+				');	
+				continue;
+			}
+			else {
+				$uLeftItems = $oDB->query('
+					UPDATE `left_items`
+					SET `amount` = 0
+					WHERE `item_id` = ' . $aPlan['item_id'] . '
+				');
+			    $iInsert = $oDB->insert('
+					INSERT INTO `plans`
+					SET 
+					`plan_number`    = ' . $plan_number . ',
+					`item_id`        = ' . $aPlan['item_id'] . ',
+					`amount_to_make` = ' . $aPlan['amount_to_make'] . ',
+					`amount_made`    = ' . $sLeftItems . ' ,
+					`price`          = ' . $aPlan['price'] . ',
+					`comment`        = "' . $aPlan['comment'] . '",
+					`date`           = UNIX_TIMESTAMP()
+				');	
+				continue;
+			}
+		}
+        
         $iInsert = $oDB->insert('
             INSERT INTO `plans`
                 SET 
                 `plan_number`    = ' . $plan_number . ',
                 `item_id`        = ' . $aPlan['item_id'] . ',
                 `amount_to_make` = ' . $aPlan['amount_to_make'] . ',
-                `amount_made`  =  0 ,
+                `amount_made`    =  0 ,
                 `price`          = ' . $aPlan['price'] . ',
                 `comment`        = "' . $aPlan['comment'] . '",
                 `date`           = UNIX_TIMESTAMP()
