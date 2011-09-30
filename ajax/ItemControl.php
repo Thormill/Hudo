@@ -57,7 +57,7 @@ if( ($_POST['t_id'] != 0) && ($_POST['category_name'] != '') && ($_POST['c_id'] 
   }
   exit();
 }
-
+//подвязываем итем к категории
 if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && ($_POST['item_name'] != '') ) {
     $uType = $oDB->query('
              UPDATE `types` 
@@ -86,6 +86,24 @@ if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && (
                   `type_id` = "' . $_POST['t_id'] . '"
      ');
 
+      if( (isset($_POST['price'])) && ($_POST['price'] > 0) ){
+		  //если добавлен новый итем и на него указана цена
+		$sItem = $oDB->selectField('
+              SELECT `i_id`
+              FROM   `items`
+              WHERE  `item_name` = "' . $_POST['item_name'] . '"
+              AND    `category_id` = "' . $_POST['c_id'] . '"
+              AND    `type_id` = "' . $_POST['t_id'] . '"
+		');
+		$pInsert = $oDB->insert('
+          INSERT INTO `prices`
+              SET `item_id` = "' . $sItem . '",
+                  `category_id` = "' . $_POST['c_id'] . '",
+                  `type_id` = "' . $_POST['t_id'] . '",
+                  `price` = "' . $_POST['price'] . '"
+		');	
+	  }
+
       if ($iInsert != 0)
           echo "Информация\r\n>> Изделие добавлено\r\n";
       else
@@ -93,6 +111,7 @@ if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && (
           echo "Ошибка базы данных\r\n";
           echo '>> ' . $oDB->getError();
       }
+      
   } else {
       echo "Ошибка\r\n";
       echo ">> Это изделие уже есть в БД\r\n";
