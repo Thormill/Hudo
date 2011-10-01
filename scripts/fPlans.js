@@ -39,14 +39,31 @@ function AmountChange() {
 	    $('#price').val(fixprice);
 }
 
+function validPlan()
+{
+        if ($('#typelist option:selected').val() != 0 && $('#categorylist option:selected').val() != 0 && $('#itemlist option:selected').val() != 0) {
+            if ($('#amount').val() == 0) {
+                if ($('#price').val() != 0) {
+                    AddToList();
+                }
+                else
+                    showMessage('Введите цену', 'err');    
+            }
+            else
+                showMessage('Введите количество', 'err');
+        }
+        else
+            showMessage('Выберите Вид-Категорию-Изделие', 'err');
+}
+
+
 function AddToList() {
 	count++;
-
 	var jsonPlan = '{"count":' + count + ',';
-    jsonPlan +=  '"item_id":' + $('#itemlist option:selected').val() + ',';
-    jsonPlan +=  '"amount_to_make":' + $('#amount').val() + ',';
-    jsonPlan +=  '"price":' + $('#price').val() + ',';
-    jsonPlan +=  '"comment":"' + $('#comment').val() + '"}';
+	jsonPlan +=  '"item_id":' + $('#itemlist option:selected').val() + ',';
+	jsonPlan +=  '"amount_to_make":' + $('#amount').val() + ',';
+	jsonPlan +=  '"price":' + $('#price').val() + ',';
+	jsonPlan +=  '"comment":"' + $('#comment').val() + '"}';
     	
 	if($('#planpreview').html() == '')
 		$('#planpreview').html("<div id='currentplan' class='preview'></div>");
@@ -64,16 +81,23 @@ function AddToList() {
 	PlanClear();
 }
 
+
+
 function Add() {
-	$('#planpreview').append('<input type="hidden" name="Count" value="' + count + '" />');
-    $.post('ajax/addPlan.php', $('#planpreview').serialize(),
-        function (data) {
-			showMessage(data);
-            PlanClear();
-           	$('#planpreview').html('<div id="currentplan" class="planpreview"></div>');
-            count = 0;
-        });
-	$('#planpreview').html('');
+	if($('#planpreview').html() != '') {
+		$('#planpreview').append('<input type="hidden" name="Count" value="' + count + '" />');
+		$.post('ajax/addPlan.php', $('#planpreview').serialize(),
+			function (data) {
+				showMessage(data);
+				PlanClear();
+				$('#planpreview').html('<div id="currentplan" class="planpreview"></div>');
+				count = 0;
+			});
+		$('#planpreview').html('');
+	}
+	else{
+		showMessage('Сначала добавьте хотя бы один пункт в план!','err')
+	}	
 }
 
 function PlanClear() {
