@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -41,3 +44,19 @@
         $('#modal').hide();
     });
  </script>
+ 
+<?php
+    if(!isset($_SESSION['username'])) {
+	    //showLogin();
+	    //exit
+	    print('
+			<script type="text/javascript">
+			    showLogin();
+			</script>
+	    ');
+	}
+	else {
+	    echo 'вы вошли в систему как: ' . $_SESSION['username'] . 
+	    '<br><a href="#">сменить</a> / <a href="#">выйти</a>';
+	}
+?>

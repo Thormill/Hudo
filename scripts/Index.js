@@ -15,7 +15,6 @@ function showMessage(sHtml, sType) {
     var winW = $(window).width();  
     $('#modal').css('top',  winH/2-$('#modal').height()/2);
     $('#modal').css('left', winW/2-$('#modal').width()/2);
-     
     $('#modal').fadeIn(250);
 }
 
@@ -31,4 +30,20 @@ function menuClick(oClicked) {
     $('.selected').removeClass();
     oClicked.className = 'selected';
     toForm(oClicked.id);
+}
+
+function showLogin() {
+    var login_screen = '<form id="login_form">';
+    login_screen += '<label>Имя пользователя:</label>';
+    login_screen += '<input type="text" name="username" id="ulogin" />';
+    login_screen += '<input type="button" value="авторизоваться" onclick="authorize();" / >';
+    login_screen += '</form>';
+    showMessage(login_screen);
+}
+
+function authorize() {
+    $.post('ajax/authenticate.php', {username : $('#ulogin').val()},
+        function (data) {
+            alert(data);
+        });
 }
