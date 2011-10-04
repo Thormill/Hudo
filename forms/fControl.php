@@ -98,3 +98,4 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <input type="button" onClick="MaterialClear();" value="очистить" />    
   </div>
 </form>
+        <input type="button" value="Delete" id="Dbutton" onClick="Delete();"/>

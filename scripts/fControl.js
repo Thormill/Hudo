@@ -1,4 +1,7 @@
-﻿function TypeClick() {
+﻿var table = ''; 
+var myid = 0;    //переменные для удаления
+
+function TypeClick() {
     $('#atype').val( $('#mType option:selected').text() );
     $('#mItem option').attr('selected', false);
     $('#mItem').html('<option>--Сначала выберите категорию--</option>');
@@ -11,6 +14,8 @@
        $('#mCategory').html(data);
     });
     $('#ibutton').val('изменить');
+    table = 'types';
+    myid = $('#mType option:selected').val();
 }
 
 function CategoryClick() {
@@ -22,6 +27,9 @@ function CategoryClick() {
     function (data) {
        $('#mItem').html(data);
     });
+    
+    table = 'categories';
+    myid = $('#mCategory option:selected').val();  
 }
 
 function ItemClick() {
@@ -30,6 +38,9 @@ function ItemClick() {
     function (data) {
        $('#aprice').val(data);
     });
+    
+    table = 'items';
+    myid = $('#mItem option:selected').val();
 }
 
 function ItemsClear() {
@@ -43,6 +54,8 @@ function ItemsClear() {
     $('#acategory').val('');
     $('#aitem').val('');
     $('#aprice').val('');
+    table = '';
+    myid = 0;
 }
 
 function ShowPhone() {  //взял из fAddPayment.js. придумать как переделать по принципу DRY
@@ -57,13 +70,17 @@ function MasterSelect(fio) {
     $('#fio').val(fio);
     $('#mbutton').val('изменить');
 	ShowPhone();
+	table = 'masters';
+    myid = $('#MasterList option:selected').val();
 }
 
 function MasterClear() {
     $('#masterlist option:first').attr('selected','1');
     $('#mbutton').val('добавить');
     $('#fio').val('');
-    $('#phone').val('');    
+    $('#phone').val('');
+    table = '';
+    myid = 0;    
 }
 
 function addMaster() {
@@ -95,6 +112,8 @@ function ItemAdd() {
 function MaterialClick() {
     $('#matbutton').val('изменить');
     $('#amaterial').val( $('#materiallist option:selected').text() );
+    table = 'materials';
+    myid = $('#materiallist option:selected').val();
 }
 
 function MaterialAdd() {
@@ -108,5 +127,14 @@ function MaterialAdd() {
 function MaterialClear() {
     $('#materiallist option:first').attr('selected','1');
     $('#matbutton').val('добавить');
-    $('#amaterial').val('');    
+    $('#amaterial').val('');
+    table = '';
+    myid = 0;    
+}
+
+function Delete() {
+    $.post('ajax/DataDelete.php', {table : table, myid : myid},
+    function (data) {
+       showMessage(data);
+    });
 }
