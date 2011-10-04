@@ -33,6 +33,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	        <option value="0">--Сначала выберите категорию--</option>
 		</SELECT>
 	    <input type="button" onClick="ItemsClear();" value="Сбросить выбор" />
+	    <input type="button" value="Удалить" id="Dbutton" onClick="Delete();"/>
 	  </div>
 	  
 	  <div id="edited">
@@ -69,6 +70,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  <span>
 	    <input type="button" onClick="addMaster();" value="добавить" id="mbutton" />
 	    <input type="button" onClick="MasterClear();" value="снять выделение" />
+	    <input type="button" value="Удалить" id="Dbutton" onClick="Delete();"/>
 	  </span>
 	</p>
   </div>
@@ -95,7 +97,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	  <label for="amaterial">Название</label><input type="text" id="amaterial" name="material_name"></input>	  
 	</div>
     <input type="button" onClick="MaterialAdd();" value="добавить" id="matbutton" />
-    <input type="button" onClick="MaterialClear();" value="очистить" />    
+    <input type="button" onClick="MaterialClear();" value="очистить" />
+    <input type="button" value="Удалить" onClick="Delete();"/>
   </div>
 </form>
-        <input type="button" value="Delete" id="Dbutton" onClick="Delete();"/>
