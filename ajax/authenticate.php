@@ -7,16 +7,32 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 
 if( (!isset($_POST['username'])) || ($_POST['username'] == '') )
     exit('введите логин');
+if( (!isset($_POST['userpass'])) || ($_POST['userpass'] == '') )
+    exit('введите пароль');
 
-$auth = $oDB->selectField('
-        SELECT `user_info`
+$pass = $oDB->selectField('
+        SELECT `upass`
         FROM   `users`
         WHERE `uname` = "' . $_POST['username'] . '"
 ');
 
-if($auth != ''){
-    echo 1;
-    $_SESSION['username'] = $auth;
+if($pass != ''){
+	if($pass == $_POST['userpass']){
+		$auth = $oDB->selectField('
+			SELECT `user_info`
+			FROM   `users`
+			WHERE `uname` = "' . $_POST['username'] . '"
+		');
+		if($auth != ''){
+			echo 1;
+			$_SESSION['username'] = $auth;
+		}
+		else{
+			exit('не смог прочитать данные о пользователе');
+		}
+	}
+	else
+		exit('Проверьте логин / пароль');
 }
-else
-    exit('no login');
+else 
+	exit('Проверьте логин / пароль');
