@@ -13,7 +13,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 <form class="fControl">
     <?php
         $sMaterials = $oDB->SelectTable('
-           SELECT `id`, `master_id`, `material_id`, `amount`, `date`
+           SELECT `id`, `master_id`, `material_id`, `amount`, `date`, `giver`
             FROM `materials_out`
             WHERE `status` = 0
             ORDER BY `date` DESC
@@ -48,6 +48,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				      <p>Мастер: ' . $master_fio . '</p> 
 				      <p>Телефон: ' . $master_phone . '</p>
 				      <p>Дата выдачи: ' . date('Y-M-d, H:i', $sMaterial['date']) . '<p>
+				      <p>Выдал: ' . $sMaterial['giver'] . '</p>
 				      </div><div class="materials_container">';
 			}
 			

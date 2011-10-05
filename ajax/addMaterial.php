@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
@@ -41,6 +42,7 @@ for ($i = 1; $i <= $k; $i++)
 					`master_id`    = ' . $aMaterial['master_id'] . ',
 					`material_id`  = ' . $aMaterial['material_id'] . ',
 					`amount`       = ' . $aMaterial['amount'] . ',
+					`giver`        = "' . $_SESSION['username'] . '",
 					`status`       = 0,
 					`date`         = UNIX_TIMESTAMP()
 			');
