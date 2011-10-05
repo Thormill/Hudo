@@ -47,7 +47,7 @@
 	}
 	else {
 	    echo 'вы вошли в систему как: ' . $_SESSION['username'] . 
-	    '<br><a href="#">сменить</a> / <a href="#">выйти</a>';
+	    '<br><a href="nojs.php" onClick="LogOut(); return false;">выйти</a>';
 	   
 	   echo '
 			<script type="text/javascript">

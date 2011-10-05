@@ -36,7 +36,8 @@ function menuClick(oClicked) {
 function showLogin() {
     var login_screen = '<form id="login_form">';
     login_screen += '<label>Имя пользователя:</label>';
-    login_screen += '<input type="text" name="username" id="ulogin" />';
+    login_screen += '<input type="text" name="username" id="ulogin" /><br />';
+    login_screen += '<input type="password" name="userpass" id="upass" />';
     login_screen += '<input type="button" value="авторизоваться" onclick="authorize();" / >';
     login_screen += '</form>';
     showMessage(login_screen);
@@ -54,4 +55,12 @@ function authorize() {
 				return false;
 			}
         });
+}
+
+function LogOut() {
+    $.post('ajax/logout.php', null,
+        function (data) {
+			location.reload(true);
+		}
+	);
 }
