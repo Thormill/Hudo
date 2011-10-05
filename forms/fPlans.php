@@ -48,7 +48,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <?php
         $sPlans = $oDB->selectTable('
             SELECT `plan_number`, `item_id`, `amount_to_make`, `amount_made`, 
-                   `price`, `date`, `comment`
+                   `price`, `date`, `comment`, `comment_author`
             FROM `plans`
             WHERE `status` = 0
             ORDER BY `plan_number` ASC
@@ -63,6 +63,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				$counter = TRUE;
 				echo '<div class="container"><div class="plan_container">
 				      <p>План номер: ' . $aPlan['plan_number'] . '</p> 
+				      Добавил: ' . $aPlan['comment_author'] . '
 				      <p>Добавлен: ' . date('Y/M/d H:i', $aPlan['date']) . 
 				      '</p>
 				      <p>Комментарий:<i>' . $aPlan['comment'] . '</i></p>

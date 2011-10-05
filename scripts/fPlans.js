@@ -42,7 +42,7 @@ function AmountChange() {
 function validPlan()
 {
         if ($('#typelist option:selected').val() != 0 && $('#categorylist option:selected').val() != 0 && $('#itemlist option:selected').val() != 0) {
-            if ($('#amount').val() == 0) {
+            if ($('#amount').val() != 0) {
                 if ($('#price').val() != 0) {
                     AddToList();
                 }

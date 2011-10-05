@@ -42,6 +42,7 @@ for ($i = 1; $i <= $k; $i++)
 					`amount_made`    = ' . $aPlan['amount_to_make'] . ' ,
 					`price`          = ' . $aPlan['price'] . ',
 					`comment`        = "' . $aPlan['comment'] . '",
+					`comment_author` = "' . $_SESSION['username'] . '",
 					`date`           = UNIX_TIMESTAMP(),
 					`status`         = 1
 				');
@@ -64,6 +65,7 @@ for ($i = 1; $i <= $k; $i++)
 					`amount_made`    = ' . $sLeftItems . ' ,
 					`price`          = ' . $aPlan['price'] . ',
 					`comment`        = "' . $aPlan['comment'] . '",
+					`comment_author` = "' . $_SESSION['username'] . '",
 					`date`           = UNIX_TIMESTAMP()
 				');
 				echo 'В пункте ' . $c . ' на складе находится ' . $sLeftItems . ' изделий. Автоматически перевел со склада в план<br>';
@@ -81,6 +83,7 @@ for ($i = 1; $i <= $k; $i++)
                 `amount_made`    =  0 ,
                 `price`          = ' . $aPlan['price'] . ',
                 `comment`        = "' . $aPlan['comment'] . '",
+                `comment_author` = "' . $_SESSION['username'] . '",
                 `date`           = UNIX_TIMESTAMP()
         ');
 
