@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 04 2011 г., 16:49
+-- Время создания: Окт 05 2011 г., 19:05
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -439,21 +439,7 @@ CREATE TABLE IF NOT EXISTS `left_items` (
   `amount` int(4) NOT NULL,
   `date` int(12) NOT NULL,
   PRIMARY KEY (`left_item_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
-
---
--- Дамп данных таблицы `left_items`
---
-
-INSERT INTO `left_items` (`left_item_id`, `item_id`, `amount`, `date`) VALUES
-(1, 13, 0, 0),
-(2, 31, 1, 0),
-(3, 4, 0, 0),
-(4, 13, 1, 0),
-(5, 15, 0, 0),
-(6, 14, 0, 0),
-(7, 300, 2, 0),
-(8, 120, 1, 0);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -655,22 +641,7 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `comment_author` varchar(150) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
-
---
--- Дамп данных таблицы `payments_history`
---
-
-INSERT INTO `payments_history` (`h_id`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `comment_text`, `comment_author`, `date`) VALUES
-(1, 102, '15', 'большая', 'картинка', 2, 3500, '', '0', 1317393651),
-(2, 17, '10', '14 см', 'Жостово', 3, 1350, '', '0', 1317393788),
-(3, 102, '30', 'пузатая', 'картинка', 3, 10500, '', '0', 1317393971),
-(4, 94, '15', 'большая', 'картинка', 3, 5250, '', '0', 1317395285),
-(5, 94, '15', 'большая', 'лицо', 2, 700, '', '0', 1317395285),
-(6, 94, '15', 'большая', 'оформление', 1, 2500, '', '0', 1317395285),
-(7, 28, '10', '17 см', 'жостово', 1, 24, 'фы', '0', 1317732418),
-(8, 102, '10', '17 см', 'жостово', 1, 24, '123', '0', 1317732492),
-(9, 102, '3', '14 см', 'Жостово сложная', 1, 123, '123', 'Ольга', 1317732547);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -687,25 +658,10 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `amount_made` int(4) NOT NULL DEFAULT '0',
   `date` int(12) NOT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment_author` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`plan_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
-
---
--- Дамп данных таблицы `plans`
---
-
-INSERT INTO `plans` (`plan_id`, `plan_number`, `item_id`, `price`, `amount_to_make`, `amount_made`, `date`, `comment`, `status`) VALUES
-(1, 1, 13, 3500, 2, 2, 1317393666, 'Ваш комментарий', 1),
-(2, 2, 31, 450, 1, 3, 1317393804, 'Ваш комментарий', 1),
-(3, 3, 31, 450, 1, 1, 1317393940, 'Ваш комментарий', 1),
-(4, 4, 4, 3500, 1, 1, 1317393981, 'Ваш комментарий', 1),
-(5, 5, 4, 17500, 5, 3, 1317394010, 'Ваш комментарий', 0),
-(6, 6, 13, 1750, 1, 0, 1317395327, 'Ваш комментарий', 0),
-(7, 6, 15, 350, 1, 1, 1317395327, 'Ваш комментарий', 1),
-(8, 6, 14, 2500, 1, 1, 1317395327, 'Ваш комментарий', 1),
-(9, 7, 13, 1750, 1, 0, 1317395385, 'Ваш комментарий', 0),
-(10, 8, 15, 350, 1, 1, 1317395600, 'Ваш комментарий', 1);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1077,14 +1033,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `upass` varchar(255) NOT NULL,
   `user_info` varchar(255) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`u_id`, `uname`, `upass`, `user_info`) VALUES
-(1, 'Olga', '123', 'Ольга');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
