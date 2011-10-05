@@ -8,8 +8,10 @@
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="style/Index.css" />
     <script type="text/javascript" src="scripts/jquery-min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
     <script type="text/javascript" src="scripts/Index.js"></script>
 </head>
+
 <body>
     <div id="main">
         <ul class="menu">
@@ -30,25 +32,13 @@
         <div id="close"><b>X</b></div>
         <div id="modal-content"></div>
     </div>
+    <div id="login_screen"></div>
+
 </body>
 </html>
 
- <script type="text/javascript">
-    $('#close').click(function (e) {
-        e.preventDefault();
-        $('#mask, #modal').hide();
-    });
-
-    $('#mask').click(function () {
-        $(this).hide();
-        $('#modal').hide();
-    });
- </script>
- 
 <?php
     if(!isset($_SESSION['username'])) {
-	    //showLogin();
-	    //exit
 	    print('
 			<script type="text/javascript">
 			    showLogin();
@@ -58,5 +48,19 @@
 	else {
 	    echo 'вы вошли в систему как: ' . $_SESSION['username'] . 
 	    '<br><a href="#">сменить</a> / <a href="#">выйти</a>';
+	   
+	   echo '
+			<script type="text/javascript">
+				$("#close").click(function (e) {
+				e.preventDefault();
+				$("#mask, #modal").hide();
+			});
+
+			$("#mask").click(function () {
+				$(this).hide();
+				$("#modal").hide();
+			});
+			</script>
+	   ';
 	}
 ?>

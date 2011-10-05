@@ -11,6 +11,7 @@ function showMessage(sHtml, sType) {
         sHtml = '<img src="img/info.png" alt="инофрмация"><div id="message">' + sHtml + '</div>';
     $('#modal-content').html(sHtml);
 
+	
     var winH = $(window).height();
     var winW = $(window).width();  
     $('#modal').css('top',  winH/2-$('#modal').height()/2);
@@ -44,6 +45,13 @@ function showLogin() {
 function authorize() {
     $.post('ajax/authenticate.php', {username : $('#ulogin').val()},
         function (data) {
-            alert(data);
+			if(data == 1){
+				$("#mask, #modal").hide();
+				location.reload(true);
+			}
+			else{
+				alert(data);
+				return false;
+			}
         });
 }

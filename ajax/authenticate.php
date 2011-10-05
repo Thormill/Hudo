@@ -15,7 +15,7 @@ $auth = $oDB->selectField('
 ');
 
 if($auth != ''){
-    echo $auth;
+    echo 1;
     $_SESSION['username'] = $auth;
 }
 else
