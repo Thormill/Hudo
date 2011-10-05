@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 05 2011 г., 19:05
+-- Время создания: Окт 05 2011 г., 19:11
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -618,10 +618,18 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
   `master_id` int(5) NOT NULL,
   `material_id` int(5) NOT NULL,
   `amount` int(5) NOT NULL,
+  `giver` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `date` int(12) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `materials_out`
+--
+
+INSERT INTO `materials_out` (`id`, `master_id`, `material_id`, `amount`, `giver`, `date`, `status`) VALUES
+(1, 93, 27, 0, 'Ольга', 1317827425, 1);
 
 -- --------------------------------------------------------
 
