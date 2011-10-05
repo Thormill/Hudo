@@ -37,14 +37,16 @@ function showLogin() {
     var login_screen = '<form id="login_form">';
     login_screen += '<label>Имя пользователя:</label>';
     login_screen += '<input type="text" name="username" id="ulogin" /><br />';
-    login_screen += '<input type="password" name="userpass" id="upass" />';
+    login_screen += '<label>Ваш пароль:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>';
+    login_screen += '<input type="password" name="userpass" id="upass" /><br />';
     login_screen += '<input type="button" value="авторизоваться" onclick="authorize();" / >';
     login_screen += '</form>';
     showMessage(login_screen);
 }
 
 function authorize() {
-    $.post('ajax/authenticate.php', {username : $('#ulogin').val()},
+    $.post('ajax/authenticate.php', {username : $('#ulogin').val(), 
+                                     userpass : $('#upass').val()},
         function (data) {
 			if(data == 1){
 				$("#mask, #modal").hide();
