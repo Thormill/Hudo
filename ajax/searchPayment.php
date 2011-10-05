@@ -72,6 +72,7 @@ if (count($aPayments) > 0) {
             <td><b>Количество</b></td>
             <td><b>Цена</b></td>
             <td><b>Комментарий</b></td>
+            <td><b>Автор комментария</b></td>
         </tr>';
     foreach ($aPayments as $iPayment => $aPayment) {
         $sMaster = $oDB->selectField('
@@ -93,7 +94,8 @@ if (count($aPayments) > 0) {
                 <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
                 <td>' . $aPayment['amount'] . '</td>
                 <td>' . $aPayment['price'] . '</td>
-                <td>' . $aPayment['comment_text']. '</td>
+                <td>' . $aPayment['comment_text'] . '</td>
+                <td>' . $aPayment['comment_author'] . '</td>
             </tr>';
     }
     $sTable .= '

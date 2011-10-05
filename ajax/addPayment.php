@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
@@ -40,6 +41,7 @@ for ($i = 1; $i <= $k; $i++)
                 `amount`        = ' . $aPayment['amount'] . ',
                 `price`         = ' . $aPayment['price'] . ',
                 `comment_text`  = "' . $aPayment['comment'] . '",
+                `comment_author` = "' . $_SESSION['username'] . '",
                 `date`          = UNIX_TIMESTAMP()'
         );
         

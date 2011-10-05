@@ -4,6 +4,27 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
+if( ($_POST['t_id'] == 0) && ($_POST['type_name'] != '') ) { //добавление типа
+	$sType = $oDB->selectField('
+      SELECT `type_name`
+          FROM `types`
+          WHERE `type_name` = "' . $_POST['type_name'] . '"
+    ');
+
+  if ($sType == "")
+      $iType = $oDB->insert('
+          INSERT INTO `types`
+              SET `type_name` = "' . $_POST['type_name'] . '"
+     ');
+  if ($iType != 0)
+      echo $_POST['type_name'] . " добавлен(а / о) к типам";
+  else{
+      echo "<b>Ошибка базы данных</b><br />";
+      echo $oDB->getError();
+  }
+  exit();
+}
+
 //установлен тип - обновляем тип
 if( ($_POST['t_id'] != 0) && ($_POST['category_name'] == '') && ($_POST['c_id'] == 0) ) 
 {
