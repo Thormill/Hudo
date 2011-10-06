@@ -60,6 +60,10 @@
 				$(this).hide();
 				$("#modal").hide();
 			});
+			
+			$(document).ready(function() {
+					$("#AddPayment").click();
+			});
 			</script>
 	   ';
 	}

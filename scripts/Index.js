@@ -52,7 +52,7 @@ function authorize() {
 				$("#mask, #modal").hide();
 				location.reload(true);
 			}
-			else{
+			else {
 				alert(data);
 				return false;
 			}
