@@ -17,7 +17,7 @@ $pass = $oDB->selectField('
 ');
 
 if($pass != ''){
-	if($pass == $_POST['userpass']){
+	if($pass == md5($_POST['userpass'])){
 		$auth = $oDB->selectField('
 			SELECT `user_info`
 			FROM   `users`
