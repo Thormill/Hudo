@@ -137,4 +137,6 @@ function Delete() {
     function (data) {
        showMessage(data);
     });
+    MasterClear();
+    ItemsClear();
 }
