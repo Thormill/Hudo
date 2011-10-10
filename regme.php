@@ -51,9 +51,9 @@ else {
 	');
 	if(empty($sLogin))
 	{
-		unset($_POST['userlogin']);
-        unset($_POST['userpass']);
-        unset($_POST['userinfo']);
+		$_POST['userlogin'] = '';
+        $_POST['userpass'] = '';
+        $_POST['userinfo'] = '';
 		exit( $sLogin . ' уже зарегистрирован в системе.');
 	}
 	
@@ -66,15 +66,15 @@ else {
     if ($iInsert != 0){
         echo "Пользователь добавлен.";
         echo '|' . $sLogin . '|';
-        unset($_POST['userlogin']);
-        unset($_POST['userpass']);
-        unset($_POST['userinfo']);
+        $_POST['userlogin'] = '';
+        $_POST['userpass'] = '';
+        $_POST['userinfo'] = '';
 	}
     else
     {
-        echo "Ошибка БД";
-        unset($_POST['userlogin']);
-        unset($_POST['userpass']);
-        unset($_POST['userinfo']);
+        echo "Ошибка БД: " . $oDB->getError();
+        $_POST['userlogin'] = '';
+        $_POST['userpass'] = '';
+        $_POST['userinfo'] = '';
 	}
 }
