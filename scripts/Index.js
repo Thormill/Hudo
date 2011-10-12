@@ -74,6 +74,11 @@ function Register() {
     $.post('ajax/registration.php', {userlogin : login, userpass : pass, userinfo : info},
         function (data) {
 			$('#output').html(data);
+			if(data == "Пользователь добавлен.") {
+					$('#userlogin').val('');
+	                $('#userpass').val('');
+	                $('#userinfo').val('');
+			}
 		}
 	);
 }
