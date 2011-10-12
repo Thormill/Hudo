@@ -108,3 +108,12 @@ function PlanClear() {
     $('#categorylist').html('<option>--Сначала выберите тип--</option>');
     $('#price').val('');
 }
+
+function PlanShow() {
+    $.post('ajax/planShow.php', {closed : $('#closed').prop('checked')},
+        function (data) {
+			//alert($('#closed').prop('checked'));
+		  $('#planlist').html();
+		  $('#planlist').html(data);
+		});
+}

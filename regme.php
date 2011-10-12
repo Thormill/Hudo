@@ -6,7 +6,10 @@ session_start();
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
 if( (!isset($_POST['userlogin'])) && (!isset($_POST['userpass'])) 
-                                  && (!isset($_POST['userinfo'])) )
+                                  && (!isset($_POST['userinfo'])) 
+                                  && ($_POST['userlogin'] != '')
+                                  && ($_POST['userpass'] != '')
+                                  && ($_POST['userinfo'] != ''))
 {
 ?>
 <html>
@@ -65,7 +68,6 @@ else {
 	');
     if ($iInsert != 0){
         echo "Пользователь добавлен.";
-        echo '|' . $sLogin . '|';
         $_POST['userlogin'] = '';
         $_POST['userpass'] = '';
         $_POST['userinfo'] = '';

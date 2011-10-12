@@ -84,7 +84,8 @@ for ($i = 1; $i <= $k; $i++)
 			if($dif >= $new_value){
               $uPlan = $oDB->query('
                 UPDATE `plans`
-                SET `amount_made` =  ' . $aPayment['amount'] . '
+                SET `amount_made` =  ' . $aPayment['amount'] . ',
+                    `status`      = 1
                 WHERE `plan_number` = ' . $sPlanNum . '
                 AND `item_id` = ' . $aPayment['item'] . '
                 ORDER BY `date` ASC
