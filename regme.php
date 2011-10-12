@@ -5,11 +5,8 @@ require_once ROOT . 'database.class.php';
 session_start();
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
-if( (!isset($_POST['userlogin'])) && (!isset($_POST['userpass'])) 
-                                  && (!isset($_POST['userinfo'])) 
-                                  && ($_POST['userlogin'] != '')
-                                  && ($_POST['userpass'] != '')
-                                  && ($_POST['userinfo'] != ''))
+if( ( (!isset($_POST['userlogin'])) && (!isset($_POST['userpass'])) && (!isset($_POST['userinfo'])) )
+   || ( ($_POST['userlogin'] == '') && ($_POST['userpass'] == '')   && ($_POST['userinfo'] == '')) )
 {
 ?>
 <html>
@@ -46,13 +43,14 @@ else {
 <script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
 <script type="text/javascript" src="scripts/Index.js"></script>
 </head>
+<body>
 	<?
 	$sLogin = $oDB->selectField('
-	    SELECT `userinfo`
+	    SELECT `user_info`
 	    FROM   `users`
 	    WHERE  `uname` = "' . $_POST['userlogin'] . '"
 	');
-	if(empty($sLogin))
+	if(!empty($sLogin))
 	{
 		$_POST['userlogin'] = '';
         $_POST['userpass'] = '';
@@ -67,6 +65,7 @@ else {
 			`user_info` = "' . $_POST['userinfo'] . '"
 	');
     if ($iInsert != 0){
+		echo $sLogin;
         echo "Пользователь добавлен.";
         $_POST['userlogin'] = '';
         $_POST['userpass'] = '';
