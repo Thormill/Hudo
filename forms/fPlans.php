@@ -45,6 +45,4 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     Ваш комментарий: <input type="text" value="-" id="comment" />
 </form>
 	<p><input type="checkbox" id="closed" onChange="PlanShow();">Показывать завершенные планы</input></p>
-<div id = "planlist" class="planlist">
-    
-</div>
+<div id = "planlist" class="planlist"></div>

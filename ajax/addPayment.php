@@ -141,4 +141,3 @@ for ($i = 1; $i <= $k; $i++)
 		}
     }
 }
-//`comment_author` = "' . $_SESSION['username'] . '",

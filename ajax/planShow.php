@@ -67,4 +67,3 @@ foreach($sPlans as $iPlan => $aPlan){
 	    $plan_id = $aPlan['plan_number'];
 	}
 }
-//$_POST['closed'] = FALSE;

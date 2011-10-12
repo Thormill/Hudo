@@ -112,7 +112,6 @@ function PlanClear() {
 function PlanShow() {
     $.post('ajax/planShow.php', {closed : $('#closed').prop('checked')},
         function (data) {
-			//alert($('#closed').prop('checked'));
 		  $('#planlist').html();
 		  $('#planlist').html(data);
 		});
