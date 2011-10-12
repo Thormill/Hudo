@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="registration">
+		<p><a href = "index.php">На главную</a></p>
 		<form>
 		    <label>Логин:</label><input type="text" id="userlogin" />
 		    <label>Пароль:</label><input type="password" id="userpass" />
