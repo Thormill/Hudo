@@ -116,3 +116,7 @@ function PlanShow() {
 		  $('#planlist').html(data);
 		});
 }
+
+$(document).ready(function() {
+    PlanShow();
+});
