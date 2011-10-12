@@ -66,3 +66,15 @@ function LogOut() {
 		}
 	);
 }
+
+function Register() {
+	var login = $('#userlogin').val();
+	var pass = $('#userpass').val();
+	var info = $('#userinfo').val();
+    $.post('ajax/registration.php', {userlogin : login, userpass : pass, userinfo : info},
+        function (data) {
+			$('#output').html(data);
+		}
+	);
+}
+
