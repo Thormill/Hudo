@@ -38,10 +38,16 @@ function showLogin() {
     login_screen += '<label>Имя пользователя:</label>';
     login_screen += '<input type="text" name="username" id="ulogin" /><br />';
     login_screen += '<label>Ваш пароль:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>';
-    login_screen += '<input type="password" name="userpass" id="upass" /><br />';
+    login_screen += '<input type="password" name="userpass" id="upass" onkeyDown="hotkey(event);" /><br />';
     login_screen += '<input type="button" value="авторизоваться" onclick="authorize();" / >';
     login_screen += '</form>';
     showMessage(login_screen);
+}
+
+function hotkey(event) {
+	if(event.keyCode==13)
+	    if($('#login_form').length)
+		    authorize();
 }
 
 function authorize() {
@@ -82,4 +88,3 @@ function Register() {
 		}
 	);
 }
-

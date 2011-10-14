@@ -100,7 +100,7 @@ for($i=2;$i<=$max;$i++){
 	//mysql_query($query) or die('insert price error');    //price is set up by default
 	
 }
-echo "Добавлено $count изделий.\n";
+echo "Добавлено $count изделий.<br>";
 /*заготовки*/
 $objPHPExcel->setActiveSheetIndex(2); //изделия
 $aSheet = $objPHPExcel->getActiveSheet();
@@ -114,5 +114,5 @@ for($i=2;$i<=$max;$i++){
 	');
 	$count++;
 }
-echo "Добавлено $count заготовок.\n";
+echo "Добавлено $count заготовок.<br>";
 ?>

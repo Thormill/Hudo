@@ -11,6 +11,7 @@ require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 ?>
 <form class="fControl">
+	<p>Здесь можно отметить, кто из мастеров сдал заготовки и в каком количестве.</p>
     <?php
         $sMaterials = $oDB->SelectTable('
            SELECT `id`, `master_id`, `material_id`, `amount`, `date`, `giver`
