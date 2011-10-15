@@ -122,19 +122,21 @@ for ($i = 1; $i <= $k; $i++)
 			}
 		}
         else{  //если плана нет - просто добавляем в резерв
-			$sLeftItems = $oDB->selectField('
+			$iLeftItems = $oDB->selectField('
 				    SELECT `amount` 
 				    FROM `left_items`
 				    WHERE `item_id` = ' . $aPayment['item'] . '
 				');
-				if($sLeftItems != 0)
-				    $uLeftItems = $oDB->query('
+				if($iLeftItems != 0) {
+				    $sklad = $aPayment['amount'] + $iLeftItems;
+				    $sLeftItems = $oDB->query('
 				        UPDATE `left_items`
-				        SET `amount` = ' . $sklad = $aPayment['amount'] + $sLeftItems . '
+				        SET `amount` = ' . $sklad . '
 				        WHERE `item_id` = ' . $aPayment['item'] . '
 				    ');
+				}
 				else
-				    $uLeftItems = $oDB->insert('
+				    $sLeftItems = $oDB->insert('
 				        INSERT INTO `left_items`
 				        SET `item_id` = ' . $aPayment['item'] . ',
 				            `amount` = ' . $aPayment['amount'] . '
