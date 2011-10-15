@@ -94,6 +94,7 @@ function Add() {
 				count = 0;
 			});
 		$('#planpreview').html('');
+		PlanShow();
 	}
 	else{
 		showMessage('Сначала добавьте хотя бы один пункт в план!','err')
