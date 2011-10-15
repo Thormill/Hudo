@@ -1,5 +1,6 @@
-﻿<?php
-session_start();
+<?php
+if ( (!isset ($_SESSION['username'])) || ($_SESSION['username'] == '') )
+    session_start(); 
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';

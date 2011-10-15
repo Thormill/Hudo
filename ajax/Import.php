@@ -10,11 +10,7 @@ $objPHPExcel = PHPExcel_IOFactory::load("../files/given.xlsx");
 $objPHPExcel->setActiveSheetIndex(0); //художники
 $aSheet = $objPHPExcel->getActiveSheet();
 $max =  $aSheet->getHighestRow();
-$count = $max-1;
-//mysql_connect('localhost','hudo','oduh');
-//mysql_query('SET NAMES "utf8"');
-//mysql_select_db('hudo');
-$oDB->query('TRUNCATE masters');// or die('can not empty tables');
+$count = $max-1;$oDB->query('TRUNCATE masters');// or die('can not empty tables');
 $oDB->query('TRUNCATE categories');// or die('can not empty tables');
 $oDB->query('TRUNCATE types');// or die('can not empty tables');
 $oDB->query('TRUNCATE prices');// or die('can not empty tables');
@@ -74,7 +70,6 @@ for($i=2;$i<=$max;$i++){
 			SET `category_name` = "' . $category . '",
 				`type_id`       = ' . $t_id
 				);
-		//mysql_query($cat_query) or die('insert category error');
 	}
 
 	if( ($category != '') && ($item == '') ){
@@ -89,16 +84,13 @@ for($i=2;$i<=$max;$i++){
 				`type_id`     = ' . $t_id . ',
 				`item_name`   = "' . $item . '"');
 		$count++;
-		//mysql_query($item_query) or die('insert item error');
 	}
 	$pInsert = $oDB->insert('
 		INSERT INTO `prices`
 		SET `type_id`     = ' . $t_id . ',
 			`category_id` = ' . $c_id . ',
 			`item_id`     = ' . $i_id . ',
-			`price`       = ' . $price);
-	//mysql_query($query) or die('insert price error');    //price is set up by default
-	
+			`price`       = ' . $price);	
 }
 echo "Добавлено $count изделий.<br>";
 /*заготовки*/

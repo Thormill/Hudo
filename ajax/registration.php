@@ -2,7 +2,6 @@
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
-//session_start();
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
 if( ( (!isset($_POST['userlogin'])) && (!isset($_POST['userpass'])) && (!isset($_POST['userinfo'])) )

@@ -2,7 +2,7 @@
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
-session_start();
+if (!isset ($_SESSION['username'])) session_start(); 
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
 if( (!isset($_POST['username'])) || ($_POST['username'] == '') )
