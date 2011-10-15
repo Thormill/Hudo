@@ -92,9 +92,8 @@ function Add() {
 				PlanClear();
 				$('#planpreview').html('<div id="currentplan" class="planpreview"></div>');
 				count = 0;
-			});
+			}).done(function() {PlanShow();});
 		$('#planpreview').html('');
-		PlanShow();
 	}
 	else{
 		showMessage('Сначала добавьте хотя бы один пункт в план!','err')

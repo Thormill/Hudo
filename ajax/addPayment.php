@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 define('ROOT', '../modules/');
 require_once ROOT . 'constants.php';
@@ -81,11 +81,11 @@ for ($i = 1; $i <= $k; $i++)
 			$dif = $sPlanMake - $sPlanMade;
 			$new_value = $sPlanMade + $aPayment['amount'];
 
-			if($dif >= $new_value){
+			if($dif > $new_value){
               $uPlan = $oDB->query('
                 UPDATE `plans`
-                SET `amount_made` =  ' . $aPayment['amount'] . ',
-                    `status`      = 1
+                SET `amount_made` =  ' . $new_value . '
+                    
                 WHERE `plan_number` = ' . $sPlanNum . '
                 AND `item_id` = ' . $aPayment['item'] . '
                 ORDER BY `date` ASC

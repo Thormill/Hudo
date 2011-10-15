@@ -3,10 +3,11 @@
 <script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
 <script type="text/javascript" src="scripts/fImportExport.js"></script>
 
-<form id="fImport" class="fImport">
+<form id="fImport" class="fImport" enctype="multipart/form-data" action="ajax/uploader.php" method="POST">
     <p>При импортировании все данные, которые есть в системе, будут удалены и заменены на новые.
     <input type="button" onclick="Import();" value="Восстановить данные по умолчанию" /></p>
-    <p>Выберите файл для импорта<input type="file"></input> <input type=submit value=Загрузить /> </p>
+	<input type="hidden" name="MAX_FILE_SIZE" value="30000">
+    <p>Выберите файл для импорта<input type="file" name="uploadfile"></input> <input type=submit value=Загрузить /> </p>
 </form>
 
 <form id="fExport" class="fExport">
