@@ -15,3 +15,14 @@ function MaterialClick(material) {
 		}
     });
 }
+
+function ShowMaterials() {
+    $.post('ajax/MaterialShow.php', { status : $('#status').prop('checked') },
+    function (data) {
+       $('#Mcontainer').html(data);
+    });
+}
+
+$(document).ready(function() {
+    ShowMaterials();
+});
