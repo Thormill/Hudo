@@ -78,25 +78,50 @@ if( ($_POST['t_id'] != 0) && ($_POST['category_name'] != '') && ($_POST['c_id'] 
   }
   exit();
 }
-//подвязываем итем к категории
+
+//меняем категорию и тип
+if( ($_POST['t_id'] != 0) && ($_POST['category_name'] != '') && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && ($_POST['item_name'] == '') ){
+  $uType = $oDB->query('
+  UPDATE `types` 
+      SET `type_name` = "' . $_POST['type_name'] . '"
+      WHERE `t_id` = ' . $_POST['t_id']
+  );
+
+  $uCat = $oDB->query('
+  UPDATE `categories` 
+      SET `category_name` = "' . $_POST['category_name'] . '"
+      WHERE `c_id` = ' . $_POST['c_id']
+  );
+  
+  if ($uCat != "") 
+      echo "Категория обновлена.<br>";
+  else{
+          echo "Ошибка базы данных\r\n";
+          echo '>> ' . $oDB->getError();
+      }
+ 
+  exit();
+}
+
+//подвязываем итем к категории и меняем тип и категорию
 if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && ($_POST['item_name'] != '') ) {
     $uType = $oDB->query('
              UPDATE `types` 
              SET `type_name` = "' . $_POST['type_name'] . '"
-             WHERE `t_id` = "' . $_POST['t_id'] . '"'
+             WHERE `t_id` = ' . $_POST['t_id']
              );
 
     $uCategory = $oDB->query('
              UPDATE `categories` 
-             SET    `categorie_name` = "' . $_POST['category_name'] . '"
-             WHERE  `c_id` = "' . $_POST['c_id'] . '"'
+             SET    `category_name` = "' . $_POST['category_name'] . '"
+             WHERE  `c_id` = ' . $_POST['c_id']
              );	
 	
-	  $sItem = $oDB->selectField('
-      SELECT `item_name`
-          FROM `items`
-          WHERE `item_name` = "' . $_POST['item_name'] . '"
-          AND `category_id` = "' . $_POST['c_id'] . '"
+	$sItem = $oDB->selectField('
+          SELECT `item_name`
+          FROM   `items`
+          WHERE  `item_name` = "' . $_POST['item_name'] . '"
+          AND    `category_id` = "' . $_POST['c_id'] . '"
   ');
 
   if ($sItem == "") {
@@ -133,7 +158,8 @@ if( ($_POST['t_id'] != 0) && ($_POST['c_id'] != 0) && ($_POST['i_id'] == 0) && (
           echo '>> ' . $oDB->getError();
       }
       
-  } else {
+  } 
+  else {
       echo "Ошибка\r\n";
       echo ">> Это изделие уже есть в БД\r\n";
   }
