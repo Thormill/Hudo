@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 12 2011 г., 16:25
+-- Время создания: Окт 17 2011 г., 17:19
 -- Версия сервера: 5.1.54
 -- Версия PHP: 5.3.5-1ubuntu7.2
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `master_id` int(5) NOT NULL,
   `material_id` int(5) NOT NULL,
-  `amount` int(5) NOT NULL,
+  `amount` int(5) unsigned NOT NULL,
   `giver` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `date` int(12) NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
 
 CREATE TABLE IF NOT EXISTS `payments_history` (
   `h_id` int(5) NOT NULL AUTO_INCREMENT,
+  `payment_number` int(12) NOT NULL COMMENT 'номер блока платежа',
   `master_id` int(5) NOT NULL,
   `type_name` varchar(100) NOT NULL,
   `category_name` varchar(100) NOT NULL,
@@ -137,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `amount_to_make` int(4) NOT NULL,
   `amount_made` int(4) NOT NULL DEFAULT '0',
   `date` int(12) NOT NULL,
+  `date_to` int(12) NOT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `comment_author` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',

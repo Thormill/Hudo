@@ -4,6 +4,8 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
+$num = 0;
+
 $aMasters = $oDB->selectTable('
     SELECT `m_id`, `master_fio`, `phone`
         FROM `masters`
@@ -85,10 +87,15 @@ if (count($aPayments) > 0) {
             $sRowColor = '#bbbbbb';
         else
             $sRowColor = '#ffffff';
+            
+        if( $aPayment['payment_number'] != $num )
+            $num = $aPayment['payment_number'];
+        else
+            $aPayment['payment_number'] = '';
 
         $sTable .= '
             <tr bgcolor="' . $sRowColor . '">
-                <td>' . ($iPayment+1) . '</td>
+                <td>' . $aPayment['payment_number'] . '</td>
                 <td>' . $sMaster . '</td>
                 <td>' . date('d.m.Y', $aPayment['date']) . '</td>
                 <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>

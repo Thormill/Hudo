@@ -6,6 +6,13 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
+$iPaymentNum = $oDB->selectField('
+               SELECT `payment_number` 
+               FROM `payments_history`
+               ORDER BY `payment_number` DESC
+');
+$iPaymentNum++; //номер добавляемого плана больше последнего на один
+
 $c = 1;
 $k = $_POST['iPaymentCount'];
 for ($i = 1; $i <= $k; $i++)
@@ -35,15 +42,16 @@ for ($i = 1; $i <= $k; $i++)
 
         $iInsert = $oDB->insert('
             INSERT INTO `payments_history`
-                SET `master_id` = ' . $aPayment['fio'] . ',
-                `type_name`     = "' . $sType . '",
-                `category_name` = "' . $sCategory . '",
-                `item_name`     = "' . $sItem  . '",
-                `amount`        = ' . $aPayment['amount'] . ',
-                `price`         = ' . $aPayment['price'] . ',
-                `comment_text`  = "' . $aPayment['comment'] . '",
+                SET `master_id`  = ' . $aPayment['fio'] . ',
+                `payment_number` = ' . $iPaymentNum . ',
+                `type_name`      = "' . $sType . '",
+                `category_name`  = "' . $sCategory . '",
+                `item_name`      = "' . $sItem  . '",
+                `amount`         = ' . $aPayment['amount'] . ',
+                `price`          = ' . $aPayment['price'] . ',
+                `comment_text`   = "' . $aPayment['comment'] . '",
                 `comment_author` = "' . $_SESSION['username'] . '",
-                `date`          = UNIX_TIMESTAMP()'
+                `date`           = UNIX_TIMESTAMP()'
         );
         
         if ($iInsert != 0) {
