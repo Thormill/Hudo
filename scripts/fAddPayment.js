@@ -107,9 +107,8 @@ function rollPayment()
     $('#roll_button').html(''); $('#comment').html('');
     $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
     
-
-
-    $('#total_price').html('Итого: ' + iTotalPrice);
+    $('#price_text').html('Итого: ');
+    $('#total_price').html(iTotalPrice);
 }
 
 function delPayment(paymentNum) {
