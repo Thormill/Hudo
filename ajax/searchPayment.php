@@ -70,12 +70,8 @@ if (count($aPayments) > 0) {
             <td><b>#</b></td>
             <td><b>ФИО</b></td>
             <td><b>Дата</b></td>
-            <td><b>Вид / Категория / Изделие</b></td>
-            <td><b>Количество</b></td>
             <td><b>Цена</b></td>
-            <td><b>Общая цена</b></td>
-            <td><b>Комментарий</b></td>
-            <td><b>Автор комментария</b></td>
+            <td><b>Добавил</b></td>
         </tr>';
     foreach ($aPayments as $iPayment => $aPayment) {
         $sMaster = $oDB->selectField('
@@ -89,26 +85,37 @@ if (count($aPayments) > 0) {
         else
             $sRowColor = '#ffffff';
             
-        if( $aPayment['payment_number'] != $num )
+        if( $aPayment['payment_number'] != $num )//отделение по номеру платежа
             $num = $aPayment['payment_number'];
-        else
+        else {
             $aPayment['payment_number'] = '';
+            $aPayment['total_price'] = '';
+		}
 
+        if( ($aPayment['payment_number'] != '') && ($iPayment == 0) )
+            $sTable .= '<TABLE class="searchResult">';
+        if( ($aPayment['payment_number'] != '') && ($iPayment != 0) )
+            $sTable .= '</TABLE><TABLE class="searchResult">';
+        if($aPayment['payment_number'] != '')
+            $sTable .= '
+            <tr bgcolor="#face8d">
+                <td><b>' . $aPayment['payment_number'] . '</b></td>
+                <td><b>' . $sMaster . '</b></td>
+                <td><b>' . date('d.m.Y', $aPayment['date']) . '</b></td>
+                <td><b>' . $aPayment['total_price'] . '</b></td>
+                <td><i>' . $aPayment['comment_author'] . '</i></td>
+            </tr>';        
         $sTable .= '
             <tr bgcolor="' . $sRowColor . '">
-                <td>' . $aPayment['payment_number'] . '</td>
-                <td>' . $sMaster . '</td>
-                <td>' . date('d.m.Y', $aPayment['date']) . '</td>
                 <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
                 <td>' . $aPayment['amount'] . '</td>
                 <td>' . $aPayment['price'] . '</td>
-                <td>' . $aPayment['total_price'] . '</td>
                 <td>' . $aPayment['comment_text'] . '</td>
-                <td>' . $aPayment['comment_author'] . '</td>
+                <td></td>
             </tr>';
     }
     $sTable .= '
-        </table>';
+        </TABLE></table>';
     //print_r($aPayments);
     echo $sTable;
 } else
