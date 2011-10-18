@@ -50,6 +50,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
         </td>
         <td>
             <form id="fAddPayment" class="fAdd">
+				<p id="total_price"></p>
                 <p id="added_payments"></p>
                 <p id="add_button"></p>
             </form>

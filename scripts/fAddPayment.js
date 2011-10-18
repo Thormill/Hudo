@@ -1,6 +1,7 @@
 var iCurrPrice;
 var iPaymentCount = 0;
 var iMaterialCount = 0;
+var iTotalPrice = 0;
 
 function ShowPhone(m_id) {
     $('#phone_info').html(m_id);
@@ -76,6 +77,8 @@ function validPayment()
 
 function rollPayment()
 {
+//общая стоимость
+    iTotalPrice += parseInt($('#multiplier').val() * iCurrPrice);
 // генерация json кода
     jsonPayment =   '{"fio":' + $('#fio').val() + ',';
     jsonPayment +=  '"type":' + $('#type option:selected').val() + ',';
@@ -103,6 +106,10 @@ function rollPayment()
     $('#category').html(''); $('#item').html(''); $('#amount').html(''); $('#price').html(''); 
     $('#roll_button').html(''); $('#comment').html('');
     $('#add_button').html('<input type="button" onclick="addPayment();" value="Оплатить" />');
+    
+
+
+    $('#total_price').html('Итого: ' + iTotalPrice);
 }
 
 function delPayment(paymentNum) {
