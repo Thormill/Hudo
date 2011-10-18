@@ -49,6 +49,7 @@ for ($i = 1; $i <= $k; $i++)
                 `item_name`      = "' . $sItem  . '",
                 `amount`         = ' . $aPayment['amount'] . ',
                 `price`          = ' . $aPayment['price'] . ',
+                `total_price`    = ' . $_POST['total_cost'] . ',
                 `comment_text`   = "' . $aPayment['comment'] . '",
                 `comment_author` = "' . $_SESSION['username'] . '",
                 `date`           = UNIX_TIMESTAMP()'

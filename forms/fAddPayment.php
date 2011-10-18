@@ -53,6 +53,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 				<span id="price_text"></span><span id="total_price"></span>
                 <p id="added_payments"></p>
                 <p id="add_button"></p>
+                <input type="hidden" name="total_cost" id="hidden_total" />
             </form>
         </td>
     </tr>

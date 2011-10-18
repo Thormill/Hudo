@@ -109,6 +109,7 @@ function rollPayment()
     
     $('#price_text').html('Итого: ');
     $('#total_price').html(iTotalPrice);
+    $('#hidden_total').val(iTotalPrice);
 }
 
 function delPayment(paymentNum) {
@@ -136,7 +137,10 @@ function addPayment() {
             showMessage(data, 'info');
             $('#added_payments').html('');
             $('#add_button').html('');
+            $('#price_text').html('');
+            $('#total_price').html('');
             iPaymentCount = 0;
+            iTotalPrice = 0;
         });
 }
 

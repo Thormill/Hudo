@@ -73,6 +73,7 @@ if (count($aPayments) > 0) {
             <td><b>Вид / Категория / Изделие</b></td>
             <td><b>Количество</b></td>
             <td><b>Цена</b></td>
+            <td><b>Общая цена</b></td>
             <td><b>Комментарий</b></td>
             <td><b>Автор комментария</b></td>
         </tr>';
@@ -101,6 +102,7 @@ if (count($aPayments) > 0) {
                 <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
                 <td>' . $aPayment['amount'] . '</td>
                 <td>' . $aPayment['price'] . '</td>
+                <td>' . $aPayment['total_price'] . '</td>
                 <td>' . $aPayment['comment_text'] . '</td>
                 <td>' . $aPayment['comment_author'] . '</td>
             </tr>';
