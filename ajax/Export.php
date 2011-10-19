@@ -115,58 +115,67 @@ if($sMaterials != 0){
 	}
 }
 /*-------------------------------------------------------------------------*/
-$objPHPExcel->createSheet();
-$objPHPExcel->setActiveSheetIndex(3);
-$aSheet = $objPHPExcel->getActiveSheet();
-$aSheet->setTitle('Платежи');
+if(isset($_POST['export_settings'][5])){
+    $objPHPExcel->createSheet();
+    $objPHPExcel->setActiveSheetIndex(3);
+    $aSheet = $objPHPExcel->getActiveSheet();
+    $aSheet->setTitle('Платежи');
 
-$aSheet->setCellValue("A1", "Мастер");
-$aSheet->setCellValue("B1", "Дата");
-$aSheet->setCellValue("C1", "Вид/Категория/Изделие");
-$aSheet->setCellValue("D1", "Количество");
-$aSheet->setCellValue("E1", "Цена");
-$aSheet->setCellValue("F1", "комментарий");
-$aSheet->setCellValue("G1", "автор комментария");
+    $aSheet->setCellValue('A1', '#');
+    $aSheet->setCellValue('B1', 'Мастер');
+    $aSheet->setCellValue('C1', 'Дата');
+    $aSheet->setCellValue('D1', 'Вид / Категория / Изделие');
+    $aSheet->setCellValue('E1', 'Количество');
+    $aSheet->setCellValue('F1', 'Цена');
+    $aSheet->setCellValue('G1', 'Комментарий');
+    $aSheet->setCellValue('H1', 'Автор комментария');
 
-$aSheet->getColumnDimension('A')->setWidth(30);
-$aSheet->getColumnDimension('B')->setWidth(25);
-$aSheet->getColumnDimension('C')->setWidth(30);
-$aSheet->getColumnDimension('D')->setWidth(10);
-$aSheet->getColumnDimension('E')->setWidth(10);
-$aSheet->getColumnDimension('F')->setWidth(40);
-$aSheet->getColumnDimension('G')->setWidth(40);
+    $aSheet->getColumnDimension('A')->setWidth(10);
+    $aSheet->getColumnDimension('B')->setWidth(30);
+    $aSheet->getColumnDimension('C')->setWidth(25);
+    $aSheet->getColumnDimension('D')->setWidth(30);
+    $aSheet->getColumnDimension('E')->setWidth(10);
+    $aSheet->getColumnDimension('F')->setWidth(10);
+    $aSheet->getColumnDimension('G')->setWidth(40);
+    $aSheet->getColumnDimension('H')->setWidth(40);
 
-$aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
-$aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
-$aSheet->getStyle('C1')->applyFromArray($boldFont)->applyFromArray($left);
-$aSheet->getStyle('D1')->applyFromArray($boldFont)->applyFromArray($center);
-$aSheet->getStyle('E1')->applyFromArray($boldFont)->applyFromArray($left);
-$aSheet->getStyle('F1')->applyFromArray($boldFont)->applyFromArray($left);
-$aSheet->getStyle('G1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('C1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('D1')->applyFromArray($boldFont)->applyFromArray($center);
+    $aSheet->getStyle('E1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('F1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('G1')->applyFromArray($boldFont)->applyFromArray($left);
+    $aSheet->getStyle('H1')->applyFromArray($boldFont)->applyFromArray($left);
 
-$res = mysql_query("SELECT * FROM payments_history");
-$i = 1;
-while($row = mysql_fetch_array($res)){
-	$i++;
-	if(isset($_POST['export_settings'][5])){
-		$master_fio = mysql_query("SELECT master_fio FROM masters WHERE m_id='".$row['master_id']."'");
-                $fio = mysql_fetch_array($master_fio);
+    $aPayments = $oDB->selectTable('
+        SELECT * FROM payments_history
+    ');
+    $i = 1;
+    foreach($aPayments as $iPayment => $aPayment){
+        $i++;
 
-		$aSheet->setCellValue("A".$i, $fio['master_fio']);
+		$fio = $oDB->selectField('
+		    SELECT `master_fio` FROM `masters` WHERE m_id="' . $aPayment['master_id'] . '"
+		');
+		
+		$aSheet->setCellValue('A'.$i, $aPayment['payment_number']);
 		$aSheet->getStyle('A'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("B".$i, date('Y-M-d / H:m', $row['date']));
+		$aSheet->setCellValue('B'.$i, $fio);
 		$aSheet->getStyle('B'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("C".$i, $row['type_name']." / ".$row['category_name']." / ".$row['item_name']);
+		$aSheet->setCellValue('C'.$i, date('Y-M-d / H:m', $aPayment['date']));
 		$aSheet->getStyle('C'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("D".$i, $row['amount']);
+		$aSheet->setCellValue('D'.$i, $aPayment['type_name']." / ".$aPayment['category_name']." / ".$aPayment['item_name']);
 		$aSheet->getStyle('D'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("E".$i, $row['price']);
+		$aSheet->setCellValue('E'.$i, $aPayment['amount']);
 		$aSheet->getStyle('E'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("F".$i, $row['comment_text']);
+		$aSheet->setCellValue('F'.$i, $aPayment['price']);
 		$aSheet->getStyle('F'.$i)->applyFromArray($center);
-		$aSheet->setCellValue("G".$i, $row['comment_author']);
+		$aSheet->setCellValue('G'.$i, $aPayment['comment_text']);
 		$aSheet->getStyle('G'.$i)->applyFromArray($center);
-	}
+		$aSheet->setCellValue('H'.$i, $aPayment['comment_author']);
+		$aSheet->getStyle('H'.$i)->applyFromArray($center);
+    }
 }
 /*----file create----*/
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
