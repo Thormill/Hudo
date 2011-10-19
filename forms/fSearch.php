@@ -1,15 +1,18 @@
 <link rel="stylesheet" type="text/css" href="style/fSearch.css" />
 <link rel="stylesheet" type="text/css" href="style/sunny/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" href="style/autocompleter.css" />
 <script type="text/javascript" src="scripts/fSearch.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui-1.8.16.js"></script>
 <script type="text/javascript" src="scripts/jquery.ui.datepicker-ru.js"></script>
+<script type="text/javascript" src="scripts/jquery-autocomplete.js"></script>
+
 
 <form id="fSearch" class="fSearch">
     <p>Введите данные для поиска:</p>
     <table>
         <tr>
             <td>
-                <p>ФИО мастера: <input type="text" name="s_fio" /></p>
+                <p>ФИО мастера: <input type="text" name="s_fio" id="fio" /></p>
                 <p>Телефон: <input type="text" name="s_phone" /></p>
             </td>
             <td>

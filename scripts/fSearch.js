@@ -17,3 +17,11 @@ function pickDate() {
     } else
         $('#p_datepicker').html('');
 };
+
+$(document).ready(function(){
+    var masters = '';
+    $.post('ajax/loadMastersArray.php', null,
+        function (data) {masters = data.split(';')}).done(function(){
+		$("#fio").autocomplete(masters);
+	  });    
+});
