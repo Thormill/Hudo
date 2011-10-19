@@ -91,7 +91,8 @@ function addMaster() {
             $.post('ajax/MasterControl.php', $('#MasterControl').serialize(),
                 function (data) {
                     showMessage(data);
-                });
+                    
+                }).done(function() {LoadMasters();});
 			MasterClear();
         }
         else
@@ -106,28 +107,30 @@ function ItemAdd() {
     function (data) {
        showMessage(data);
 	ItemsClear();
-    });
+    }).done(function() {
+	       LoadTypes();
+	   });
 }
 
 function MaterialClick() {
     $('#matbutton').val('изменить');
-    $('#amaterial').val( $('#materiallist option:selected').text() );
+    $('#aMaterial').val( $('#MaterialList option:selected').text() );
     table = 'materials';
-    myid = $('#materiallist option:selected').val();
+    myid = $('#MaterialList option:selected').val();
 }
 
 function MaterialAdd() {
     $.post('ajax/MaterialControl.php', $('#MaterialControl').serialize(),
     function (data) {
        showMessage(data);
-    });
+    }).done(function() {LoadMaterials();});
 	MaterialClear();
 }
 
 function MaterialClear() {
-    $('#materiallist option:first').attr('selected','1');
+    $('#MaterialList option:first').attr('selected','1');
     $('#matbutton').val('добавить');
-    $('#amaterial').val('');
+    $('#aMaterial').val('');
     table = '';
     myid = 0;    
 }
@@ -140,3 +143,30 @@ function Delete() {
     MasterClear();
     ItemsClear();
 }
+
+function LoadMasters() {
+$.post('ajax/loadMasters.php', null,
+    function (data) {
+        $('#MasterList').html(data);
+	});
+}
+
+function LoadTypes() {
+$.post('ajax/loadTypes.php', null,
+    function (data) {
+        $('#mType').html(data);
+	});
+}
+
+function LoadMaterials() {
+$.post('ajax/loadMaterials.php', null,
+    function (data) {
+		$('#MaterialList').html(data);
+	});
+}
+
+$(document).ready(function() {
+	LoadTypes();
+    LoadMasters();
+    LoadMaterials();
+});

@@ -14,18 +14,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   <div>
     <p>Здесь можно добавить тип, категорию и само изделие, а также указать его стоимость.</p>
 	  <div id="loaded">
-	    <SELECT size="5" class="multiselect" id="mType" name="t_id" onChange="TypeClick();">
-	      <?php
-          $aType = $oDB->selectTable('
-            SELECT `t_id`, `type_name`
-                    FROM `types`
-                    ORDER BY `type_name` ASC'
-          );
-          echo '<option value="0">--Выберите тип изделия--</option>';
-          foreach ($aType as $iType => $aType)
-            echo '<option value="' . $aType['t_id'] . '">' . $aType['type_name'] . '</option>';
-        ?>
-	    </SELECT>
+	    <SELECT size="5" class="multiselect" id="mType" name="t_id" onChange="TypeClick();"></SELECT>
 		<SELECT size="5" class="multiselect" id="mCategory" name="c_id" onChange="CategoryClick();">
 		    <option value="0">----Сначала выберите тип----</option>
         </SELECT>
@@ -52,18 +41,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     <p>
 	  <label>Фио:</label>
 	  <input type="text" id="fio" name="fio"></input>
-	  <SELECT id="MasterList" name="m_id" onChange="MasterSelect(this.options[this.selectedIndex].text);">
-	    <?php
-          $aMasters = $oDB->selectTable('
-            SELECT `m_id`, `master_fio`
-                    FROM `masters`
-                    ORDER BY `master_fio` ASC'
-          );
-          echo '<option value="0">--Выберите мастера--</option>';
-          foreach ($aMasters as $iMaster => $aMaster)
-            echo '<option value="' . $aMaster['m_id'] . '">' . $aMaster['master_fio'] . '</option>';
-        ?>
-	  </SELECT>
+	  <SELECT id="MasterList" name="m_id" onChange="MasterSelect(this.options[this.selectedIndex].text);"></SELECT>
 	</p>
     <p><label>Телефон:</label><input type="text" name="phone" id="phone"></input></p>
 	<p>
@@ -80,21 +58,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
   <div>
     <p>Здесь можно отредактировать заготовки</p>
 	<div class="dItems">
-	  <SELECT size="5" class="multiselect" id="materiallist" onChange="MaterialClick();" name="material_id">
-        <?php
-          $sMaterials = $oDB->selectTable('
-            SELECT `material_id`, `material_name`
-                    FROM `materials`
-                    ORDER BY `material_name` ASC'
-          );
-          echo '<option value="0">--Выберите заготовку--</option>';
-          foreach ($sMaterials as $sMaterial => $uMaterial)
-            echo '<option value="' . $uMaterial['material_id'] . '">' . $uMaterial['material_name'] . '</option>';
-        ?>
-	  </SELECT>      
+	  <SELECT size="5" class="multiselect" id="MaterialList" onChange="MaterialClick();" name="material_id"></SELECT>      
     </div>
 	<div>
-	  <label for="amaterial">Название</label><input type="text" id="amaterial" name="material_name"></input>	  
+	  <label for="aMaterial">Название</label><input type="text" id="aMaterial" name="material_name"></input>	  
 	</div>
     <input type="button" onClick="MaterialAdd();" value="добавить" id="matbutton" />
     <input type="button" onClick="MaterialClear();" value="очистить" />
