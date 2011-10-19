@@ -65,14 +65,14 @@ $sQuery .= '
 $aPayments = $oDB->selectTable($sQuery);
 
 if (count($aPayments) > 0) {
-    $sTable = '<table class="searchResult">
-        <tr>
+    $sTable = '<table class="searchResult">';
+        /*<tr>
             <td><b>#</b></td>
             <td><b>ФИО</b></td>
             <td><b>Дата</b></td>
             <td><b>Цена</b></td>
             <td><b>Добавил</b></td>
-        </tr>';
+        </tr>';*/
     foreach ($aPayments as $iPayment => $aPayment) {
         $sMaster = $oDB->selectField('
             SELECT `master_fio`
@@ -93,9 +93,9 @@ if (count($aPayments) > 0) {
 		}
 
         if( ($aPayment['payment_number'] != '') && ($iPayment == 0) )
-            $sTable .= '<TABLE class="searchResult">';
+            $sTable .= '<tr><td><TABLE class="searchResult">';
         if( ($aPayment['payment_number'] != '') && ($iPayment != 0) )
-            $sTable .= '</TABLE><TABLE class="searchResult">';
+            $sTable .= '</TABLE></td></tr><tr><td></td></tr><tr><td><TABLE class="searchResult">';
         if($aPayment['payment_number'] != '')
             $sTable .= '
             <tr bgcolor="#face8d">
@@ -110,12 +110,12 @@ if (count($aPayments) > 0) {
                 <td>' . $aPayment['type_name'] . ' / ' . $aPayment['category_name'] . ' / ' . $aPayment['item_name'] . '</td>
                 <td>' . $aPayment['amount'] . '</td>
                 <td>' . $aPayment['price'] . '</td>
-                <td>' . $aPayment['comment_text'] . '</td>
                 <td></td>
+                <td>' . $aPayment['comment_text'] . '</td>
             </tr>';
     }
     $sTable .= '
-        </TABLE></table>';
+        </tr></td></TABLE></table>';
     //print_r($aPayments);
     echo $sTable;
 } else
