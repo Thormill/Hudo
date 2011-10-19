@@ -152,18 +152,27 @@ if(isset($_POST['export_settings'][5])){
         SELECT * FROM payments_history
     ');
     $i = 1;
+    $iPnum;
     foreach($aPayments as $iPayment => $aPayment){
         $i++;
-
-		$fio = $oDB->selectField('
-		    SELECT `master_fio` FROM `masters` WHERE m_id="' . $aPayment['master_id'] . '"
-		');
+		if($aPayment['payment_number'] == $iPnum){
+		    $aPayment['payment_number'] = '';
+		    $fio = '';
+		    $aPayment['date'] = ' ';
+		}
+		else {
+		    $iPnum = $aPayment['payment_number'];
+		   	$fio = $oDB->selectField('
+		        SELECT `master_fio` FROM `masters` WHERE m_id="' . $aPayment['master_id'] . '"
+		    ');
+		    $aPayment['date'] = date('Y-M-d / H:m', $aPayment['date']);
+		}
 		
 		$aSheet->setCellValue('A'.$i, $aPayment['payment_number']);
 		$aSheet->getStyle('A'.$i)->applyFromArray($center);
 		$aSheet->setCellValue('B'.$i, $fio);
 		$aSheet->getStyle('B'.$i)->applyFromArray($center);
-		$aSheet->setCellValue('C'.$i, date('Y-M-d / H:m', $aPayment['date']));
+		$aSheet->setCellValue('C'.$i, $aPayment['date']);
 		$aSheet->getStyle('C'.$i)->applyFromArray($center);
 		$aSheet->setCellValue('D'.$i, $aPayment['type_name']." / ".$aPayment['category_name']." / ".$aPayment['item_name']);
 		$aSheet->getStyle('D'.$i)->applyFromArray($center);
