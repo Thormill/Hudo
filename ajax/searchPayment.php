@@ -66,13 +66,7 @@ $aPayments = $oDB->selectTable($sQuery);
 
 if (count($aPayments) > 0) {
     $sTable = '<table class="searchResult">';
-        /*<tr>
-            <td><b>#</b></td>
-            <td><b>ФИО</b></td>
-            <td><b>Дата</b></td>
-            <td><b>Цена</b></td>
-            <td><b>Добавил</b></td>
-        </tr>';*/
+
     foreach ($aPayments as $iPayment => $aPayment) {
         $sMaster = $oDB->selectField('
             SELECT `master_fio`
@@ -95,15 +89,15 @@ if (count($aPayments) > 0) {
         if( ($aPayment['payment_number'] != '') && ($iPayment == 0) )
             $sTable .= '<tr><td><TABLE class="searchResult">';
         if( ($aPayment['payment_number'] != '') && ($iPayment != 0) )
-            $sTable .= '</TABLE></td></tr><tr><td></td></tr><tr><td><TABLE class="searchResult">';
+            $sTable .= '</TABLE></td></tr>&nbsp;<tr><td></td></tr><tr><td><TABLE class="searchResult">';
         if($aPayment['payment_number'] != '')
             $sTable .= '
             <tr bgcolor="#face8d">
-                <td><b>' . $aPayment['payment_number'] . '</b></td>
-                <td><b>' . $sMaster . '</b></td>
-                <td><b>' . date('d.m.Y', $aPayment['date']) . '</b></td>
-                <td><b>' . $aPayment['total_price'] . '</b></td>
-                <td><i>' . $aPayment['comment_author'] . '</i></td>
+                <td width="30%"><b>' . $aPayment['payment_number'] . '</b></td>
+                <td width="30%"><b>' . $sMaster . '</b></td>
+                <td width="10%"><b>' . $aPayment['total_price'] . '</b></td>
+                <td width="15%"><b>' . date('d.m.Y', $aPayment['date']) . '</b></td>
+                <td width="15%"><i>' . $aPayment['comment_author'] . '</i></td>
             </tr>';        
         $sTable .= '
             <tr bgcolor="' . $sRowColor . '">

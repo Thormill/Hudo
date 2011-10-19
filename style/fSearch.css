@@ -53,6 +53,10 @@
     border:1px solid ;
 }
 
+.searchResult tr {
+    border:2px solid ;
+}
+
 #content {
     width:970px;
     padding-left:15px;
