@@ -11,6 +11,5 @@ $aItems = $oDB->selectTable('
         ORDER BY `item_name` ASC'
 );
 
-echo '<option value="0">--Выберите изделие--</option>';
 foreach ($aItems as $iItem => $aItem)
     echo '<option value="' . $aItem['i_id'] . '">' . $aItem['item_name'] . '</option>';

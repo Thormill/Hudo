@@ -10,6 +10,5 @@ $aTypes = $oDB->selectTable('
         ORDER BY `type_name` ASC'
 );
 
-echo '<option value="0">--Выберите тип изделия--</option>';
 foreach ($aTypes as $iType => $aType)
     echo '<option value="' . $aType['t_id'] . '">' . $aType['type_name'] . '</option>';

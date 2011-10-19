@@ -11,6 +11,5 @@ $aCategories = $oDB->selectTable('
         ORDER BY `category_name` ASC'
 );
 
-echo '<option value="0">--Выберите категорию изделия--</option>';
 foreach ($aCategories as $iCategory => $aCategory)
     echo '<option value="' . $aCategory['c_id'] . '">' . $aCategory['category_name'] . '</option>';
