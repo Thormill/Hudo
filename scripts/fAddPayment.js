@@ -151,11 +151,13 @@ function rollMaterial()
 			// генерация json кода
 			jsonMaterial =   '{"master_id":' + $('#fio').val() + ',';
 			jsonMaterial +=  '"material_id":' + $('#material option:selected').val() + ',';
-			jsonMaterial +=  '"amount":' + $('#material_amount').val() + '}';
+			jsonMaterial +=  '"amount":' + $('#material_amount').val() + ',';
+			jsonMaterial +=  '"comment":"' + $('#material_comment').val() + '"}';
 			// генерация текстового хэндла
 			sMaterial =  'Мастер: ' + $('#fio option:selected').text() + '<br />';
 			sMaterial += 'Наименование: ' + $('#material option:selected').text() + '<br />';
 			sMaterial += 'Количество: ' + $('#material_amount').val() + '<br />';
+			sMaterial += 'Комментарий: ' + $('#material_comment').val();
 			// добавление платежа в колонку платежей    
 			iMaterialCount++;
 			if ($('#added_materials').html() == '')
@@ -165,6 +167,7 @@ function rollMaterial()
 				'<input type="hidden" name="material' + iMaterialCount + '" value=\'' + jsonMaterial +'\' /></div>');    
 			$('#add_mbutton').html('<input type="button" onclick="addMaterial();" value="Выдать" />');
 			$('#material_amount').val('1');
+			$('#material_comment').val('');
 			$('#material option:first').attr('selected','1');
 		}
 		else{

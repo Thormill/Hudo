@@ -22,13 +22,13 @@
     float: left;
 }
 
+.master_container p {
+    margin-bottom: 1px;
+}
+
 .materials_container {
     width: 300px;
     margin: 5px;
     padding: 5px;
     float: left;
-}
-
-.materials_container input {
-    width: 30px;
 }

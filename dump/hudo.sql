@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Окт 18 2011 г., 13:48
+-- Время создания: Окт 19 2011 г., 12:12
 -- Версия сервера: 5.1.54
--- Версия PHP: 5.3.5-1ubuntu7.2
+-- Версия PHP: 5.3.5-1ubuntu7.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -439,16 +439,19 @@ CREATE TABLE IF NOT EXISTS `left_items` (
   `amount` int(4) NOT NULL,
   `date` int(12) NOT NULL,
   PRIMARY KEY (`left_item_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `left_items`
 --
 
 INSERT INTO `left_items` (`left_item_id`, `item_id`, `amount`, `date`) VALUES
-(1, 13, 1, 0),
-(2, 119, 2, 0),
-(3, 171, 1, 0);
+(1, 13, 2, 0),
+(2, 119, 4, 0),
+(3, 171, 1, 0),
+(4, 3, 2, 0),
+(5, 7, 1, 0),
+(6, 31, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -629,6 +632,7 @@ CREATE TABLE IF NOT EXISTS `materials_out` (
   `amount` int(5) unsigned NOT NULL,
   `giver` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `date` int(12) NOT NULL,
+  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -653,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
   `comment_author` varchar(150) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`h_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `payments_history`
@@ -662,7 +666,14 @@ CREATE TABLE IF NOT EXISTS `payments_history` (
 INSERT INTO `payments_history` (`h_id`, `payment_number`, `master_id`, `type_name`, `category_name`, `item_name`, `amount`, `price`, `total_price`, `comment_text`, `comment_author`, `date`) VALUES
 (1, 1, 28, '15', 'большая', 'картинка', 1, 1750, 0, '', 'Admin', 1318930186),
 (2, 2, 98, '3', '14 см', 'Жостово ', 2, 20, 120, '', 'Admin', 1318931100),
-(3, 2, 98, 'ангел ', 'ангел ', 'ангел ', 1, 100, 120, '', 'Admin', 1318931100);
+(3, 2, 98, 'ангел ', 'ангел ', 'ангел ', 1, 100, 120, '', 'Admin', 1318931100),
+(4, 3, 93, '15', 'большая', 'картинка', 1, 1750, 5150, '', 'Admin', 1318946683),
+(5, 3, 93, '30', 'большая', 'лицо', 1, 900, 5150, '', 'Admin', 1318946684),
+(6, 3, 93, '20', 'большая', 'картинка', 1, 2100, 5150, '', 'Admin', 1318946684),
+(7, 3, 93, '3', '14 см', 'Жостово ', 1, 400, 5150, '', 'Admin', 1318946684),
+(8, 4, 45, '10', '14 см', 'Жостово', 1, 450, 1850, '', 'Admin', 1319010406),
+(9, 4, 45, '30', 'большая', 'лицо', 1, 900, 1850, '', 'Admin', 1319010406),
+(10, 4, 45, '3', '14 см', 'Жостово ', 1, 500, 1850, 'доделать', 'Admin', 1319010406);
 
 -- --------------------------------------------------------
 

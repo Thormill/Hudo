@@ -10,7 +10,7 @@ else
     $search = '';
 
 $sMaterials = $oDB->SelectTable('
-       SELECT `id`, `master_id`, `material_id`, `amount`, `date`, `giver`
+       SELECT *
        FROM `materials_out`
        ' . $search . '
        ORDER BY `date` DESC
@@ -42,18 +42,19 @@ foreach($sMaterials as $iMaterial => $sMaterial){
 		    WHERE `m_id` = "' . $sMaterial['master_id'] . '"
 		');
 		echo '<div class="container"><div class="master_container">
-		      <p>Мастер: ' . $master_fio . '</p> 
+		      <p>Мастер: <b>' . $master_fio . '</b></p> 
 		      <p>Телефон: ' . $master_phone . '</p>
-		      <p>Дата выдачи: ' . date('Y-M-d, H:i', $sMaterial['date']) . '<p>
+		      <p>Дата выдачи: ' . date('Y-M-d, H:i', $sMaterial['date']) . '</p>
 		      <p>Выдал: ' . $sMaterial['giver'] . '</p>
+		      <p>Комментарий: <i>' . $sMaterial['comment'] . '</i></p>
 		      </div><div class="materials_container">';
 	}
 	    if ($sMaterial['amount'] == 0)
 			$material_form = '<p>' . $material . '</p>';
 		else
-		    $material_form='<p><input type="checkbox" value="' . $sMaterial['id'] . '" 
-              onClick="MaterialClick(this);">' . $material . '</input>
-              (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" /> штуки)</p>';
+		    $material_form='<p><input type="button" id="' . $sMaterial['id'] . '" 
+              onClick="MaterialClick(this);" value="принять" />' . $material . '
+              (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" style="width: 25px;" /> штуки)</p>';
 		
         echo $material_form;
         if($sMaterial['master_id'] != $m_id){

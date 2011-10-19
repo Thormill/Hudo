@@ -74,9 +74,8 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
                     ?>
 				</SELECT>
 			</p>
-			<p>Кол-во:
-			  <input type="text" value="1" id="material_amount" />
-			</p>
+			<p>Кол-во: <input type="text" value="1" id="material_amount" /></p>
+			<p>Комментарий: <input type="text" id="material_comment" /></p>
 			<p><input type="button" value="Выдать" onClick="rollMaterial();" /></p>
 	      </div>
 	    </td>

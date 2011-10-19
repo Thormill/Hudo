@@ -29,7 +29,8 @@ for ($i = 1; $i <= $k; $i++)
 			$sU_Amount = $oDB->query('
 				UPDATE `materials_out`
 				SET `amount` = ' . $new_val = $sM_Amount + $aMaterial['amount'] . ',
-					`date` = UNIX_TIMESTAMP()
+					`date` = UNIX_TIMESTAMP(),
+					`comment` = "' . $aMaterial['comment'] . '"
 				WHERE `id` = ' . $sMaterial 
 			);
 			echo 'Заготовка ' . $c . ' добавлена к выданным<br />';
@@ -44,7 +45,8 @@ for ($i = 1; $i <= $k; $i++)
 					`amount`       = ' . $aMaterial['amount'] . ',
 					`giver`        = "' . $_SESSION['username'] . '",
 					`status`       = 0,
-					`date`         = UNIX_TIMESTAMP()
+					`date`         = UNIX_TIMESTAMP(),
+					`comment`      = "' . $aMaterial['comment'] . '"
 			');
         
 			if ($iInsert != 0) {
