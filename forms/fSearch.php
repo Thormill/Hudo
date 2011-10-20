@@ -6,7 +6,6 @@
 <script type="text/javascript" src="scripts/jquery.ui.datepicker-ru.js"></script>
 <script type="text/javascript" src="scripts/jquery-autocomplete.js"></script>
 
-
 <form id="fSearch" class="fSearch">
     <p>Введите данные для поиска:</p>
     <table>

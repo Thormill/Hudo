@@ -20,6 +20,10 @@ for ($i = 1; $i <= $k; $i++)
     {
         $jsonPlan = str_replace("\\", "", $_POST['planpoint' . $i]);
         $aPlan = json_decode($jsonPlan, true);
+        
+        $date_elements  = explode("/", $aPlan['date_to']);
+        $date_to = mktime(0, 0, 0, $date_elements[1], $date_elements[2], $date_elements[0]);
+        
         $sLeftItems = $oDB->selectField('
 			SELECT `amount`
 			FROM `left_items`
@@ -45,6 +49,7 @@ for ($i = 1; $i <= $k; $i++)
 					`comment`        = "' . $aPlan['comment'] . '",
 					`comment_author` = "' . $_SESSION['username'] . '",
 					`date`           = UNIX_TIMESTAMP(),
+					`date_to`        = ' . $date_to . ',
 					`status`         = 1
 				');
 				echo 'В пункте ' . $c . ' все нужные изделия есть на складе. Автоматически списано со склада и добавлено в план.<br>';
@@ -67,7 +72,8 @@ for ($i = 1; $i <= $k; $i++)
 					`price`          = ' . $aPlan['price'] . ',
 					`comment`        = "' . $aPlan['comment'] . '",
 					`comment_author` = "' . $_SESSION['username'] . '",
-					`date`           = UNIX_TIMESTAMP()
+					`date`           = UNIX_TIMESTAMP(),
+					`date_to`        = ' . $date_to . ',
 				');
 				echo 'В пункте ' . $c . ' на складе находится ' . $sLeftItems . ' изделий. Автоматически перевел со склада в план<br>';
 				$c++;
@@ -85,8 +91,9 @@ for ($i = 1; $i <= $k; $i++)
                 `price`          = ' . $aPlan['price'] . ',
                 `comment`        = "' . $aPlan['comment'] . '",
                 `comment_author` = "' . $_SESSION['username'] . '",
-                `date`           = UNIX_TIMESTAMP()
-        ');
+                `date`           = UNIX_TIMESTAMP(),
+				`date_to`        = ' . $date_to
+        );
 
         if ($iInsert != 0) {
             echo 'Пункт ' . $c . ' добавлен в план<br />';
