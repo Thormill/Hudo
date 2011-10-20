@@ -34,7 +34,10 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
     Ваш комментарий: <input type="text" id="comment" />
 
 </form>
-	<p><input type="checkbox" id="closed" onChange="PlanShow();">Показывать завершенные планы</input></p>
+	<p>
+		<input type="checkbox" id="closed" onChange="PlanShow();">Показывать завершенные планы</input>
+	    <input type="checkbox" id="expired" onChange="PlanShow();">Показывать просроченые планы</input>
+	</p>
 
 <div id = "planlist" class="planlist"></div>
 

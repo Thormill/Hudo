@@ -73,8 +73,8 @@ for ($i = 1; $i <= $k; $i++)
 					`comment`        = "' . $aPlan['comment'] . '",
 					`comment_author` = "' . $_SESSION['username'] . '",
 					`date`           = UNIX_TIMESTAMP(),
-					`date_to`        = ' . $date_to . '
-				');
+					`date_to`        = ' . $date_to 
+				);
 				echo 'В пункте ' . $c . ' на складе находится ' . $sLeftItems . ' изделий. Автоматически перевел со склада в план<br>';
 				$c++;
 				continue;

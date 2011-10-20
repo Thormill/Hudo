@@ -4,10 +4,16 @@ require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 
+$status ='WHERE (1 ';
 if( $_POST['closed'] == 'true' )
-    $status = '';
+    $status .= '';
 else
-    $status = 'WHERE `status` = 0';
+    $status .= 'AND `status` = 0';
+    
+if( $_POST['expired'] != 'true' )
+    $status .= ' AND UNIX_TIMESTAMP() < `date_to`';
+$status .= ')';
+echo $status;
 
 $sPlans = $oDB->selectTable('
         SELECT *

@@ -113,9 +113,8 @@ function PlanClear() {
 }
 
 function PlanShow() {
-    $.post('ajax/planShow.php', {closed : $('#closed').prop('checked')},
+    $.post('ajax/planShow.php', {closed : $('#closed').prop('checked'), expired : $('#expired').prop('checked')},
         function (data) {
-		  $('#planlist').html();
 		  $('#planlist').html(data);
 		});
 }
