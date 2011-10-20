@@ -22,7 +22,7 @@ for ($i = 1; $i <= $k; $i++)
         $aPlan = json_decode($jsonPlan, true);
         
         $date_elements  = explode("/", $aPlan['date_to']);
-        $date_to = mktime(0, 0, 0, $date_elements[1], $date_elements[2], $date_elements[0]);
+        $date_to = mktime(0, 0, 0, $date_elements[1], $date_elements[0], $date_elements[2]);
         
         $sLeftItems = $oDB->selectField('
 			SELECT `amount`
@@ -73,7 +73,7 @@ for ($i = 1; $i <= $k; $i++)
 					`comment`        = "' . $aPlan['comment'] . '",
 					`comment_author` = "' . $_SESSION['username'] . '",
 					`date`           = UNIX_TIMESTAMP(),
-					`date_to`        = ' . $date_to . ',
+					`date_to`        = ' . $date_to . '
 				');
 				echo 'В пункте ' . $c . ' на складе находится ' . $sLeftItems . ' изделий. Автоматически перевел со склада в план<br>';
 				$c++;

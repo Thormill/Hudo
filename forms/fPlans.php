@@ -18,7 +18,7 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	<SELECT id="typelist" name="type" onChange="TypeClick();"></SELECT>
 	
 	<SELECT id="categorylist" name="category" onChange="CategoryClick();">
-		<option value="0">--категория изделия--</option>
+		<option value="0">--выберите категорию--</option>
 	</SELECT>
 	
 	<SELECT id="itemlist" name="item" onChange="ItemClick();">
@@ -27,11 +27,11 @@ $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $
 	
 	<input type="text" name="amount" id="amount" value="1" onKeyUp="AmountChange();">шт.</input>
 	<input type="text" name="price" id="price">руб.</input>
-	<input type="text" id="datepicker" name="datepicker" />
+	<input type="text" id="datepicker" />
 	<input type="button" onClick="validPlan();" value="+" />
     <input type="button" onClick="Add();" value="добавить" />
   </div>
-    Ваш комментарий: <input type="text" value="-" id="comment" />
+    Ваш комментарий: <input type="text" id="comment" />
 
 </form>
 	<p><input type="checkbox" id="closed" onChange="PlanShow();">Показывать завершенные планы</input></p>

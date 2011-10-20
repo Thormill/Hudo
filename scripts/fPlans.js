@@ -8,7 +8,7 @@ function TypeClick() {
     $('#categorylist option').attr('selected', false);
     $.post('ajax/loadCategories.php', { t_id : $('#typelist option:selected').val()},
     function (data) {
-       $('#categorylist').html(data);
+       $('#categorylist').html('<option value="0">--Выберите категорию--</option>' + data);
     });
 }
 
@@ -17,7 +17,7 @@ function CategoryClick() {
     $('#price').val('');
     $.post('ajax/loadItems.php', { c_id : $('#categorylist option:selected').val()},
     function (data) {
-       $('#itemlist').html(data);
+       $('#itemlist').html('<option value="0">--Выберите изделие--</option>' + data);
     });
 }
 
@@ -41,7 +41,7 @@ function AmountChange() {
 
 function validPlan()
 {
-    if ( ($('#categorylist option:selected').val() != 0) && ($('#itemlist option:selected').val() != 0) ) {
+    if ( ($('#typelist option:selected').val() != 0) && ($('#categorylist option:selected').val() != 0) && ($('#itemlist option:selected').val() != 0) ) {
         if ($('#amount').val() != 0) {
             if ($('#price').val() != 0) {
                 AddToList();
@@ -123,16 +123,10 @@ function PlanShow() {
 $(document).ready(function() {
 	$.post('ajax/loadTypes.php', null,
 	    function(data){
-			$('#typelist').html(data);
-		}).done(function(){
-			TypeClick();
-                $.post('ajax/loadItems.php', { c_id : 11},
-                    function (data) {
-                    $('#itemlist').html(data);
-                });
-		});
+			$('#typelist').html('<option value="0">--Выберите тип--</option>' + data);
+		})
 	$('#datepicker').datepicker();
 // вставка подсказки
-    $('#datepicker').val('закончить до');
+    $('#datepicker').val('до даты');
     PlanShow();
 });

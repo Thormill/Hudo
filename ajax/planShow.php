@@ -25,7 +25,7 @@ foreach($sPlans as $iPlan => $aPlan){
 		$counter = TRUE;
 		echo '<div class="container"><div class="plan_container">
 		      <p>План номер: ' . $aPlan['plan_number'] . '</p> 
-		      <p>Выполнить до: ' . date('Y/M/d', $aPlan['date']) . '</p>
+		      <p>Выполнить до: ' . date('Y/M/d', $aPlan['date_to']) . '</p>
 		      <p>Добавил: ' . $aPlan['comment_author'] . ', ' . date('Y/M/d H:i', $aPlan['date']) . '</p>
 		      <p>Комментарий:<i>' . $aPlan['comment'] . '</i></p>
 		      </div><div class="items_container">';
