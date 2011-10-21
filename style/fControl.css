@@ -1,6 +1,6 @@
 .fControl {
     width:984px;
-    height:200px;
+    height:300px;
     padding-left:15px;
     padding-top:10px;
     line-height: 25px;
@@ -66,7 +66,7 @@
 
 .cMasters {
 	width: 990px;
-	height: 250px;
+	height: 200px;
 	padding-left:15px;
     padding-top:10px;
     line-height: 25px;
@@ -90,9 +90,21 @@
 
 .cMasters input {
     float: right;
-    width: 300px;
+    width: 250px;
 }
 
 .cMasters span {
     float: left;
+}
+
+#mType {
+    width: 30%;
+}
+
+#mCategory {
+    width: 30%;
+}
+
+#mItem {
+    width: 30%;
 }
