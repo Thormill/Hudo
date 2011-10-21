@@ -19,6 +19,7 @@ $m_id = 0;
 $flag = FALSE;
 
 foreach($sMaterials as $iMaterial => $sMaterial){
+	$sClose = '<div class="delete" onClick="DeleteMaterial(' . $sMaterial['id'] . ');return false;">X</div>';
     $material = $oDB->SelectField('
 	    SELECT `material_name`
 		FROM `materials`
@@ -41,20 +42,26 @@ foreach($sMaterials as $iMaterial => $sMaterial){
 		    FROM `masters`
 		    WHERE `m_id` = "' . $sMaterial['master_id'] . '"
 		');
-		echo '<div class="container"><div class="master_container">
+		echo '<div class="container">
+		      <div class="master_container">
 		      <p>Мастер: <b>' . $master_fio . '</b></p> 
 		      <p>Телефон: ' . $master_phone . '</p>
 		      <p>Дата выдачи: ' . date('Y-M-d, H:i', $sMaterial['date']) . '</p>
 		      <p>Выдал: ' . $sMaterial['giver'] . '</p>
-		      <p>Комментарий: <i>' . $sMaterial['comment'] . '</i></p>
 		      </div><div class="materials_container">';
 	}
 	    if ($sMaterial['amount'] == 0)
-			$material_form = '<p>' . $material . '</p>';
+	    {
+	        $material_form = $sClose;
+			$material_form .= '<p>' . $material . '</p>';
+		}
 		else
-		    $material_form='<p><input type="button" id="' . $sMaterial['id'] . '" 
+		    $material_form = $sClose;
+		    $material_form .= '<p><input type="button" id="' . $sMaterial['id'] . '" 
               onClick="MaterialClick(this);" value="принять" />' . $material . '
-              (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" style="width: 25px;" /> штуки)</p>';
+              (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" style="width: 25px;" /> штуки)
+              </p>
+              <p>Комментарий: <i>' . $sMaterial['comment'] . '</i></p>';
 		
         echo $material_form;
         if($sMaterial['master_id'] != $m_id){

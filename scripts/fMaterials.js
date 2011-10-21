@@ -14,6 +14,13 @@ function ShowMaterials() {
     });
 }
 
+function DeleteMaterial(id) {
+    $.post('ajax/MaterialDel.php', { id : id },
+    function (data) {
+       showMessage(data);
+    });
+}
+
 $(document).ready(function() {
     ShowMaterials();
 });
