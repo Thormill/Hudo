@@ -20,7 +20,7 @@ $flag = FALSE;
 
 foreach($sMaterials as $iMaterial => $sMaterial){
 	$sClose = '<div class="delete" onClick="DeleteMaterial(' . $sMaterial['id'] . ');return false;">X</div>';
-	$sEdit = '<div class="delete" onClick="EditMaterial(' . $sMaterial['id'] . ');return false;">[I]</div>';
+	$sEdit = '<div class="edit" onClick="EditMaterial(' . $sMaterial['id'] . ');return false;"><img src="img/edit.png"></div>';
     $material = $oDB->SelectField('
 	    SELECT `material_name`
 		FROM `materials`
