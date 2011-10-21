@@ -13,10 +13,10 @@ if( (isset($_POST['m_id'])) && ($_POST['m_id'] != 0) )
         WHERE `m_id` = "' . $_POST['m_id'] . '"'
     );
     if ($uMaster != 0)
-	  echo "Информация о " . $_POST['fio'] . " обновлена";
+	  echo 'Информация о ' . $_POST['fio'] . ' обновлена';
     else
     {
-        echo "<b>Ошибка базы данных</b><br />";
+        echo '<b>Ошибка базы данных</b><br />';
         echo $oDB->getError();
     }	  
 	exit();
@@ -28,7 +28,7 @@ $sMaster = $oDB->selectField('
         WHERE `master_fio` = "' . $_POST['fio'] . '"'
 );
 
-if ($sMaster == "") {
+if ($sMaster == '') {
     $iInsert = $oDB->insert('
         INSERT INTO `masters`
             SET `master_fio` = "' . $_POST['fio'] . '",
@@ -36,13 +36,13 @@ if ($sMaster == "") {
     );
 
     if ($iInsert != 0)
-        echo "Мастер добавлен";
+        echo 'Мастер добавлен';
     else
     {
-        echo "<b>Ошибка базы данных</b><br />";
+        echo '<b>Ошибка базы данных</b><br />';
         echo $oDB->getError();
     }
 } else {
-    echo "<b>Ошибка</b><br />";
+    echo '<b>Ошибка</b><br />';
     echo 'Подобная запись о мастере уже есть в БД';
 }

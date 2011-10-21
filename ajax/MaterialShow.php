@@ -20,6 +20,7 @@ $flag = FALSE;
 
 foreach($sMaterials as $iMaterial => $sMaterial){
 	$sClose = '<div class="delete" onClick="DeleteMaterial(' . $sMaterial['id'] . ');return false;">X</div>';
+	$sEdit = '<div class="delete" onClick="EditMaterial(' . $sMaterial['id'] . ');return false;">[I]</div>';
     $material = $oDB->SelectField('
 	    SELECT `material_name`
 		FROM `materials`
@@ -50,21 +51,23 @@ foreach($sMaterials as $iMaterial => $sMaterial){
 		      <p>Выдал: ' . $sMaterial['giver'] . '</p>
 		      </div><div class="materials_container">';
 	}
-	    if ($sMaterial['amount'] == 0)
-	    {
+	    if ($sMaterial['amount'] == 0){
 	        $material_form = $sClose;
 			$material_form .= '<p>' . $material . '</p>';
 		}
-		else
+		else{
 		    $material_form = $sClose;
-		    $material_form .= '<p><input type="button" id="' . $sMaterial['id'] . '" 
+		    $material_form .= $sEdit;
+		    $material_form .= '<p id="material_block' . $sMaterial['id'] . '"><input type="button" id="' . $sMaterial['id'] . '" 
               onClick="MaterialClick(this);" value="принять" />' . $material . '
               (<input type="text" id="amount' . $sMaterial['id'] . '" value="' . $sMaterial['amount'] . '" style="width: 25px;" /> штуки)
               </p>
-              <p>Комментарий: <i>' . $sMaterial['comment'] . '</i></p>';
-		
+              <p>Комментарий: <i><span id="comment' . $sMaterial['id'] . '">' . $sMaterial['comment'] . '</span></i></p>
+              <input type="hidden" value="' . $sMaterial['material_id'] . '" id="material_id' . $sMaterial['id'] . '" / >';
+		}
+        
         echo $material_form;
-        if($sMaterial['master_id'] != $m_id){
+	    if($sMaterial['master_id'] != $m_id){
 		    $m_id = $sMaterial['master_id']; //временное хранение имени мастера
 		}
 }
