@@ -13,7 +13,6 @@ else
 if( $_POST['expired'] != 'true' )
     $status .= ' AND UNIX_TIMESTAMP() < `date_to`';
 $status .= ')';
-echo $status;
 
 $sPlans = $oDB->selectTable('
         SELECT *
@@ -33,7 +32,6 @@ foreach($sPlans as $iPlan => $aPlan){
 		      <p>План номер: ' . $aPlan['plan_number'] . '</p> 
 		      <p>Выполнить до: ' . date('Y/M/d', $aPlan['date_to']) . '</p>
 		      <p>Добавил: ' . $aPlan['comment_author'] . ', ' . date('Y/M/d H:i', $aPlan['date']) . '</p>
-		      <p>Комментарий:<i>' . $aPlan['comment'] . '</i></p>
 		      </div><div class="items_container">';
 	}
     $Item = $oDB->selectField('
@@ -66,7 +64,7 @@ foreach($sPlans as $iPlan => $aPlan){
 			
 	echo '<p>';
 	echo $Type . ' / ' . $Category . ' / ' . $Item . '<br />';
-	echo 'сделано ' . $aPlan['amount_made'] . ' из ' . $aPlan['amount_to_make'] . '<br />';
+	echo 'сделано ' . $aPlan['amount_made'] . ' из ' . $aPlan['amount_to_make'] . ', <i>' . $aPlan['comment'] . '</i>';
 	echo '</p>';
 	
 	if($plan_id != $aPlan['plan_number']){
