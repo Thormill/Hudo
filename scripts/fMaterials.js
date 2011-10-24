@@ -20,7 +20,9 @@ function DeleteMaterial(id) {
     $.post('ajax/MaterialDel.php', { id : id },
     function (data) {
        showMessage(data);
-    });
+    }).done(function(){
+		    ShowMaterials();
+		});
 }
 
 function EditMaterial(id) {
