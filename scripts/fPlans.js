@@ -124,13 +124,24 @@ function PlanShow() {
 		});
 }
 
+function deletePlan(num) {
+    $.post('ajax/planDelete.php', {plan_number : num},
+        function (data) {
+		    showMessage(data);
+    }).done(function(){
+		  PlanShow();
+	   });
+}
+
+function editPlan(num) {
+}
+
 $(document).ready(function() {
 	$.post('ajax/loadTypes.php', null,
 	    function(data){
 			$('#typelist').html('<option value="0">--Выберите тип--</option>' + data);
 		})
 	$('#datepicker').datepicker();
-// вставка подсказки
-    $('#datepicker').val('до даты');
+    $('#datepicker').datepicker('option', 'minDate', 0);
     PlanShow();
 });

@@ -40,7 +40,18 @@
     float: left;
     overflow: auto;
 }
-    
+
+.delete {
+    float: right;
+    cursor:pointer;
+}
+
+.edit{
+    float: right;
+    cursor:pointer;
+
+}
+
 #price {
     width: 40px;
 }
