@@ -61,10 +61,13 @@ foreach($sPlans as $iPlan => $aPlan){
 	    FROM `types`
 	    WHERE `t_id` = ' . $Type_id . '
 	');
-			
+	if($aPlan['comment'] != '')
+	    $comment = ', <i>' . $aPlan['comment'] . '</i>';
+	else
+	    $comment = '';
 	echo '<p>';
 	echo $Type . ' / ' . $Category . ' / ' . $Item . '<br />';
-	echo 'сделано ' . $aPlan['amount_made'] . ' из ' . $aPlan['amount_to_make'] . ', <i>' . $aPlan['comment'] . '</i>';
+	echo 'сделано ' . $aPlan['amount_made'] . ' из ' . $aPlan['amount_to_make'] . $comment;
 	echo '</p>';
 	
 	if($plan_id != $aPlan['plan_number']){
