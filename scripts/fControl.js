@@ -139,9 +139,13 @@ function Delete() {
     $.post('ajax/DataDelete.php', {table : table, myid : myid},
     function (data) {
        showMessage(data);
-    });
-    MasterClear();
-    ItemsClear();
+    }).done(function() {
+	    switch (table) {
+            case 'masters': LoadMasters(); MasterClear(); break;
+            case 'types': LoadTypes(); ItemsClear(); break;
+	        case 'materials':  LoadMaterials(); MaterialClear(); break;
+		    default: ItemsClear(); break;
+	   }});
 }
 
 function LoadMasters() {
