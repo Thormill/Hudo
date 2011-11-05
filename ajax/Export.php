@@ -6,15 +6,9 @@ include_once ROOT . 'phpexcel/PHPExcel/Writer/Excel5.php';
 require_once ROOT . 'constants.php';
 require_once ROOT . 'database.class.php';
 
+$iPage = 0; //номер страницы экселя
 $oDB = new Database($aDatabase['host'], $aDatabase['user'], $aDatabase['pwd'], $aDatabase['name']);
 $objPHPExcel = new PHPExcel();
-$objPHPExcel->setActiveSheetIndex(0);
-$aSheet = $objPHPExcel->getActiveSheet();
-$aSheet->setTitle('Художники');
-
-$aSheet->getColumnDimension('A')->setWidth(35);
-$aSheet->getColumnDimension('B')->setWidth(20);
-
 $boldFont = array(
 	'font'=>array(
 		'name'=>'Arial Cyr',
@@ -34,30 +28,38 @@ $left = array(
 		'vertical'=>PHPExcel_Style_Alignment::VERTICAL_CENTER
 	)
 );
-$aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($center);
-$aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($center);
 
-$sMasters = $oDB->selectTable('
-    SELECT `master_fio`, `phone`, `m_id`
-        FROM `masters`
-    ');
-if($sMasters != 0){
-	if(isset($_POST['export_settings'][1])){
-		$aSheet->setCellValue('A1', 'Художник');
-		foreach ($sMasters as $iMaster => $sMaster)
-			$aSheet->setCellValue('A' . ($sMaster['m_id']+1), $sMaster['master_fio']);
+if(isset($_POST['export_settings'][1])){
+	$objPHPExcel->setActiveSheetIndex($iPage);
+	$aSheet = $objPHPExcel->getActiveSheet();
+	$aSheet->setTitle('Художники');
+
+	$aSheet->getColumnDimension('A')->setWidth(35);
+	$aSheet->getColumnDimension('B')->setWidth(20);
+
+	$aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($center);
+	$aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($center);
+
+	$sMasters = $oDB->selectTable('
+		SELECT `master_fio`, `phone`, `m_id`
+			FROM `masters`
+		');
+	if($sMasters == 0){
+		echo 'no master entries!';
 	}
-	if(isset($_POST['export_settings'][2])){
-		$aSheet->setCellValue('B1', 'Телефон');
-		foreach ($sMasters as $iMaster => $sMaster)
-			$aSheet->setCellValue('B' . ($sMaster['m_id']+1), $sMaster['phone']);
+
+	$aSheet->setCellValue('A1', 'Художник');
+	$aSheet->setCellValue('B1', 'Телефон');
+	foreach ($sMasters as $iMaster => $sMaster){
+		$aSheet->setCellValue('A' . ($sMaster['m_id']+1), $sMaster['master_fio']);
+		$aSheet->setCellValue('B' . ($sMaster['m_id']+1), $sMaster['phone']);
 	}
+	$iPage++;
 }
-
 /*--------------------------------------------------------------*/
-//if(isset($_POST['export_settings'][3])){
+if(isset($_POST['export_settings'][2])){
 	$objPHPExcel->createSheet();
-	$objPHPExcel->setActiveSheetIndex(1);
+	$objPHPExcel->setActiveSheetIndex($iPage);
 	$aSheet = $objPHPExcel->getActiveSheet();
 	$aSheet->setTitle('Изделия');
 
@@ -92,28 +94,12 @@ if($sMasters != 0){
 		$aSheet->getStyle('C' . ($iItem + 1))->applyFromArray($left);
 		$aSheet->getStyle('D' . ($iItem + 1))->applyFromArray($left);
 	}
-//}
-/*-------------------------------------------------------------------------*/
-$objPHPExcel->createSheet();
-$objPHPExcel->setActiveSheetIndex(2);
-$aSheet = $objPHPExcel->getActiveSheet();
-$aSheet->setTitle('Заготовки');
-
-$sMaterials = $oDB->selectTable('
-    SELECT `material_name`, `material_id`
-        FROM `materials`
-    ');
-if($sMaterials != 0){
-	if(isset($_POST['export_settings'][6])){
-		$aSheet->setCellValue('A1', 'Наименование');
-		foreach ($sMaterials as $iMaterial => $sMaterial)
-			$aSheet->setCellValue('A' . ($sMaterial['material_id']+1), $sMaterial['material_name']);
-	}
+	$iPage++;
 }
 /*-------------------------------------------------------------------------*/
-if(isset($_POST['export_settings'][5])){
+if(isset($_POST['export_settings'][3])){
     $objPHPExcel->createSheet();
-    $objPHPExcel->setActiveSheetIndex(3);
+    $objPHPExcel->setActiveSheetIndex($iPage);
     $aSheet = $objPHPExcel->getActiveSheet();
     $aSheet->setTitle('Платежи');
 
@@ -132,8 +118,8 @@ if(isset($_POST['export_settings'][5])){
     $aSheet->getColumnDimension('D')->setWidth(30);
     $aSheet->getColumnDimension('E')->setWidth(10);
     $aSheet->getColumnDimension('F')->setWidth(10);
-    $aSheet->getColumnDimension('G')->setWidth(40);
-    $aSheet->getColumnDimension('H')->setWidth(40);
+    $aSheet->getColumnDimension('G')->setWidth(30);
+    $aSheet->getColumnDimension('H')->setWidth(30);
 
     $aSheet->getStyle('A1')->applyFromArray($boldFont)->applyFromArray($left);
     $aSheet->getStyle('B1')->applyFromArray($boldFont)->applyFromArray($left);
@@ -145,7 +131,8 @@ if(isset($_POST['export_settings'][5])){
     $aSheet->getStyle('H1')->applyFromArray($boldFont)->applyFromArray($left);
 
     $aPayments = $oDB->selectTable('
-        SELECT * FROM payments_history
+        SELECT * 
+		FROM `payments_history`
     ');
     $i = 1;
     $iPnum;
@@ -159,7 +146,9 @@ if(isset($_POST['export_settings'][5])){
 		else {
 		    $iPnum = $aPayment['payment_number'];
 		   	$fio = $oDB->selectField('
-		        SELECT `master_fio` FROM `masters` WHERE m_id="' . $aPayment['master_id'] . '"
+		        SELECT `master_fio` 
+				FROM `masters` 
+				WHERE m_id="' . $aPayment['master_id'] . '"
 		    ');
 		    $aPayment['date'] = date('Y-M-d / H:m', $aPayment['date']);
 		}
@@ -181,7 +170,29 @@ if(isset($_POST['export_settings'][5])){
 		$aSheet->setCellValue('H'.$i, $aPayment['comment_author']);
 		$aSheet->getStyle('H'.$i)->applyFromArray($center);
     }
+	$iPage++;
 }
+/*-------------------------------------------------------------------------*/
+if(isset($_POST['export_settings'][4])){
+	$objPHPExcel->createSheet();
+	$objPHPExcel->setActiveSheetIndex($iPage);
+	$aSheet = $objPHPExcel->getActiveSheet();
+	$aSheet->setTitle('Заготовки');
+    $aSheet->setCellValue('A1', 'Наименование');
+	$sMaterials = $oDB->selectTable('
+		SELECT `material_name`, `material_id`
+			FROM `materials`
+		');
+	if($sMaterials == 0){
+	    echo 'no materials data';
+	}
+
+	foreach ($sMaterials as $iMaterial => $sMaterial)
+		$aSheet->setCellValue('A' . ($sMaterial['material_id']+1), $sMaterial['material_name']);
+
+	$iPage++;	
+}
+
 /*----file create----*/
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 $file = '../files/export.xlsx';

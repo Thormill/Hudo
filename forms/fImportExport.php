@@ -14,19 +14,17 @@
     <p>Экспорт списка художников и списка изделий.</p>
 <div>
     <p><input type="checkbox" name="export_settings[1]" value="Maters" checked>Художники</input></p>
-    <p><input type="checkbox" name="export_settings[2]" value="Phones" checked>Телефоны</input></p>
 </div>
 <div>
-    <p><input type="checkbox" name="export_settings[3]" value="Items" checked>Изделия</input></p>
-    <p><input type="checkbox" name="export_settings[4]" value="Prices" checked>Стоимость</input></p>
+    <p><input type="checkbox" name="export_settings[2]" value="Items" checked>Изделия</input></p>
 </div>
 <div>
-    <p><input type="checkbox" name="export_settings[5]" value="History" checked>История платежей</input></p>
+    <p><input type="checkbox" name="export_settings[3]" value="History" checked>История платежей</input></p>
     <label for="from">c</label><input id="from" type="text"></input>
     <label for="to">по</label><input id="to" type="text"></input>
 </div>
 <div>
-    <p><input type="checkbox" name="export_settings[6]" value="Materials" checked>Список заготовок</input></p>
+    <p><input type="checkbox" name="export_settings[4]" value="Materials" checked>Список заготовок</input></p>
 </div>
 <br>
 <p><input type="button" onclick="Export();" value="Экспортировать данные в файл" /></p>
