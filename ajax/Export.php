@@ -51,8 +51,8 @@ if(isset($_POST['export_settings'][1])){
 	$aSheet->setCellValue('A1', 'Художник');
 	$aSheet->setCellValue('B1', 'Телефон');
 	foreach ($sMasters as $iMaster => $sMaster){
-		$aSheet->setCellValue('A' . ($sMaster['m_id']+1), $sMaster['master_fio']);
-		$aSheet->setCellValue('B' . ($sMaster['m_id']+1), $sMaster['phone']);
+		$aSheet->setCellValue('A' . ($sMaster['m_id']+2), $sMaster['master_fio']);
+		$aSheet->setCellValue('B' . ($sMaster['m_id']+2), $sMaster['phone']);
 	}
 	$iPage++;
 }
@@ -82,17 +82,17 @@ if(isset($_POST['export_settings'][2])){
 		FROM `items`
 	');
 	foreach($aItems as $iItem => $aItem){
+		$iRow = $iItem + 2;
 		$sType = $oDB->selectField('SELECT `type_name` FROM `types` WHERE t_id="' . $aItem['type_id'] . '"');
 		$sCat = $oDB->selectField('SELECT `category_name` FROM `categories` WHERE `c_id` = "' . $aItem['category_id'] . '"');
-		$sItem = $aItem['item_name'];
-		$aSheet->setCellValue('A' . ($iItem + 1), $sType);     //тип изделия
-		$aSheet->setCellValue('B' . ($iItem + 1), $sCat); //категория
-		$aSheet->setCellValue('C' . ($iItem + 1), $sItem);     //итем
-		$aSheet->setCellValue('D' . ($iItem + 1), $aItem['price']);    //цена
-		$aSheet->getStyle('A' . ($iItem + 1))->applyFromArray($left);
-		$aSheet->getStyle('B' . ($iItem + 1))->applyFromArray($left);
-		$aSheet->getStyle('C' . ($iItem + 1))->applyFromArray($left);
-		$aSheet->getStyle('D' . ($iItem + 1))->applyFromArray($left);
+		$aSheet->setCellValue('A' . $iRow, $sType);     //тип изделия
+		$aSheet->setCellValue('B' . $iRow, $sCat); //категория
+		$aSheet->setCellValue('C' . $iRow, $aItem['item_name']);     //итем
+		$aSheet->setCellValue('D' . $iRow, $aItem['price']);    //цена
+		$aSheet->getStyle('A' . $iRow)->applyFromArray($left);
+		$aSheet->getStyle('B' . $iRow)->applyFromArray($left);
+		$aSheet->getStyle('C' . $iRow)->applyFromArray($left);
+		$aSheet->getStyle('D' . $iRow)->applyFromArray($left);
 	}
 	$iPage++;
 }
@@ -188,7 +188,7 @@ if(isset($_POST['export_settings'][4])){
 	}
 
 	foreach ($sMaterials as $iMaterial => $sMaterial)
-		$aSheet->setCellValue('A' . ($sMaterial['material_id']+1), $sMaterial['material_name']);
+		$aSheet->setCellValue('A' . ($sMaterial['material_id']+2), $sMaterial['material_name']);
 
 	$iPage++;	
 }
