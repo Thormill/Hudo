@@ -51,8 +51,8 @@ if(isset($_POST['export_settings'][1])){
 	$aSheet->setCellValue('A1', 'Художник');
 	$aSheet->setCellValue('B1', 'Телефон');
 	foreach ($sMasters as $iMaster => $sMaster){
-		$aSheet->setCellValue('A' . ($sMaster['m_id']+2), $sMaster['master_fio']);
-		$aSheet->setCellValue('B' . ($sMaster['m_id']+2), $sMaster['phone']);
+		$aSheet->setCellValue('A' . ($sMaster['m_id']+1), $sMaster['master_fio']);
+		$aSheet->setCellValue('B' . ($sMaster['m_id']+1), $sMaster['phone']);
 	}
 	$iPage++;
 }
@@ -188,7 +188,7 @@ if(isset($_POST['export_settings'][4])){
 	}
 
 	foreach ($sMaterials as $iMaterial => $sMaterial)
-		$aSheet->setCellValue('A' . ($sMaterial['material_id']+2), $sMaterial['material_name']);
+		$aSheet->setCellValue('A' . ($sMaterial['material_id']+1), $sMaterial['material_name']);
 
 	$iPage++;	
 }
